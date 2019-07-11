@@ -3,14 +3,14 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 
-import { TodoContainer } from './containers/todo';
+import { ChartPage } from './containers/ChartPage';
 import './index.css';
 
 const store = configureStore();
 
 const App = () => (
     <Provider store={store}>
-        <TodoContainer />
+        <ChartPage />
     </Provider>
 );
 
