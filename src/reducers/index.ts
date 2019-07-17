@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import todoReducer from './todo';
+import chartReducer from './chart';
 
 export default combineReducers({
-    todo: todoReducer
-})
+    chart: chartReducer,
+});
 

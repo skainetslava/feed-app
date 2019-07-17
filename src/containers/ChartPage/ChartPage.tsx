@@ -2,48 +2,45 @@ import * as React from 'react';
 
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-
-import { ITodoAction } from 'src/actions';
-import { addItem } from 'src/actions/index';
-import { getTodos } from 'src/reducers/selectors';
-import { ITodo } from 'src/reducers/todo';
 import { IStore } from 'src/store';
-//import { Input } from 'src/components/input';
 
-export interface ITodoContainerProps {
-    todos?: ITodo[],
-    actions?: {
-        onAddItem: (value: string) => void
-    }
+import {
+    fetchChartRequest,
+    IChartAction,
+} from 'src/actions/chart';
+
+import { IChart } from 'src/reducers/chart';
+import { getChart } from 'src/reducers/selectors';
+
+interface IChartContainerProps {
+    dispatch?: any;
+    tracks?: IChart[];
+    onFetchChart?: () => void;
 }
 
-export interface ICallbackObject {
-    value: string
-}
-export interface ITodoContainerState {
-    readonly value: string
-}
-
-
-const ChartPage: React.FC = () => {
-    //const [value, setValue] = React.useState('');
-
+const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart }) => {
     React.useEffect(() => {
-    }, [])
+        onFetchChart && onFetchChart();
+    }, []);
 
     return (
         <div>
+            {
+                tracks && tracks.length > 0 && tracks.map((item, index) => {
+                    return <div key={index}>{item.label}</div>;
+                })
+            }
         </div>
     );
-}
+};
 
 const mapStateToProps = (state: IStore) => ({
-    todos: getTodos(state)
+    tracks: getChart(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<ITodoAction>) => ({
-    onAddItem: (value: string) => dispatch(addItem(value)),
-})
+const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
+    onFetchChart: () => dispatch(fetchChartRequest()),
+});
 
 
-export default connect<{}, {}, ITodoContainerProps>(mapStateToProps, mapDispatchToProps)(ChartPage);
+export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(ChartPage);

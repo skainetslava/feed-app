@@ -3,9 +3,9 @@ import { createSelector } from 'reselect';
 
 import { IStore } from 'src/store';
 
-const TODOS = (state: IStore) => state.todo.todos;
+const CHART_TRACKS = (state: IStore) => state.chart.tracks;
 
-export const getTodos = createSelector(
-    [TODOS],
-    (todos) => todos && todos
-)
+export const getChart = createSelector(
+    [CHART_TRACKS],
+    (tracks) => tracks && tracks,
+);

@@ -1,21 +1,24 @@
 
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from 'src/sagas';
 import rootReducer from '../reducers/index';
 
-import { ITodoStoreState } from '../reducers/todo';
-
-
 export interface IStore {
-    todo: ITodoStoreState
+    chart: {
+        tracks: object[],
+    };
 }
 
 const configureStore = (initialState?: IStore) => {
     const logger = createLogger();
+    const sagaMiddleware = createSagaMiddleware();
+
     const middlewares = [
         logger,
-        thunk
+        sagaMiddleware,
+
     ];
     const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -26,10 +29,11 @@ const configureStore = (initialState?: IStore) => {
         initialState,
         composeEnhancers(
             applyMiddleware(...middlewares),
-           // (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : (fn: any) => fn
-        )
-    )
+        ),
+    );
 
+    // store.runSaga = sagaMiddleware.run;
+    sagaMiddleware.run(rootSaga);
     return store;
 };
 

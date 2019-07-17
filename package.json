@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-router-dom": "^4.3.4",
     "@types/redux-logger": "^3.0.6",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
@@ -15,6 +16,7 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "webpack-merge": "^4.1.4"
