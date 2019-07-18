@@ -11,8 +11,8 @@ interface IInputProps {
     value: string,
     placeholder?: string,
     disabled?: boolean,
-    onChange?:(value: object) => void,
-    onEnter?:() => void
+    onChange?: (value: object) => void,
+    onEnter?: () => void
 }
 
 

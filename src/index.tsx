@@ -3,14 +3,15 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 
-import { ChartPage } from './containers/ChartPage';
+//import { ChartPage } from './containers/ChartPage';
+import Routes from 'src/routes/root';
 import './index.css';
 
 const store = configureStore();
 
 const App = () => (
     <Provider store={store}>
-        <ChartPage />
+        <Routes />
     </Provider>
 );
 

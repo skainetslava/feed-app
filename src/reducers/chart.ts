@@ -1,26 +1,15 @@
+import { ITrack } from 'src/models/track';
 import { IChartAction } from '../actions/chart';
 import * as constants from '../constants/actions/chart';
 
-export interface IChart {
-    id: number;
-    label: string;
-}
-
 export interface IChartStoreState {
-    tracks: IChart[];
+    tracks: ITrack[];
+    isLoading: boolean
 }
 
 const initialState: IChartStoreState = {
-    tracks: [
-        {
-            id: 1,
-            label: "One action",
-        },
-        {
-            id: 2,
-            label: "Two action",
-        },
-    ],
+    tracks: [],
+    isLoading: false,
 };
 
 
@@ -29,17 +18,21 @@ export default function chartReducer(state: IChartStoreState = initialState, act
         case constants.FETCH_CHART_REQUEST:
             return {
                 ...state,
+                isLoading: true,
             };
         case constants.FETCH_CHART_SUCCESS:
+            const tracks = action.payload;
             return {
                 ...state,
+                isLoading: false,
                 tracks: [
-                    ...state.tracks,
+                    ...tracks,
                 ],
             };
         case constants.FETCH_CHART_FAILURE:
             return {
                 ...state,
+                isLoading: false,
                 tracks: [
                     ...state.tracks,
                 ],

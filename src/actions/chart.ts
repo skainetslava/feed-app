@@ -1,3 +1,4 @@
+import { IChartData } from 'src/services/chartAPI';
 import * as constants from '../constants/actions/chart';
 export interface IFetchChartRequest {
     type: constants.FETCH_CHART_REQUEST;
@@ -12,7 +13,7 @@ export interface IFetchChartFailure {
 }
 
 export type ChartActionType = constants.FETCH_CHART_FAILURE |
- constants.FETCH_CHART_REQUEST | constants.FETCH_CHART_SUCCESS;
+    constants.FETCH_CHART_REQUEST | constants.FETCH_CHART_SUCCESS;
 
 export interface IChartAction {
     type: ChartActionType;
@@ -25,10 +26,10 @@ export function fetchChartRequest(): IChartAction {
     };
 }
 
-export function fetchChartSuccess(value: string): IChartAction {
+export function fetchChartSuccess(value: IChartData): IChartAction {
     return {
         type: constants.FETCH_CHART_SUCCESS,
-        payload: { value },
+        payload: value,
     };
 }
 

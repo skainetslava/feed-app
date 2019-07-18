@@ -4,7 +4,9 @@
       "max-line-length": {
           "options": [120]
       },
+      "object-literal-sort-keys": false,
       "no-unused-expression": false,
+      "eofline": false,
       "semicolon": false,
       "quotemark": false,
       "new-parens": true,
