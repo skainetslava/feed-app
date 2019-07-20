@@ -14,9 +14,15 @@ export const fetchChartApi = (): Promise<IChartData | void> => {
         .then((response) => {
             const { data } = response;
             // const normalizedPhotos = normalizeData(data, allPhotosSchema);
-            const tracks = data.tracks.data.map((item: ITrack): ITrack => ({
+            const tracks = data.tracks.data.map((item: any): ITrack => ({
                 id: item.id,
                 title: item.title,
+                artist: item.artist.name,
+                duration: item.duration,
+                albumName: item.album.name,
+                pictureBigArtist: item.artist.picture_big,
+                coverSmallTrack: item.album.cover_small,
+                coverBigTrack: item.album.cover_big,
             }));
 
             return {

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import './chartTracks.scss';
 
+import { Track } from 'src/components/track';
 import { ITrack } from 'src/models/track';
 
 interface IChartTracksProps {
@@ -11,8 +12,8 @@ interface IChartTracksProps {
 const ChartTracks: React.FC<IChartTracksProps> = ({ tracks }) => {
     const renderTracks = () => {
         if (tracks && tracks.length > 0) {
-            return tracks.map((item) => {
-                return <div key={item.id}>{item.title}</div>;
+            return tracks.map((track) => {
+                return <Track track={track} key={track.id} />;
             })
 
         }

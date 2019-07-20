@@ -1,0 +1,34 @@
+.cover {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: #181818;
+    color: white;
+
+    &_header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+
+        background-image: linear-gradient(to right bottom, rgb(175, 119, 93), rgb(216, 177, 177)),
+            linear-gradient(transparent, rgb(0, 0, 0) 70%);
+
+        &_text {
+            position: relative;
+            font-weight: 900;
+            font-size: 3rem;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            height: 300px;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background: linear-gradient(transparent -30%, #181818);
+        }
+    }
+}

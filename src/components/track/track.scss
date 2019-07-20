@@ -1,0 +1,53 @@
+.track {
+    display: grid;
+    grid-template-areas:
+        "play cover title duration"
+        "play cover artist duration";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 48px 60px 1fr 90px;
+    align-items: center;
+    height: 54px;
+    width: 100%;
+    padding: 8px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, .3);
+    }
+
+    &_play {
+        grid-area: play;
+        align-self: flex-start;
+        justify-self: center;
+        margin-top: 8px;
+        cursor: pointer;
+
+        &:before {
+            content: "\f156";
+            font-size: 16px;
+        }
+    }
+
+    &_title {
+        grid-area: title;
+        justify-self: flex-start;
+        padding: 0 8px;
+    }
+
+    &_duration {
+        grid-area: duration;
+        justify-self: flex-start
+    }
+
+    &_cover {
+        grid-area: cover;
+        align-self: center;
+        height: 50px;
+        width: 50px;
+    }
+
+    &_artist {
+        grid-area: artist;
+        justify-self: flex-start;
+        padding: 0 8px;
+    }
+}

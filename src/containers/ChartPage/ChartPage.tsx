@@ -8,8 +8,8 @@ import {
     fetchChartRequest,
     IChartAction,
 } from 'src/actions/chart';
-
 import { ChartTracks } from 'src/components/chartTracks';
+import { Cover } from 'src/components/cover';
 import { ITrack } from 'src/models/track';
 import { getChart, getChartLoadingStatus } from 'src/reducers/selectors';
 
@@ -29,12 +29,20 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
         return <div>Loading...</div>
     }
 
+    const getTitleImage = (): string | undefined => {
+        if (tracks && tracks.length > 0) {
+            return tracks[0].coverBigTrack;
+        }
+
+        return undefined;
+    }
+
     return (
-        <div>
-            <>
+        <Cover image={getTitleImage()}>
+            <div>
                 {!isLoading ? <ChartTracks tracks={tracks} /> : renderLoading()}
-            </>
-        </div>
+            </div>
+        </Cover >
     );
 };
 
