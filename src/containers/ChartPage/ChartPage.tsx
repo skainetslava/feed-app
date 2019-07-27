@@ -9,7 +9,7 @@ import {
     IChartAction,
 } from 'src/actions/chart';
 import { ChartTracks } from 'src/components/chartTracks';
-import { Cover } from 'src/components/cover';
+import { Cover } from 'src/components/organisms/cover';
 import { ITrack } from 'src/models/track';
 import { getChart, getChartLoadingStatus } from 'src/reducers/selectors';
 
@@ -39,9 +39,7 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
 
     return (
         <Cover image={getTitleImage()}>
-            <div>
-                {!isLoading ? <ChartTracks tracks={tracks} /> : renderLoading()}
-            </div>
+            {!isLoading ? <ChartTracks tracks={tracks} /> : renderLoading()}
         </Cover >
     );
 };

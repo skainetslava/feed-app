@@ -4,7 +4,7 @@
         "play cover title duration"
         "play cover artist duration";
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 48px 60px 1fr 90px;
+    grid-template-columns: 48px 60px 1fr 60px;
     align-items: center;
     height: 54px;
     width: 100%;
@@ -49,5 +49,6 @@
         grid-area: artist;
         justify-self: flex-start;
         padding: 0 8px;
+        opacity: .6;
     }
 }

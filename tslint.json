@@ -8,7 +8,7 @@
       "no-unused-expression": false,
       "eofline": false,
       "semicolon": false,
-      "quotemark": false,
+      //"quotemark": false,
       "new-parens": true,
       "no-arg": true,
       "no-bitwise": true,

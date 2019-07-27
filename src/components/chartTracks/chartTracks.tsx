@@ -23,7 +23,7 @@ const ChartTracks: React.FC<IChartTracksProps> = ({ tracks }) => {
 
 
     return (
-        <div>
+        <div className="tracks">
             {renderTracks()}
         </div>
     )
