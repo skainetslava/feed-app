@@ -1,4 +1,19 @@
 .navbar {
-    position: relative;
-    background-color: rgba(0,0,0,.8);
+  position: flex;
+  padding-top: 24px;
+  
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 24px;
+
+  &_title {
+    margin-left: 4px;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
 }

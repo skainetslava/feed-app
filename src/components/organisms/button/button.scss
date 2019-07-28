@@ -2,11 +2,11 @@
     display: inline-block;
     padding: 11px 44px;
     
-    border: none;
+    background: transparent;
+    border: 1px solid #fff;
     border-radius: 50px;
 
     color: #fff;
-    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.15rem;
 
@@ -14,7 +14,10 @@
 
     cursor: pointer;
 
+    
+
     &--green {
+        border: none;
         background: #1db954;
     }
 

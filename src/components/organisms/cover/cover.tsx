@@ -12,7 +12,7 @@ const Cover: React.FC<ICoverProps> = ({ image, children }) => {
             <div className="cover_header" style={{ backgroundImage: `url(${image})` }}>
                 <div className="cover_title">
                     <p className="cover_title_text">Most popular songs</p>
-                    <div className="cover_title_play"><Button title="Play" /></div>
+                    <div className="cover_title_play"><Button title="Play" color="green" /></div>
                     <div className="cover_title_follow"><Button title="Follow" /></div>
                 </div>
             </div>

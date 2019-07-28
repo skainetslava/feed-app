@@ -1,1 +1,1 @@
-export { default as IconPlay } from './iconPlay';
+export { default as IconPlay } from "./iconPlay";

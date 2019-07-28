@@ -1,0 +1,22 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    letter-spacing: 1px;
+    border-left: 4px solid #1db954;
+
+    &_icon {
+        padding-left: 20px;
+    }
+    &_link {
+        margin-left: 16px;
+        font-size: 0.8rem;
+        text-decoration: none;
+        color: #fff;
+        opacity: 0.6;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

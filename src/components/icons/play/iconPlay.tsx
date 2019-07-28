@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-interface IIconProps {
+export interface IIconProps {
     w: number,
     h: number,
-    className: string
+    className?: string
 }
 
 const IconPlay: React.FC<IIconProps> = ({ w, h, className }) => {
