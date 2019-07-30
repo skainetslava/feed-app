@@ -2,7 +2,8 @@ import * as React from "react";
 import { IconHome } from "src/components/icons/home";
 import { IconLibrary } from "src/components/icons/library";
 import { IconSearch } from "src/components/icons/search";
-import { MenuItem } from "src/components/menu/menuItem";
+import { MenuItem } from "./menuItem";
+
 import "./menu.scss";
 
 const MENU_TITLES = {
@@ -17,7 +18,7 @@ const MENU_TITLES = {
     icon: <IconSearch w={24} h={24} />,
   },
   library: {
-    title: "Your library",
+    title: "Your Library",
     link: "/",
     icon: <IconLibrary w={24} h={24} />,
   },
@@ -27,9 +28,10 @@ const Menu: React.FC = () => {
   const menuKeys = Object.values(MENU_TITLES);
   return (
     <ul className="menu">
-      {menuKeys.map((item) => {
+      {menuKeys.map((item, index) => {
         return (
           <MenuItem
+            key={index}
             title={item.title}
             link={item.link}
             icon={item.icon}

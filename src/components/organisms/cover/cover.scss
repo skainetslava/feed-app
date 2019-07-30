@@ -10,8 +10,7 @@
         justify-content: center;
         align-items: center;
         height: 300px;
-        background-image: linear-gradient(to right bottom, rgb(175, 119, 93), rgb(216, 177, 177)),
-            linear-gradient(transparent, rgb(0, 0, 0) 70%);
+        background-image: linear-gradient(to right bottom, rgb(137, 16, 42), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
 
         &:before {
             content: "";
