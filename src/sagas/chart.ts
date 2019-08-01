@@ -3,7 +3,7 @@ import {
     fork,
     put,
     take,
-} from 'redux-saga/effects';
+} from "redux-saga/effects";
 
 
 import {
@@ -14,9 +14,9 @@ import {
 import {
     fetchChartFailure,
     fetchChartSuccess,
-} from 'src/actions/chart';
+} from "src/actions/chart";
 
-import * as constants from 'src/constants/actions/chart';
+import * as constants from "src/constants/actions/chart";
 
 
 function* fetchChart(payload: IChartData) {

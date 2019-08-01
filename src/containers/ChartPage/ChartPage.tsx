@@ -10,8 +10,8 @@ import {
 } from "src/actions/chart";
 import { ChartTracks } from "src/components/chartTracks";
 import { Cover } from "src/components/organisms/cover";
-import { ITrack } from "src/models/track";
-import { getChart, getChartLoadingStatus } from "src/reducers/selectors";
+import { ITrack } from "src/models";
+import { getChartLoadingStatus, getChartTracks } from "src/reducers/selectors";
 
 interface IChartContainerProps {
     dispatch?: any;
@@ -40,14 +40,14 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
     }
 
     return (
-        <Cover image={getTitleImage()}>
+        <Cover image={getTitleImage()} withActions={true} title={"Most popular songs"}>
             {!isLoading ? <ChartTracks tracks={tracks} /> : renderLoading()}
         </Cover >
     );
 };
 
 const mapStateToProps = (state: IStore) => ({
-    tracks: getChart(state),
+    tracks: getChartTracks(state),
     isLoading: getChartLoadingStatus(state),
 });
 

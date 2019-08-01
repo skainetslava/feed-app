@@ -1,23 +1,25 @@
+import cls from "classnames";
 import * as React from "react";
-import { Button } from "src/components/organisms/button";
+import { HeaderCover } from "src/components/organisms/header-cover";
 import { Tabs } from "src/components/organisms/tabs";
 import "./cover.scss";
 
 interface ICoverProps {
+    withActions: boolean,
+    title?: string,
     image?: string
 }
 
-const Cover: React.FC<ICoverProps> = ({ image, children }) => {
+const Cover: React.FC<ICoverProps> = ({ image, title, withActions, children }) => {
     const style = image ? { backgroundImage: `url(${image})` } : undefined;
     return (
-        <div className="cover">
-            <div className="cover_header" style={style}>
-                <Tabs />
-                <div className="cover_title">
-                    <p className="cover_title_text">Most popular songs</p>
-                    <div className="cover_title_play"><Button title="Play" color="green" /></div>
-                    <div className="cover_title_follow"><Button title="Follow" /></div>
-                </div>
+        <div className={cls("cover", { "cover--black ": image })}>
+            <Tabs />
+            <div className={cls("cover_header",
+                { "cover_header_color-wrapper cover_header--height": image })}
+                style={style}
+            >
+                <HeaderCover title={title} withActions={withActions} />
             </div>
             {children}
         </div>

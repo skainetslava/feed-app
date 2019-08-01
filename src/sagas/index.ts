@@ -1,12 +1,8 @@
-import {
-    all,
-    fork,
-} from 'redux-saga/effects';
+import { all, fork } from "redux-saga/effects";
 
-import { watchLoadChart } from './chart';
+import { watchLoadAlbum } from "./album";
+import { watchLoadChart } from "./chart";
 
 export default function* rootSaga() {
-    yield all([
-        fork(watchLoadChart),
-    ]);
+  yield all([fork(watchLoadChart), fork(watchLoadAlbum)]);
 }

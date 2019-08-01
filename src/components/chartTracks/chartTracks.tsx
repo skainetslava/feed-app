@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './chartTracks.scss';
+import "./chartTracks.scss";
 
-import { Track } from 'src/components/track';
-import { ITrack } from 'src/models/track';
+import { Track } from "src/components/track";
+import { ITrack } from "src/models";
 
 interface IChartTracksProps {
     tracks?: ITrack[]

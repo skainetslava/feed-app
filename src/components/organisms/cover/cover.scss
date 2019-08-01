@@ -1,57 +1,33 @@
 .cover {
-    position: relative;
-    height: 100%;
-    width: 100%;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  color: white;
+
+  &--black {
     background: #181818;
-    color: white;
+  }
 
-    &_header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  &_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--height {
+      height: 300px;
+    }
+
+    &_color-wrapper {
+      &:before {
+        content: "";
+        position: absolute;
         height: 300px;
-        background-image: linear-gradient(to right bottom, rgb(137, 16, 42), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
-
-        &:before {
-            content: "";
-            position: absolute;
-            height: 300px;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: linear-gradient(transparent -30%, #181818);
-        }
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient(transparent -30%, #181818);
+      }
     }
-
-    &_title {
-        display: grid;
-        grid-template-areas:
-            'title title'
-            'play follow';
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-
-
-        &_text {
-            grid-area: title;
-            position: relative;
-            margin-bottom: 16px;
-            font-weight: 900;
-            font-size: 3rem;
-        }
-
-        &_play {
-            grid-area: play;
-            z-index: 1;
-        }
-
-        &_follow {
-            grid-area: follow;
-            z-index: 1;
-        }
-
-
-    }
+  }
 }

@@ -1,12 +1,16 @@
 
-import { applyMiddleware, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import { IChartStoreState } from 'src/reducers/chart'
-import rootSaga from 'src/sagas';
-import rootReducer from '../reducers/index';
+import { applyMiddleware, compose, createStore } from "redux";
+import { createLogger } from "redux-logger";
+import createSagaMiddleware from "redux-saga";
+
+import { IAlbumStoreState } from "src/reducers/album";
+import { IChartStoreState } from "src/reducers/chart"
+
+import rootSaga from "src/sagas";
+import rootReducer from "../reducers/index";
 
 export interface IStore {
+    album: IAlbumStoreState;
     chart: IChartStoreState;
 }
 

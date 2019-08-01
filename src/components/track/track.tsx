@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { IconPlay } from 'src/components/icons/play'
-import { formateInMinutes } from 'src/helpers/formateInMinutes';
-import { ITrack } from 'src/models/track';
-import './track.scss';
+import * as React from "react";
+import { IconPlay } from "src/components/icons/play"
+import { formateInMinutes } from "src/helpers/formateInMinutes";
+import { ITrack } from "src/models";
+import "./track.scss";
 
 interface ITrackComponentProps {
     track: ITrack

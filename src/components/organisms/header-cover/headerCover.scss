@@ -1,0 +1,29 @@
+.cover {
+  &_title {
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "play follow";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    &_text {
+      grid-area: title;
+      position: relative;
+      margin-bottom: 16px;
+      font-weight: 900;
+      font-size: 3rem;
+    }
+
+    &_play {
+      grid-area: play;
+      z-index: 1;
+    }
+
+    &_follow {
+      grid-area: follow;
+      z-index: 1;
+    }
+  }
+}
