@@ -24,7 +24,7 @@ export const getChartLoadingStatus = createSelector(
     (isLoading) => isLoading,
 )
 
-const ALBUM_DATA = (state: IStore) => state.album;
+const ALBUM_DATA = (state: IStore) => state.album.data;
 
 export const getAlbumData = createSelector(
     [ALBUM_DATA],

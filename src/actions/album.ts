@@ -1,3 +1,4 @@
+import { IAlbumData } from "src/services/albumAPI";
 import * as constants from "../constants/actions/album";
 
 export interface IFetchChartRequest {
@@ -20,16 +21,17 @@ export interface IAlbumDataAction {
     payload?: any;
 }
 
-export function fetchAlbumData(): IAlbumDataAction {
+export function fetchAlbumData(id: string): IAlbumDataAction {
     return {
-        type: constants.FETCH_DATA_ALBUM_FAILURE,
+        type: constants.FETCH_DATA_ALBUM_REQUEST,
+        payload: id,
     };
 }
 
-export function fetchAlbumDataSuccess(id: number): IAlbumDataAction {
+export function fetchAlbumDataSuccess(data: IAlbumData): IAlbumDataAction {
     return {
         type: constants.FETCH_DATA_ALBUM_SUCCESS,
-        payload: id,
+        payload: data,
     };
 }
 

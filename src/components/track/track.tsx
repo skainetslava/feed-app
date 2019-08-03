@@ -12,10 +12,13 @@ const Track: React.FC<ITrackComponentProps> = ({ track }) => {
     return (
         <div className="track">
             <IconPlay className="track_play" w={16} h={16} />
-            <img className="track_cover" src={track.coverSmallTrack} alt={track.title} />
-            <p className="track_title">{track.title}</p>
+            {track.coverSmallTrack && <img className="track_cover" src={track.coverSmallTrack} alt={track.title} />}
+            <div className="track_info">
+                <p className="track_title">{track.title}</p>
+                <div className="track_artist">{track.artist}</div>
+            </div>
             <p className="track_duration">{formateInMinutes(track.duration)}</p>
-            <div className="track_artist">{track.artist}</div>
+
         </div>
     )
 };

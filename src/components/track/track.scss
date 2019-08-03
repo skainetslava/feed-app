@@ -1,54 +1,44 @@
 .track {
-    display: grid;
-    grid-template-areas:
-        "play cover title duration"
-        "play cover artist duration";
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 48px 60px 1fr 60px;
+    display: flex;
     align-items: center;
+    justify-content: flex-start;
     height: 54px;
-    width: 100%;
+    //width: 100%;
     padding: 8px;
+
 
     &:hover {
         background-color: rgba(0, 0, 0, .3);
     }
 
-    &_play {
-        grid-area: play;
-        align-self: flex-start;
-        justify-self: center;
-        margin-top: 8px;
-        cursor: pointer;
-
-        &:before {
-            content: "\f156";
-            font-size: 16px;
-        }
+    &_info {
+        position: relative;
+        width: 100%;
+        text-align: left;
     }
 
+    &_play {
+        align-self: flex-start;
+        margin: 10px 10px 0 0;
+        cursor: pointer;
+    }
+
+
     &_title {
-        grid-area: title;
-        justify-self: flex-start;
         padding: 0 8px;
     }
 
     &_duration {
-        grid-area: duration;
-        justify-self: flex-start;
         opacity: .6;
     }
 
     &_cover {
-        grid-area: cover;
-        align-self: center;
         height: 50px;
         width: 50px;
+        margin: 0 4px;
     }
 
     &_artist {
-        grid-area: artist;
-        justify-self: flex-start;
         padding: 0 8px;
         opacity: .6;
     }

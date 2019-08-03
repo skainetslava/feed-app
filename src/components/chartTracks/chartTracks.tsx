@@ -10,6 +10,7 @@ interface IChartTracksProps {
 }
 
 const ChartTracks: React.FC<IChartTracksProps> = ({ tracks }) => {
+    console.log(tracks);
     const renderTracks = () => {
         if (tracks && tracks.length > 0) {
             return tracks.map((track) => {

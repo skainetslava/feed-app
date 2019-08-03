@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 import {
     API_ROOT,
     // PUBLIC_KEY
-} from 'src/constants/server/config';
+} from "src/constants/server/config";
 
 interface IData {
     url: string;
@@ -16,11 +16,11 @@ export function getData({ url, params, headers }: IData) {
         headers: {
             ...headers,
         },
-        method: 'get',
+        method: "get",
         params: {
             ...params,
         },
-        responseType: 'json',
+        responseType: "json",
         timeout: 10000,
         url: `${API_ROOT}${url}`,
     });
@@ -33,8 +33,8 @@ export function postData({ url, headers, data }: IData) {
             // 'Authorization': `Client-ID ${PUBLIC_KEY}`,
             ...headers,
         },
-        method: 'post',
-        responseType: 'json',
+        method: "post",
+        responseType: "json",
         timeout: 10000,
         url: `${API_ROOT}${url}`,
     });

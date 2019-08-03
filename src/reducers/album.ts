@@ -3,12 +3,12 @@ import { IAlbumDataAction } from "../actions/album";
 import * as constants from "../constants/actions/album";
 
 export interface IAlbumStoreState {
-  album: IAlbum | null;
+  data: IAlbum | null;
   isLoading: boolean;
 }
 
 const initialState: IAlbumStoreState = {
-  album: null,
+  data: null,
   isLoading: false,
 };
 
@@ -27,13 +27,13 @@ export default function albumReducer(
       return {
         ...state,
         isLoading: false,
-        album,
+        data: album,
       };
     case constants.FETCH_DATA_ALBUM_FAILURE:
       return {
         ...state,
         isLoading: false,
-        album: null,
+        data: null,
       };
     default:
       return state;

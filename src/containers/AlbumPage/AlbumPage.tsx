@@ -4,37 +4,39 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { IStore } from "src/store";
 
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps } from "react-router-dom";
 import {
     fetchAlbumData,
     // IGetAlbumAction,
 } from "src/actions/album";
+import { Album } from "src/components/album";
 // import { Album } from "src/components/album";
 import { IAlbum } from "src/models";
 import { getAlbumData } from "src/reducers/selectors";
 
-interface IAlbumContainerProps {
-    dispatch?: any;
-    id: number,
-    album?: IAlbum[],
-    isLoading?: boolean,
-    onFetchAlbumData?: () => void;
+interface IRouteProps {
+    id: string;
 }
-const AlbumPage: React.FC<IAlbumContainerProps & RouteComponentProps> =
-    ({ dispatch, album, onFetchAlbumData, isLoading, match }) => {
-        // React.useEffect(() => {
 
-        // }, []);
+interface IAlbumContainerProps extends RouteComponentProps<IRouteProps> {
+    album?: IAlbum,
+    isLoading?: boolean,
+    onFetchAlbumData?: (id: string) => void;
+}
 
-        // const renderLoading = (): JSX.Element => {
-        //     return <div>Loading...</div>
-        // }
+const AlbumPage: React.FC<IAlbumContainerProps> = ({ album, onFetchAlbumData, isLoading, match }) => {
+    React.useEffect(() => {
+        onFetchAlbumData && onFetchAlbumData(match.params.id)
+    }, []);
 
-        return (
-            // {!isLoading ? <Album albums={albums} /> : renderLoading()}
-            <div>{match.params.id}</div>
-        );
-    };
+    const renderLoading = (): JSX.Element => {
+        return <div>Loading...</div>
+    }
+
+    return (
+        album ? <Album album={album} /> : renderLoading()
+    );
+};
 
 const mapStateToProps = (state: IStore) => ({
     album: getAlbumData(state),
@@ -42,7 +44,7 @@ const mapStateToProps = (state: IStore) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    onFetchAlbumData: () => dispatch(fetchAlbumData()),
+    onFetchAlbumData: (id: string) => dispatch(fetchAlbumData(id)),
 });
 
 

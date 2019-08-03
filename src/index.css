@@ -18,7 +18,13 @@ p {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 body {
+    background-image: linear-gradient(to right bottom, #89102a, black), linear-gradient(transparent, black 70%);
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -9,10 +9,10 @@ export interface ITrack {
     title: string,
     artist: string,
     duration: number,
-    albumName: string,
-    pictureBigArtist: string,
-    coverSmallTrack: string,
-    coverBigTrack: string,
+    albumName?: string,
+    pictureBigArtist?: string,
+    coverSmallTrack?: string,
+    coverBigTrack?: string,
 }
 
 export interface IAlbum {
@@ -21,4 +21,6 @@ export interface IAlbum {
     artist: string,
     coverSmallTrack: string,
     coverBigTrack: string,
+    tracks?: ITrack[],
+    releaseDate?: number
 }

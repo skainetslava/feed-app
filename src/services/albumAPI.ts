@@ -1,10 +1,8 @@
-import { IAlbum } from "src/models";
+import { IAlbum, ITrack } from "src/models";
 import { getData } from "./api";
 
 export interface IAlbumData {
-  response?: {
-      album: IAlbum[],
-  };
+  response?: IAlbum;
   error?: object;
 }
 
@@ -13,15 +11,24 @@ export const fetchAlbumDataApi = (id: number): Promise<IAlbumData | void> => {
     .then((response) => {
       const { data } = response;
 
-      const album = data.albums.data.map(
-        (item: any): IAlbum => ({
+      const tracks = data.tracks.data.map(
+        (item: any): ITrack => ({
           id: item.id,
           title: item.title,
           artist: item.artist.name,
-          coverSmallTrack: item.cover_small,
-          coverBigTrack: item.cover_big,
+          duration: item.duration,
         }),
       );
+
+      const album: IAlbum = {
+        id: data.id,
+        title: data.title,
+        artist: data.artist.name,
+        coverSmallTrack: data.cover_small,
+        coverBigTrack: data.cover_big,
+        tracks,
+        releaseDate: new Date(data.release_date).getFullYear(),
+      };
 
       return {
         response: album,
