@@ -7,10 +7,8 @@ import { IStore } from "src/store";
 import { RouteComponentProps } from "react-router-dom";
 import {
     fetchAlbumData,
-    // IGetAlbumAction,
 } from "src/actions/album";
 import { Album } from "src/components/album";
-// import { Album } from "src/components/album";
 import { IAlbum } from "src/models";
 import { getAlbumData } from "src/reducers/selectors";
 

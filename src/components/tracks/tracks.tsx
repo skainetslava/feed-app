@@ -1,16 +1,17 @@
 import * as React from "react";
+import cls from 'classnames';
 
-import "./chartTracks.scss";
+import "./tracks.scss";
 
 import { Track } from "src/components/track";
 import { ITrack } from "src/models";
 
-interface IChartTracksProps {
-    tracks?: ITrack[]
+interface ITracksProps {
+    tracks?: ITrack[],
+    className?: string
 }
 
-const ChartTracks: React.FC<IChartTracksProps> = ({ tracks }) => {
-    console.log(tracks);
+const Tracks: React.FC<ITracksProps> = ({ tracks, className }) => {
     const renderTracks = () => {
         if (tracks && tracks.length > 0) {
             return tracks.map((track) => {
@@ -24,10 +25,10 @@ const ChartTracks: React.FC<IChartTracksProps> = ({ tracks }) => {
 
 
     return (
-        <div className="tracks">
+        <div className={cls(className, "tracks")}>
             {renderTracks()}
         </div>
     )
 };
 
-export default ChartTracks;
+export default Tracks;

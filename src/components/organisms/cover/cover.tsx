@@ -16,7 +16,7 @@ const Cover: React.FC<ICoverProps> = ({ image, title, withActions, children }) =
         <div className={cls("cover", { "cover--black ": image })}>
             <Tabs />
             <div className={cls("cover_header",
-                { "cover_header_color-wrapper cover_header--height": image })}
+                { "cover_header_color-wrapper cover_header--height": withActions })}
                 style={style}
             >
                 <HeaderCover title={title} withActions={withActions} />

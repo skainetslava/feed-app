@@ -21,6 +21,6 @@ export interface IAlbum {
     artist: string,
     coverSmallTrack: string,
     coverBigTrack: string,
-    tracks?: ITrack[],
+    tracks: ITrack[],
     releaseDate?: number
 }

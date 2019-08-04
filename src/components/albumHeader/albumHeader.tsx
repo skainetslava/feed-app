@@ -1,23 +1,24 @@
 import * as React from "react";
-// import { IAlbum } from "src/models";
 
-import { IconPlay } from "../icons/play";
-import { Button } from "../organisms/button";
+import { IconPlay } from "src/components/icons/play";
+import { Button } from "src/components/organisms/button";
+
 import "./albumHeader.scss";
+
 
 interface IAlbumHeaderProps {
     coverBigTrack: string;
     title: string;
     artist: string;
     releaseDate: number;
+    count: number;
 }
 
-const AlbumHeader: React.FC<IAlbumHeaderProps> = ({ coverBigTrack, title, artist, releaseDate }) => {
+const AlbumHeader: React.FC<IAlbumHeaderProps> = ({ coverBigTrack, title, artist, releaseDate, count }) => {
     return (
         <div className="album-header">
             <div className="album-header_cover">
-                <img className="album-header_img" src={coverBigTrack} alt="" />
-                <div className="album-header_wrapper"></div>
+                <img className="album-header_img" src={coverBigTrack} alt={title} />
                 <IconPlay className="album-header_cover_play" w={36} h={36} />
             </div>
 
@@ -29,7 +30,7 @@ const AlbumHeader: React.FC<IAlbumHeaderProps> = ({ coverBigTrack, title, artist
             <section className="album-header_additional-info">
                 <div className="album-header_release-date">{releaseDate}</div>
                 &ensp;•&ensp;
-                <div>6 songs</div>
+                <div>{count} songs</div>
             </section>
         </div>
     )

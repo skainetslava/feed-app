@@ -8,8 +8,8 @@ import {
     fetchChartRequest,
     IChartAction,
 } from "src/actions/chart";
-import { ChartTracks } from "src/components/chartTracks";
 import { Cover } from "src/components/organisms/cover";
+import { Tracks } from "src/components/tracks";
 import { ITrack } from "src/models";
 import { getChartLoadingStatus, getChartTracks } from "src/reducers/selectors";
 
@@ -40,8 +40,8 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
     }
 
     return (
-        <Cover image={getTitleImage()} withActions={true} title={"Most popular songs"}>
-            {!isLoading ? <ChartTracks tracks={tracks} /> : renderLoading()}
+        <Cover image={getTitleImage()} withActions={true} title="Most popular songs">
+            {!isLoading ? <Tracks className="chart-tracks" tracks={tracks} /> : renderLoading()}
         </Cover >
     );
 };

@@ -4,7 +4,7 @@ import { IAlbum } from "src/models";
 import "./album.scss";
 
 import { AlbumHeader } from "../albumHeader";
-import { ChartTracks } from "../chartTracks";
+import { Tracks } from "../tracks";
 
 interface IAlbumComponentProps {
     album: IAlbum
@@ -18,8 +18,11 @@ const Album: React.FC<IAlbumComponentProps> = ({ album }) => {
                 artist={album.artist}
                 releaseDate={album.releaseDate || 2019}
                 coverBigTrack={album.coverBigTrack}
+                count={album.tracks.length}
             />
-            <ChartTracks tracks={album.tracks} />
+            <div className="album_tracks">
+                <Tracks tracks={album.tracks} />
+            </div>
         </div>
     )
 };
