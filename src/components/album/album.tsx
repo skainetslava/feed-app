@@ -18,7 +18,7 @@ const Album: React.FC<IAlbumComponentProps> = ({ album }) => {
                 artist={album.artist}
                 releaseDate={album.releaseDate || 2019}
                 coverBigTrack={album.coverBigTrack}
-                count={album.tracks.length}
+                count={album.tracks ? album.tracks.length : 0}
             />
             <div className="album_tracks">
                 <Tracks tracks={album.tracks} />
