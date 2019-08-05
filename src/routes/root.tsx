@@ -7,6 +7,7 @@ import { ChartPage } from "src/containers/ChartPage";
 
 import { Switch } from "react-router";
 import { BrowserRouter, Redirect, Route, RouteProps } from "react-router-dom";
+import { ArtistPage } from "src/containers/artistPage";
 
 const Routes: React.FC<RouteProps> = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Routes: React.FC<RouteProps> = () => (
         <Route exact path="/chart" component={ChartPage} />
         <Route exact path="/albums" component={AlbumsChartPage} />
         <Route exact path="/album/:id" component={AlbumPage} />
+        <Route exact path="/artist/:id" component={ArtistPage} />
       </Switch>
     </App>
   </BrowserRouter>

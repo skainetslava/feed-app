@@ -21,6 +21,7 @@ export const fetchChartApi = (): Promise<IChartData | void> => {
           id: item.id,
           title: item.title,
           artist: item.artist.name,
+          artistId: item.artist.id,
           duration: item.duration,
           albumName: item.album.name,
           pictureBigArtist: item.artist.picture_big,

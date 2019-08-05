@@ -1,0 +1,8 @@
+.album {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-gap: 28px;
+  
+  margin: 28px 64px;
+}

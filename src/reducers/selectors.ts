@@ -30,3 +30,10 @@ export const getAlbumData = createSelector(
     [ALBUM_DATA],
     (album) => album,
 )
+
+const ARTIST_DATA = (state: IStore) => state.artist.data;
+
+export const getArtistData = createSelector(
+    [ARTIST_DATA],
+    (artist) => artist,
+)

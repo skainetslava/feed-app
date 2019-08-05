@@ -42,5 +42,9 @@
     &_artist {
         padding: 0 8px;
         opacity: .6;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

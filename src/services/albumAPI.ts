@@ -16,6 +16,7 @@ export const fetchAlbumDataApi = (id: number): Promise<IAlbumData | void> => {
           id: item.id,
           title: item.title,
           artist: item.artist.name,
+          artistId: item.artist.id,
           duration: item.duration,
         }),
       );
