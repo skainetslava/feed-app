@@ -35,9 +35,10 @@ export const fetchAlbumDataApi = (id: number): Promise<IAlbumData | void> => {
         response: album,
       };
     })
-    .catch((error) => {
-      error;
-    });
+    .catch((error) => ({
+      error,
+    }),
+    );
 
   return promise;
 };
