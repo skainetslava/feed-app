@@ -14,8 +14,10 @@
 
     &_info {
         position: relative;
-        width: 100%;
+        width: calc(100% - 4px);
         text-align: left;
+        margin: 0 0 0 4px;
+
     }
 
     &_play {
@@ -34,9 +36,10 @@
     }
 
     &_cover {
+        box-sizing: border-box;
+        vertical-align: top;
         height: 50px;
         width: 50px;
-        margin: 0 4px;
     }
 
     &_artist {

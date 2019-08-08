@@ -19,7 +19,7 @@ export interface ITrack {
 export interface IAlbum {
     id: number,
     title: string,
-    artist: string,
+    artist?: string,
     coverSmallTrack: string,
     coverBigTrack: string,
     tracks?: ITrack[],

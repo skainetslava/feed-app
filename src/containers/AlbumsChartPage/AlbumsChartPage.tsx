@@ -8,7 +8,7 @@ import {
     fetchChartRequest,
     IChartAction,
 } from "src/actions/chart";
-import { ChartAlbums } from "src/components/chartAlbums";
+import { Albums } from "src/components/albums";
 import { Cover } from "src/components/organisms/cover";
 import { IAlbum } from "src/models";
 import { getChartAlbums, getChartLoadingStatus } from "src/reducers/selectors";
@@ -33,7 +33,7 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({ albums, onFetch
 
     return (
         <Cover withActions={false}>
-            {!isLoading ? <ChartAlbums albums={albums} /> : renderLoading()}
+            {!isLoading ? <Albums className="albums-chart" albums={albums} /> : renderLoading()}
         </Cover >
     );
 };

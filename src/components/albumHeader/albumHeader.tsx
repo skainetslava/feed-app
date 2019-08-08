@@ -9,7 +9,7 @@ import "./albumHeader.scss";
 interface IAlbumHeaderProps {
     coverBigTrack: string;
     title: string;
-    artist: string;
+    artist?: string;
     releaseDate: number;
     count: number;
 }
@@ -24,7 +24,7 @@ const AlbumHeader: React.FC<IAlbumHeaderProps> = ({ coverBigTrack, title, artist
 
             <section className="album-header_text">
                 <div className="album-header_title">{title}</div>
-                <div className="album-header_artist">{artist}</div>
+                {artist && <div className="album-header_artist">{artist}</div> }
             </section>
             <Button className="album-header_btn" title="Play" color="green" />
             <section className="album-header_additional-info">

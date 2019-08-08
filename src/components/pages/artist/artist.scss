@@ -1,8 +1,26 @@
-.album {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr;
-  grid-gap: 28px;
-  
-  margin: 28px 64px;
+.artist {
+
+  &_tracks {
+  margin: 28px 24px;
+
+    &_wrapper {
+      margin: 16px 8px;
+    }
+    &_title {
+      margin: 8px 0;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+
+  &_albums {
+    margin: 28px 24px;
+    &_title {
+      margin: 8px 0;
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
 }

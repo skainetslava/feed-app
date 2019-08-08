@@ -5,25 +5,27 @@ import { Dispatch } from "redux";
 import { IStore } from "src/store";
 
 import { RouteComponentProps } from "react-router-dom";
+
 import {
     fetchArtistData,
 } from "src/actions/artist";
 import { Artist } from "src/components/pages/artist";
-// import { Artist } from "src/components/artist";
-import { IArtist } from "src/models";
-import { getArtistData } from "src/reducers/selectors";
+import { IAlbum, IArtist, ITrack } from "src/models";
+import { getArtistAlbums, getArtistData, getArtistMostPopularTracks } from "src/reducers/selectors";
 
 interface IRouteProps {
     id: string;
 }
 
 interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
-    artist?: IArtist,
+    artist: IArtist,
+    tracks: ITrack[],
+    albums: IAlbum[],
     isLoading?: boolean,
     onFetchArtistData?: (id: string) => void;
 }
 
-const ArtistPage: React.FC<IArtistContainerProps> = ({ artist, onFetchArtistData, isLoading, match }) => {
+const ArtistPage: React.FC<IArtistContainerProps> = ({ artist, tracks, albums, onFetchArtistData, isLoading, match }) => {
     React.useEffect(() => {
         onFetchArtistData && onFetchArtistData(match.params.id)
     }, [match.params.id]);
@@ -31,14 +33,16 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({ artist, onFetchArtistData
     const renderLoading = (): JSX.Element => {
         return <div>Loading...</div>
     }
-
+    console.log(tracks);
     return (
-        artist ? <Artist artist={artist} /> : renderLoading()
+        artist ? <Artist artist={artist} tracks={tracks} albums={albums} /> : renderLoading()
     );
 };
 
 const mapStateToProps = (state: IStore) => ({
     artist: getArtistData(state),
+    tracks: getArtistMostPopularTracks(state),
+    albums: getArtistAlbums(state),
     // isLoading: getALoadingStatus(state),
 });
 

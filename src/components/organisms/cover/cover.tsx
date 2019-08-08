@@ -6,11 +6,12 @@ import "./cover.scss";
 
 interface ICoverProps {
     withActions: boolean,
+    listeners?: number,
     title?: string,
     image?: string
 }
 
-const Cover: React.FC<ICoverProps> = ({ image, title, withActions, children }) => {
+const Cover: React.FC<ICoverProps> = ({ image, title, withActions, listeners, children }) => {
     const style = image ? { backgroundImage: `url(${image})` } : undefined;
     return (
         <div className={cls("cover", { "cover--black ": image })}>
@@ -19,7 +20,7 @@ const Cover: React.FC<ICoverProps> = ({ image, title, withActions, children }) =
                 { "cover_header_color-wrapper cover_header--height": withActions })}
                 style={style}
             >
-                <HeaderCover title={title} withActions={withActions} />
+                <HeaderCover title={title} withActions={withActions} listeners={listeners} />
             </div>
             {children}
         </div>
