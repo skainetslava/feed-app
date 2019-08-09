@@ -1,1 +1,1 @@
-export { default as AlbumsChartPage } from "./AlbumsChartPage"
+export { default as AlbumsChartPage } from "./albumsChartPage"

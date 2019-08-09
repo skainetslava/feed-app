@@ -1,6 +1,6 @@
 import { call, fork, put, take } from "redux-saga/effects";
 
-import { fetchArtistDataApi } from "src/services/artistAPI";
+import { fetchArtistDataApi } from "src/services/artist/artistAPI";
 
 import {
   fetchArtistAlbumsFailure,
@@ -12,8 +12,8 @@ import {
 } from "src/actions/artist";
 
 import * as constants from "src/constants/actions/artist";
+import { fetchArtistAlbumsAPI } from "src/services/artist/albums";
 import { fetchArtistMostPopularTracksAPI } from "src/services/artist/tracks";
-import { fetchArtistAlbumsAPI } from 'src/services/artist/albums';
 
 function* fetchArtistData(payload: number) {
   const main = yield call(fetchArtistDataApi, payload);

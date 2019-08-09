@@ -1,5 +1,5 @@
 import { IArtist } from "src/models";
-import { getData } from "./api";
+import { getData } from "../api";
 
 export interface IArtistData {
   response?: IArtist;

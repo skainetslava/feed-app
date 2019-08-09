@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Navbar } from "src/components/navbar";
+import { Navbar } from "src/components/organisms/navbar";
 
 import "./app.scss";
 

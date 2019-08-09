@@ -1,9 +1,9 @@
+import cls from "classnames";
 import * as React from "react";
-import cls from 'classnames';
 
 import "./tracks.scss";
 
-import { Track } from "src/components/track";
+import { Track } from "src/components/tracks/blocks/track";
 import { ITrack } from "src/models";
 
 interface ITracksProps {

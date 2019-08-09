@@ -18,7 +18,7 @@ const Track: React.FC<ITrackComponentProps> = ({ track }) => {
             {track.coverSmallTrack && <img className="track_cover" src={track.coverSmallTrack} alt={track.title} />}
             <div className="track_info">
                 <p className="track_title">{track.title}</p>
-                <Link to={`artist/${track.artistId}`} className="track_artist">{track.artist}</Link>
+                <Link to={`/artist/${track.artistId}`} className="track_artist">{track.artist}</Link>
             </div>
             <p className="track_duration">{formateInMinutes(track.duration)}</p>
 

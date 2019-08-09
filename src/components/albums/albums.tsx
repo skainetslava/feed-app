@@ -3,7 +3,7 @@ import * as React from "react";
 
 import "./albums.scss";
 
-import { Album } from "src/components/albumItem";
+import { Album } from "src/components/albums/blocks/albumItem";
 import { IAlbum } from "src/models";
 
 interface IAlbumsProps {

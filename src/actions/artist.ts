@@ -1,7 +1,7 @@
+import { IArtistAlbumsData } from "src/services/artist/albums";
+import { IArtistData } from "src/services/artist/artistAPI";
 import { IArtistTracksData } from "src/services/artist/tracks";
-import { IArtistData } from "src/services/artistAPI";
 import * as constants from "../constants/actions/artist";
-import { IArtistAlbumsData } from 'src/services/artist/albums';
 
 export interface IFetchArtistDataRequest {
     type: constants.FETCH_DATA_ARTIST_REQUEST;

@@ -1,11 +1,12 @@
 .artist {
 
   &_tracks {
-  margin: 28px 24px;
+    margin: 28px 24px;
 
     &_wrapper {
       margin: 16px 8px;
     }
+
     &_title {
       margin: 8px 0;
       text-align: left;
@@ -16,6 +17,7 @@
 
   &_albums {
     margin: 28px 24px;
+
     &_title {
       margin: 8px 0;
       text-align: left;

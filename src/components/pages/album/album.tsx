@@ -3,8 +3,8 @@ import { IAlbum } from "src/models";
 
 import "./album.scss";
 
-import { AlbumHeader } from "../albumHeader";
-import { Tracks } from "../tracks";
+import { Tracks } from "../../tracks";
+import { AlbumHeader } from "./blocks/albumHeader";
 
 interface IAlbumComponentProps {
     album: IAlbum
