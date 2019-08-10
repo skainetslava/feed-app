@@ -8,14 +8,15 @@ interface ICoverProps {
     withActions: boolean,
     listeners?: number,
     title?: string,
-    image?: string
+    image?: string,
+    hasTabs?: boolean
 }
 
-const Cover: React.FC<ICoverProps> = ({ image, title, withActions, listeners, children }) => {
+const Cover: React.FC<ICoverProps> = ({ image, title, withActions, listeners, hasTabs, children }) => {
     const style = image ? { backgroundImage: `url(${image})` } : undefined;
     return (
         <div className={cls("cover", { "cover--black ": image })}>
-            <Tabs />
+            {hasTabs && <Tabs />}
             <div className={cls("cover_header",
                 { "cover_header_color-wrapper cover_header--height": withActions })}
                 style={style}

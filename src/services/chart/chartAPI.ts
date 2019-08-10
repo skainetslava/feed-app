@@ -1,7 +1,7 @@
 // import { normalizeData } from 'src/schemas';
 // import { allPhotosSchema } from 'src/schemas/feed';
 import { IAlbum, ITrack } from "src/models";
-import { getData } from "./api";
+import { getData } from "../api";
 
 export interface IChartData {
   response?: {

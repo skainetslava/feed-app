@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import "./menuItem.scss";
 
 interface IMenuItemProps {
@@ -8,11 +9,10 @@ interface IMenuItemProps {
 }
 
 const MenuItem: React.FC<IMenuItemProps> = ({ link, icon, title }) => {
-    console.log(icon);
-    return (
+  return (
     <li className="menu-item">
-      <div className="menu-item_icon">{icon}</div> 
-      <a className="menu-item_link" href={link}>{title}</a>
+      <div className="menu-item_icon">{icon}</div>
+      <Link className="menu-item_link" to={link}>{title}</Link>
     </li>
   );
 };

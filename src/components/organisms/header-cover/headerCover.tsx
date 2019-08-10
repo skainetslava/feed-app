@@ -1,6 +1,8 @@
 import * as React from "react";
+
 import { Button } from "src/components/organisms/button";
 
+import { formateWithDots } from "src/helpers/formateWithDots";
 import "./headerCover.scss";
 
 interface IHeaderCoverProps {
@@ -9,10 +11,9 @@ interface IHeaderCoverProps {
     listeners?: number,
 }
 
-
 const HeaderCover: React.SFC<IHeaderCoverProps> = ({ title, listeners, withActions }) => {
     return <div className="cover_title">
-        {listeners && <p className="cover_title_listeners">{listeners}</p>}
+        {listeners && <p className="cover_title_listeners">{formateWithDots(listeners)} MONTHLY LISTENERS</p>}
         <p className="cover_title_text">{title}</p>
         {
             withActions &&

@@ -9,7 +9,7 @@ import {
 import {
     fetchChartApi,
     IChartData,
-} from "src/services/chartAPI";
+} from "src/services/chart/chartAPI";
 
 import {
     fetchChartFailure,

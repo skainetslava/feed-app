@@ -1,6 +1,6 @@
 import { call, fork, put, take } from "redux-saga/effects";
 
-import { fetchAlbumDataApi } from "src/services/albumAPI";
+import { fetchAlbumDataApi } from "src/services/album/albumAPI";
 
 import {
   fetchAlbumDataFailure,

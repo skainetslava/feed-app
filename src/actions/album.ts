@@ -1,4 +1,4 @@
-import { IAlbumData } from "src/services/albumAPI";
+import { IAlbumData } from "src/services/album/albumAPI";
 import * as constants from "../constants/actions/album";
 
 export interface IFetchChartRequest {

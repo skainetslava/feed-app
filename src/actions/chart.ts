@@ -1,4 +1,4 @@
-import { IChartData } from "src/services/chartAPI";
+import { IChartData } from "src/services/chart/chartAPI";
 import * as constants from "../constants/actions/chart";
 export interface IFetchChartRequest {
     type: constants.FETCH_CHART_REQUEST;

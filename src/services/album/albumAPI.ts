@@ -1,5 +1,5 @@
 import { IAlbum, ITrack } from "src/models";
-import { getData } from "./api";
+import { getData } from "../api";
 
 export interface IAlbumData {
   response?: IAlbum;

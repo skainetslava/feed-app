@@ -40,7 +40,7 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
     }
 
     return (
-        <Cover image={getTitleImage()} withActions={true} title="Most popular songs">
+        <Cover image={getTitleImage()} withActions={true} title="Most popular songs" hasTabs={true}>
             {!isLoading ? <Tracks className="chart-tracks" tracks={tracks} /> : renderLoading()}
         </Cover >
     );

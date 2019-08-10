@@ -25,7 +25,14 @@ interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
     onFetchArtistData?: (id: string) => void;
 }
 
-const ArtistPage: React.FC<IArtistContainerProps> = ({ artist, tracks, albums, onFetchArtistData, isLoading, match }) => {
+const ArtistPage: React.FC<IArtistContainerProps> = ({
+    artist,
+    tracks,
+    albums,
+    onFetchArtistData,
+    isLoading,
+    match,
+}) => {
     React.useEffect(() => {
         onFetchArtistData && onFetchArtistData(match.params.id)
     }, [match.params.id]);
@@ -33,7 +40,7 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({ artist, tracks, albums, o
     const renderLoading = (): JSX.Element => {
         return <div>Loading...</div>
     }
-    console.log(tracks);
+    
     return (
         artist ? <Artist artist={artist} tracks={tracks} albums={albums} /> : renderLoading()
     );

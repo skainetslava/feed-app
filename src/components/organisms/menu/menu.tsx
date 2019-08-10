@@ -9,12 +9,12 @@ import "./menu.scss";
 const MENU_TITLES = {
   home: {
     title: "Home",
-    link: "/",
+    link: "/chart",
     icon: <IconHome w={24} h={24} />,
   },
   search: {
     title: "Search",
-    link: "/",
+    link: "/search",
     icon: <IconSearch w={24} h={24} />,
   },
   library: {

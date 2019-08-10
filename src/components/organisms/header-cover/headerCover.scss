@@ -2,9 +2,10 @@
   &_title {
     display: grid;
     grid-template-areas:
+      "fans fans"
       "title title"
       "play follow";
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 50px 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     align-items: center;
 
@@ -14,6 +15,14 @@
       margin-bottom: 16px;
       font-weight: 900;
       font-size: 4rem;
+    }
+
+    &_listeners {
+      grid-area: fans;
+      font-size: 0.7rem;
+      letter-spacing: .16em;
+      opacity: 0.6;
+      z-index: 2;
     }
 
     &_play {

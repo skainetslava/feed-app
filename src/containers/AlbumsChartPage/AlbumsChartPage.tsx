@@ -32,7 +32,7 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({ albums, onFetch
     }
 
     return (
-        <Cover withActions={false}>
+        <Cover withActions={false} hasTabs={true}>
             {!isLoading ? <Albums className="albums-chart" albums={albums} /> : renderLoading()}
         </Cover >
     );
