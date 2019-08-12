@@ -9,6 +9,11 @@
     background: #181818;
   }
 
+  &_tabs {
+    position: absolute;
+    top: 8px;
+  }
+
   &_header {
     display: flex;
     justify-content: center;

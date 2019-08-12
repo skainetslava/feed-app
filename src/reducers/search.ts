@@ -1,14 +1,16 @@
-import { ITrack } from "src/models";
+import { IArtist, ITrack } from "src/models";
 import { ISearchDataAction } from "../actions/search";
 import * as constants from "../constants/actions/search";
 
 export interface ISearchStoreState {
-    data: ITrack[];
+    tracks: ITrack[];
+    artists: IArtist[],
     isLoading: boolean;
 }
 
 const initialState: ISearchStoreState = {
-    data: [],
+    tracks: [],
+    artists: [],
     isLoading: false,
 };
 
@@ -27,13 +29,31 @@ export default function searchReducer(
             return {
                 ...state,
                 isLoading: false,
-                data: tracks,
+                tracks,
             };
         case constants.SEARCH_DATA_FAILURE:
             return {
                 ...state,
                 isLoading: false,
-                data: [],
+                tracks: [],
+            };
+        case constants.SEARCH_ARTIST_REQUEST:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case constants.SEARCH_ARTIST_SUCCESS:
+            const artists = action.payload;
+            return {
+                ...state,
+                isLoading: false,
+                artists,
+            };
+        case constants.SEARCH_ARTIST_FAILURE:
+            return {
+                ...state,
+                isLoading: false,
+                artists: [],
             };
         default:
             return state;

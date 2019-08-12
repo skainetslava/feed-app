@@ -1,4 +1,4 @@
-import { IArtistAlbumsData } from "src/services/artist/albums";
+import { IArtist } from "src/models";
 import { IArtistData } from "src/services/artist/artistAPI";
 import { IArtistTracksData } from "src/services/artist/tracks";
 import * as constants from "../constants/actions/artist";
@@ -98,12 +98,12 @@ export interface IFetchArtistAlbumsRequest {
 
 export interface IFetchArtistAlbumsSuccess {
     type: constants.FETCH_ARTIST_ALBUMS_SUCCESS;
-    payload: IArtistAlbumsData;
+    payload: IArtist;
 }
 
 export interface IFetchArtistAlbumsFailure {
     type: constants.FETCH_ARTIST_ALBUMS_FAILURE;
-    payload: IArtistAlbumsData;
+    payload: string;
 }
 
 
@@ -114,16 +114,16 @@ export function fetchArtistAlbums(id: string): IFetchArtistAlbumsRequest {
     };
 }
 
-export function fetchArtistAlbumsSuccess(data: IArtistAlbumsData): IFetchArtistAlbumsSuccess {
+export function fetchArtistAlbumsSuccess(data: IArtist): IFetchArtistAlbumsSuccess {
     return {
         type: constants.FETCH_ARTIST_ALBUMS_SUCCESS,
         payload: data,
     };
 }
 
-export function fetchArtistAlbumsFailure(data: IArtistAlbumsData): IFetchArtistAlbumsFailure {
+export function fetchArtistAlbumsFailure(message: string): IFetchArtistAlbumsFailure {
     return {
         type: constants.FETCH_ARTIST_ALBUMS_FAILURE,
-        payload: data,
+        payload: message,
     };
 }

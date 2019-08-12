@@ -8,15 +8,25 @@ import {
     searchDataSuccess,
 } from "src/actions/search";
 
+import { searchArtistFailure, searchArtistSuccess } from "src/actions/search/artists";
 import * as constants from "src/constants/actions/search";
+import { searchArtistAPI } from "src/services/search/artist";
 
 function* searchData(action: ISearchDataAction) {
-    const { response, error } = yield call(searchDataApi, action.payload);
+    const main = yield call(searchDataApi, action.payload);
 
-    if (response) {
-        yield put(searchDataSuccess(response));
-    } else {
-        yield put(searchDataFailure(error));
+    try {
+        yield put(searchDataSuccess(main.response));
+    } catch (e) {
+        yield put(searchDataFailure(main.error));
+    }
+
+    const artists = yield call(searchArtistAPI, action.payload);
+
+    try {
+        yield put(searchArtistSuccess(artists.response));
+    } catch (e) {
+        yield put(searchArtistFailure(artists.error));
     }
 }
 

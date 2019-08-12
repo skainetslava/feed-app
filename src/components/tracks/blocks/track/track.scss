@@ -21,7 +21,7 @@
 
     &_play {
         align-self: flex-start;
-        margin: 10px 10px 0 0;
+        margin: 10px 0 0 0;
         cursor: pointer;
     }
 
@@ -38,6 +38,7 @@
         vertical-align: top;
         height: 50px;
         width: 50px;
+        margin: 0 8px;
     }
 
     &_artist {

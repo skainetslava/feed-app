@@ -1,0 +1,92 @@
+.preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-start;
+  justify-self: flex-start;
+
+  margin: 8px;
+  transition: 0.2s;
+
+  font-size: 0.8rem;
+
+  &_circle {
+    border-radius: 50%;
+
+    .preview_cover {
+      &:before {
+        border-radius: 50%;
+
+      }
+    }
+  }
+
+  &_square {
+    border-radius: 0;
+  }
+
+  &:hover {
+    .preview_cover {
+      &:before {
+        opacity: 1;
+      }
+    }
+
+    .preview_play {
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
+  &_cover {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 207px;
+    height: 207px;
+
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 207px;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+
+      background: linear-gradient(transparent -30%, #181818);
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 1;
+
+    }
+  }
+
+  &_play {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+    transition: 0.2s;
+
+    &:hover {
+      transform: scale(1.3);
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+
+  &_title {
+    margin: 12px 0 4px;
+    font-weight: bold;
+  }
+
+  &_artist {
+    opacity: 0.6;
+  }
+}

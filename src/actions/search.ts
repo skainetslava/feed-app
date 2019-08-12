@@ -1,41 +1,49 @@
 import * as constants from "src/constants/actions/search";
-import { ISearchData } from "src/services/search/searchAPI";
+import { ITrack } from "src/models";
 
 export interface ISearchDataRequest {
     type: constants.SEARCH_DATA_REQUEST;
+    payload: string;
 }
 
 export interface ISearchDataSuccess {
     type: constants.SEARCH_DATA_SUCCESS;
+    payload: ITrack[]
 }
 
 export interface ISearchDataFailure {
     type: constants.SEARCH_DATA_FAILURE;
+    payload: any
 }
 
-export type SearchDataActionType = constants.SEARCH_DATA_FAILURE |
-    constants.SEARCH_DATA_REQUEST | constants.SEARCH_DATA_SUCCESS;
+export type SearchDataActionType =
+    constants.SEARCH_DATA_FAILURE |
+    constants.SEARCH_DATA_REQUEST |
+    constants.SEARCH_DATA_SUCCESS |
+    constants.SEARCH_ARTIST_SUCCESS |
+    constants.SEARCH_ARTIST_REQUEST |
+    constants.SEARCH_ARTIST_FAILURE;
 
 export interface ISearchDataAction {
     type: SearchDataActionType;
     payload?: any;
 }
 
-export function searchData(value: string): ISearchDataAction {
+export function searchData(value: string): ISearchDataRequest {
     return {
         type: constants.SEARCH_DATA_REQUEST,
         payload: value,
     };
 }
 
-export function searchDataSuccess(data: ISearchData): ISearchDataAction {
+export function searchDataSuccess(data: ITrack[]): ISearchDataSuccess {
     return {
         type: constants.SEARCH_DATA_SUCCESS,
         payload: data,
     };
 }
 
-export function searchDataFailure(value: string): ISearchDataAction {
+export function searchDataFailure(value: string): ISearchDataFailure {
     return {
         type: constants.SEARCH_DATA_FAILURE,
         payload: { value },

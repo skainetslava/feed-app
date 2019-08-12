@@ -20,7 +20,7 @@ const Tracks: React.FC<ITracksProps> = ({ tracks, className }) => {
 
         }
 
-        return <div>Empty list</div>;
+        return null;
     }
 
 

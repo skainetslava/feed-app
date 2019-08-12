@@ -1,27 +1,18 @@
+import cls from "classnames";
 import * as React from "react";
 import { TabItem } from "./tabItem";
 
 import "./tabs.scss";
 
-const TABS_TITLES = {
-  charts: {
-    title: "charts",
-    link: "/chart",
-  },
-  albums: {
-    title: "albums",
-    link: "/albums",
-  },
-  playlists: {
-    title: "playlists",
-    link: "/playlists",
-  },
-};
+interface ITabsProps {
+  tabs: object
+  className?: string;
+}
 
-const Tabs: React.FC = () => {
-  const tabsKeys = Object.values(TABS_TITLES);
+const Tabs: React.FC<ITabsProps> = ({ tabs, className }) => {
+  const tabsKeys = Object.values(tabs);
   return (
-    <ul className="tabs">
+    <ul className={cls(className, "tabs")}>
       {tabsKeys.map((item, index) => {
         return (
           <TabItem

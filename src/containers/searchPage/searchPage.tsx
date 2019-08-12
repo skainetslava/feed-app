@@ -8,26 +8,31 @@ import { IStore } from "src/store";
 import {
     searchData,
 } from "src/actions/search";
+import { IArtist, ITrack } from "src/models";
+import { getSearchArtists, getSearchTracks } from "src/reducers/selectors";
 
 
 interface IChartContainerProps {
     dispatch?: any;
-    isLoading?: boolean,
-    onSearchData: (v: string) => void
+    tracks: ITrack[];
+    artists: IArtist[];
+    isLoading?: boolean;
+    onSearchData: (v: string) => void;
 }
 
-const SearchPage: React.FC<IChartContainerProps> = ({ onSearchData }) => {
+const SearchPage: React.FC<IChartContainerProps> = ({ onSearchData, tracks, artists }) => {
     const onChangeInput = (value: string) => {
-        console.log("object")
         onSearchData(value);
     }
 
     return (
-        <Search onChangeInput={onChangeInput} />
+        <Search onChangeInput={onChangeInput} tracks={tracks} artists={artists} />
     );
 };
 
 const mapStateToProps = (state: IStore) => ({
+    tracks: getSearchTracks(state),
+    artists: getSearchArtists(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

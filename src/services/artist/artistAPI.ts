@@ -13,14 +13,14 @@ export const fetchArtistDataApi = async (id: number): Promise<IArtistData | void
     const { error } = data;
     return { error };
   }
-console.log(data);
+  
   const artist: IArtist = {
     id: data.id,
     name: data.name,
     picture: data.picture_big,
     fans: data.nb_fan,
   };
-  console.log(artist);
+
   return {
     response: artist,
   };
