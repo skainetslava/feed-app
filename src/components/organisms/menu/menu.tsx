@@ -14,7 +14,7 @@ const MENU_TITLES = {
   },
   search: {
     title: "Search",
-    link: "/search",
+    link: "/search/results",
     icon: <IconSearch w={24} h={24} />,
   },
   library: {

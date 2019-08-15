@@ -1,43 +1,48 @@
 import * as React from "react";
-
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { Dispatch } from "redux";
-import { Search } from "src/components/pages/search";
-import { IStore } from "src/store";
-
 import {
     searchData,
-} from "src/actions/search";
-import { IArtist, ITrack } from "src/models";
-import { getSearchArtists, getSearchTracks } from "src/reducers/selectors";
+} from "src/actions/search/tracks";
+import { Search } from "src/components/pages/search";
+import history from "src/history";
+import SearchArtists from "./blocks/searchArtists";
+import SearchContent from "./blocks/searchContent";
 
+interface IRouteProps {
+    value: string;
+}
 
-interface IChartContainerProps {
+interface IChartContainerProps extends RouteComponentProps<IRouteProps> {
     dispatch?: any;
-    tracks: ITrack[];
-    artists: IArtist[];
     isLoading?: boolean;
     onSearchData: (v: string) => void;
 }
 
-const SearchPage: React.FC<IChartContainerProps> = ({ onSearchData, tracks, artists }) => {
+const SearchPage: React.FC<IChartContainerProps> = ({ dispatch, match, onSearchData, children }) => {
+    React.useEffect(() => {
+        onSearchData(match.params.value);
+    }, [match.params.value])
+
     const onChangeInput = (value: string) => {
-        onSearchData(value);
+        history.push(`/search/results/${value}`);
     }
 
     return (
-        <Search onChangeInput={onChangeInput} tracks={tracks} artists={artists} />
+        <div className="search">
+            <Search valueUrl={match.params.value} onChangeInput={onChangeInput} />
+            <Route path="/" component={SearchContent} />
+            <Route path="/artists" component={SearchArtists} />
+            <Route path="/artists/:value" component={SearchArtists} />
+        </div>
     );
 };
-
-const mapStateToProps = (state: IStore) => ({
-    tracks: getSearchTracks(state),
-    artists: getSearchArtists(state),
-});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     onSearchData: (value: string) => dispatch(searchData(value)),
 });
 
 
-export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default withRouter(connect<{}, {}, IChartContainerProps>(null, mapDispatchToProps)(SearchPage));

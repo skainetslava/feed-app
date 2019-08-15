@@ -24,6 +24,6 @@ export const searchArtistAPI = async (value: string): Promise<IArtistsData | voi
     );
 
     return {
-        response: artists.slice(0, 10),
+        response: artists.slice(0, 12),
     };
 };

@@ -1,6 +1,6 @@
 import * as constants from "src/constants/actions/search";
 import { IArtist } from "src/models";
-import { SearchDataActionType } from "../search";
+import { SearchDataActionType } from "./tracks";
 
 export interface ISearchArtistRequest {
     type: constants.SEARCH_ARTIST_REQUEST;

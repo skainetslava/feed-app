@@ -1,16 +1,15 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-
 import { searchDataApi } from "src/services/search/searchAPI";
 
 import {
     ISearchDataAction,
     searchDataFailure,
     searchDataSuccess,
-} from "src/actions/search";
+} from "src/actions/search/tracks";
 
 import { searchArtistFailure, searchArtistSuccess } from "src/actions/search/artists";
 import * as constants from "src/constants/actions/search";
-import { searchArtistAPI } from "src/services/search/artist";
+import { searchArtistAPI } from "src/services/search/artistAPI";
 
 function* searchData(action: ISearchDataAction) {
     const main = yield call(searchDataApi, action.payload);

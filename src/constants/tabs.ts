@@ -14,9 +14,17 @@ export const TABS_TITLES = {
 };
 
 export const TABS_SEARCH = {
-    tracks: {
-        title: "tracks",
-        link: "/tracks",
+    results: {
+        title: "top results",
+        link: "/results",
+    },
+    artists: {
+        title: "artists",
+        link: "/search/artists",
+    },
+    songs: {
+        title: "songs",
+        link: "/songs",
     },
     albums: {
         title: "albums",

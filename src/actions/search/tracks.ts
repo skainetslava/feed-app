@@ -30,6 +30,7 @@ export interface ISearchDataAction {
 }
 
 export function searchData(value: string): ISearchDataRequest {
+    console.log(value);
     return {
         type: constants.SEARCH_DATA_REQUEST,
         payload: value,

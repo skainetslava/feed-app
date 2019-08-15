@@ -1,17 +1,22 @@
 import * as React from "react";
 import { App } from "src/components/app";
 
+import { Switch } from "react-router";
+import { Redirect, Route, RouteProps, Router } from "react-router-dom";
+
 import { AlbumPage } from "src/containers/AlbumPage";
 import { AlbumsChartPage } from "src/containers/AlbumsChartPage";
-import { ChartPage } from "src/containers/ChartPage";
-
-import { Switch } from "react-router";
-import { BrowserRouter, Redirect, Route, RouteProps } from "react-router-dom";
 import { ArtistPage } from "src/containers/artistPage";
-import { SearchPage } from "src/containers/searchPage";
+import { ChartPage } from "src/containers/ChartPage";
+import { SearchPage } from "src/containers/SearchPage";
 
+import history from "src/history";
+// <Route exact path="/search/:value" component={SearchContent} />
+
+// <Route  path="/" component={SearchContent} />
+// </Route>
 const Routes: React.FC<RouteProps> = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <App>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/chart" />} />
@@ -19,10 +24,11 @@ const Routes: React.FC<RouteProps> = () => (
         <Route exact path="/albums" component={AlbumsChartPage} />
         <Route exact path="/album/:id" component={AlbumPage} />
         <Route exact path="/artist/:id" component={ArtistPage} />
-        <Route exact path="/search" component={SearchPage} />
+        <Route exact path="/search/results" component={SearchPage} />
+        <Route path="/search/results/:value" component={SearchPage} />
       </Switch>
     </App>
-  </BrowserRouter>
+  </Router >
 );
 
 export default Routes;
