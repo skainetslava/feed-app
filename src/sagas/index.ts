@@ -3,7 +3,7 @@ import { all, fork } from "redux-saga/effects";
 import { watchLoadAlbum } from "./album";
 import { watchLoadArtist } from "./artist";
 import { watchLoadChart } from "./chart";
-import { watchLoadSearch } from "./search";
+import { watchLoadSearch, watchLoadSearchingValue } from "./search";
 
 export default function* rootSaga() {
   yield all([
@@ -11,5 +11,6 @@ export default function* rootSaga() {
     fork(watchLoadAlbum),
     fork(watchLoadArtist),
     fork(watchLoadSearch),
+    fork(watchLoadSearchingValue),
   ]);
 }

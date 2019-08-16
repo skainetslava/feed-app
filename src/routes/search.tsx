@@ -1,15 +1,17 @@
-// import * as React from "react";
+import * as React from "react";
+import { Route, RouteProps} from "react-router-dom";
 
+import { SearchPage } from "src/containers/SearchPage";
+import SearchArtistContainer from "src/containers/SearchPage/blocks/searchArtists";
+import SearchContentContainer from "src/containers/searchPage/blocks/searchResuts";
 
-// import { Route, RouteProps } from "react-router-dom";
-// import { SearchPage } from "src/containers/searchPage";
-// // import history from "src/history";
+const SearchRoutes: React.FC<RouteProps> = () => (
+    <SearchPage>
+        <Route exact path="/search/results" component={SearchContentContainer} />
+        <Route path="/search/results/:value" component={SearchContentContainer} />
+        <Route exact path="/search/artists" component={SearchArtistContainer} />
+        <Route path="/search/artists/:value" component={SearchArtistContainer} />
+    </SearchPage>
+);
 
-// export const SearchRoutes: React.FC<RouteProps> = () => (
-//     <Search>
-//         <Route exact path="/search" component={SearchPage} />
-//         <Route path="/search/:value" component={SearchPage} />
-//     <Search/>
-// );
-
-// export default SearchRoutes;
+export default SearchRoutes;

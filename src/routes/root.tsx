@@ -8,13 +8,10 @@ import { AlbumPage } from "src/containers/AlbumPage";
 import { AlbumsChartPage } from "src/containers/AlbumsChartPage";
 import { ArtistPage } from "src/containers/artistPage";
 import { ChartPage } from "src/containers/ChartPage";
-import { SearchPage } from "src/containers/SearchPage";
 
 import history from "src/history";
-// <Route exact path="/search/:value" component={SearchContent} />
+import SearchRoutes from "./search";
 
-// <Route  path="/" component={SearchContent} />
-// </Route>
 const Routes: React.FC<RouteProps> = () => (
   <Router history={history}>
     <App>
@@ -24,8 +21,7 @@ const Routes: React.FC<RouteProps> = () => (
         <Route exact path="/albums" component={AlbumsChartPage} />
         <Route exact path="/album/:id" component={AlbumPage} />
         <Route exact path="/artist/:id" component={ArtistPage} />
-        <Route exact path="/search/results" component={SearchPage} />
-        <Route path="/search/results/:value" component={SearchPage} />
+        <SearchRoutes />
       </Switch>
     </App>
   </Router >

@@ -4,14 +4,14 @@ import { IArtist, ITrack } from "src/models";
 import { Preview } from "src/components/organisms/preview";
 import { Tracks } from "src/components/tracks";
 
-import "./searchContent.scss";
+import "./SearchResults.scss";
 
-interface ISearchComponentProps {
+interface ISearchResultsComponentProps {
     tracks?: ITrack[],
     artists?: IArtist[],
 }
 
-const SearchContent: React.FC<ISearchComponentProps> = ({ tracks, artists }) => {
+const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracks, artists }) => {
     const renderTracks = (): JSX.Element | null => {
         if (!tracks || tracks.length === 0) {
             return null;
@@ -19,19 +19,17 @@ const SearchContent: React.FC<ISearchComponentProps> = ({ tracks, artists }) => 
 
         const previewTrack = tracks[0];
         return (
-            <>
-                <div className="search_tracks">
-                    <Preview
-                        className="search_tracks_top-result"
-                        id={previewTrack.id}
-                        title={previewTrack.title}
-                        artist={previewTrack.artist}
-                        cover={previewTrack.coverBigTrack}
-                        type="album"
-                    />
-                    <Tracks tracks={tracks} className="search_tracks_items" />
-                </div>
-            </>
+            <div className="search_tracks">
+                <Preview
+                    className="search_tracks_top-result"
+                    id={previewTrack.id}
+                    title={previewTrack.title}
+                    artist={previewTrack.artist}
+                    cover={previewTrack.coverBigTrack}
+                    type="album"
+                />
+                <Tracks tracks={tracks} className="search_tracks_items" />
+            </div>
         );
     }
 
@@ -63,11 +61,11 @@ const SearchContent: React.FC<ISearchComponentProps> = ({ tracks, artists }) => 
     }
 
     return (
-            <div className="search_content">
-                {renderTracks()}
-                {renderAlbums()}
-            </div>
+        <div className="search_content">
+            {renderTracks()}
+            {renderAlbums()}
+        </div>
     )
 };
 
-export default SearchContent;
+export default SearchResults;

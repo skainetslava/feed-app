@@ -13,25 +13,27 @@ export const TABS_TITLES = {
     },
 };
 
-export const TABS_SEARCH = {
-    results: {
-        title: "top results",
-        link: "/results",
-    },
-    artists: {
-        title: "artists",
-        link: "/search/artists",
-    },
-    songs: {
-        title: "songs",
-        link: "/songs",
-    },
-    albums: {
-        title: "albums",
-        link: "/albums",
-    },
-    playlists: {
-        title: "playlists",
-        link: "/playlists",
-    },
+export function getSearchingTabs(value: string): object {
+    return ({
+        results: {
+            title: "top results",
+            link: `/search/results/${value}`,
+        },
+        artists: {
+            title: "artists",
+            link: `/search/artists/${value}`,
+        },
+        songs: {
+            title: "songs",
+            link: `/search/songs/${value}`,
+        },
+        albums: {
+            title: "albums",
+            link: `/search/albums/${value}`,
+        },
+        playlists: {
+            title: "playlists",
+            link: `/search/playlists/${value}`,
+        },
+    })
 };

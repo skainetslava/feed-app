@@ -13,7 +13,7 @@ interface ISearchArtistsContainerProps {
 const SearchArtistContainer: React.FC<ISearchArtistsContainerProps> = ({ tracks, artists }) => {
     return (
         <div>
-        sfsdfdsf
+            sfsdfdsf
         </div>
     );
 };

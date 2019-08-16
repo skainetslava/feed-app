@@ -22,7 +22,8 @@ export type SearchDataActionType =
     constants.SEARCH_DATA_SUCCESS |
     constants.SEARCH_ARTIST_SUCCESS |
     constants.SEARCH_ARTIST_REQUEST |
-    constants.SEARCH_ARTIST_FAILURE;
+    constants.SEARCH_ARTIST_FAILURE | 
+    constants.SAVE_SEARCHING_VALUE;
 
 export interface ISearchDataAction {
     type: SearchDataActionType;

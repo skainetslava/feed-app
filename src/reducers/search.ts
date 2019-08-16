@@ -3,12 +3,14 @@ import { ISearchDataAction } from "../actions/search/tracks";
 import * as constants from "../constants/actions/search";
 
 export interface ISearchStoreState {
+    searchingValue: string,
     tracks: ITrack[];
     artists: IArtist[],
     isLoading: boolean;
 }
 
 const initialState: ISearchStoreState = {
+    searchingValue: "",
     tracks: [],
     artists: [],
     isLoading: false,
@@ -56,6 +58,16 @@ export default function searchReducer(
             return {
                 ...state,
                 isLoading: false,
+                artists: [],
+            };
+
+        case constants.SAVE_SEARCHING_VALUE:
+            const value = action.payload;
+            return {
+                ...state,
+                isLoading: true,
+                searchingValue: value,
+                tracks: [],
                 artists: [],
             };
         default:

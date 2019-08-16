@@ -65,3 +65,10 @@ export const getSearchArtists = createSelector(
     [SEARCH_ARTISTS],
     (artists) => artists,
 )
+
+const SEARCHING_VALUE = (state: IStore) => state.search.searchingValue;
+
+export const getSearchingValue = createSelector(
+    [SEARCHING_VALUE],
+    (value) => value,
+)
