@@ -1,0 +1,57 @@
+.player {
+  position: fixed;
+  bottom: 0;
+  height: 91px;
+  width: calc(100% - 18px);
+  box-sizing: border-box;
+  padding: 12px;
+  background: #181818;
+  z-index: 2;
+
+  display: grid;
+  grid-template-areas:
+    "play play"
+    "range range";
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+
+  &_play, &_pause {
+    grid-area: play;
+    width: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &_duration {
+    grid-area: range;
+    position: relative;
+    width: 60%;
+    display: flex;
+    align-items: center;
+
+    &_time {
+      margin: 0 8px;
+    }
+  }
+
+  &_progress {
+    position: relative;
+    grid-area: range;
+    height: 4px;
+
+    width: 100%;
+    background: white;
+
+    &_base {
+      position: absolute;
+      width: 5px;
+      height: 12px;
+      background: green;
+      bottom: -3px;
+      left: 0px;
+    }
+  }
+}

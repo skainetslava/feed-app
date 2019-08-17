@@ -8,6 +8,7 @@
         grid-template-rows: repeat(auto-fill, minmax(205px, 1fr));
         grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
         position: relative;
+        grid-gap: 16px;
         //margin: 16px;
 
         &_title {

@@ -7,11 +7,13 @@ import { Tracks } from "src/components/tracks";
 import "./SearchResults.scss";
 
 interface ISearchResultsComponentProps {
+    tracksLimit?: number,
+    artistsLimit?: number,
     tracks?: ITrack[],
     artists?: IArtist[],
 }
 
-const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracks, artists }) => {
+const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracksLimit, artistsLimit, tracks, artists }) => {
     const renderTracks = (): JSX.Element | null => {
         if (!tracks || tracks.length === 0) {
             return null;
@@ -28,7 +30,7 @@ const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracks, artists
                     cover={previewTrack.coverBigTrack}
                     type="album"
                 />
-                <Tracks tracks={tracks} className="search_tracks_items" />
+                <Tracks tracks={tracks} limit={tracksLimit} className="search_tracks_items" />
             </div>
         );
     }
@@ -38,12 +40,14 @@ const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracks, artists
             return null;
         }
 
+        const isShowTitle = tracks && tracks.length > 0;
+
         return (
             <>
-                <p className="search_artists_title">Artists</p>
+                {isShowTitle && <p className="search_artists_title">Artists</p>}
                 <div className="search_artists">
                     {
-                        artists.map((artist) => {
+                        artists.slice(0, artistsLimit).map((artist) => {
                             return (
                                 <Preview
                                     id={artist.id}

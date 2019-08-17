@@ -6,20 +6,20 @@ import { Dispatch } from "redux";
 import { IArtist, ITrack } from "src/models";
 import { IStore } from "src/store";
 
-import { saveSearchingValue } from "src/actions/search/url";
+import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults"
 import { getSearchArtists, getSearchingValue, getSearchTracks } from "src/reducers/selectors";
 
-interface IRouteProps {
+export interface ISearchingRouteProps {
     value: string;
 }
 
-interface ISearchResultsContainerProps extends RouteComponentProps<IRouteProps> {
+interface ISearchResultsContainerProps extends RouteComponentProps<ISearchingRouteProps> {
     searchingValue: string,
     tracks?: ITrack[];
     artists?: IArtist[];
     isLoading?: boolean;
-    onSaveSearchingValue?: (v: string) => void;
+    onRedirectSearchingValue?: (redirectData: IRedirectProps) => void;
 }
 
 const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
@@ -27,22 +27,20 @@ const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
     tracks,
     artists,
     match,
-    onSaveSearchingValue,
+    onRedirectSearchingValue,
 }) => {
     React.useEffect(() => {
         const value = match.params.value || "";
-        !searchingValue && onSaveSearchingValue && onSaveSearchingValue(value);
+        !searchingValue && onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "results", value });
     }, [])
 
     return (
-        <div>
-            <SearchResults tracks={tracks} artists={artists} />
-        </div>
+        <SearchResults tracks={tracks} artists={artists} tracksLimit={5} artistsLimit={10} />
     );
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    onSaveSearchingValue: (value: string) => dispatch(saveSearchingValue(value)),
+    onRedirectSearchingValue: (data: IRedirectProps) => dispatch(redirectBySearchingValue(data)),
 });
 
 const mapStateToProps = (state: IStore) => ({
@@ -51,4 +49,5 @@ const mapStateToProps = (state: IStore) => ({
     artists: getSearchArtists(state),
 });
 
-export default connect<{}, {}, ISearchResultsContainerProps>(mapStateToProps, mapDispatchToProps)(SearchResultsContainer);
+export default connect<{}, {}, ISearchResultsContainerProps>
+    (mapStateToProps, mapDispatchToProps)(SearchResultsContainer);

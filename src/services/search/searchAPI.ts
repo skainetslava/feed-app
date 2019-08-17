@@ -23,7 +23,7 @@ export const searchDataApi = (value: string): Promise<ISearchData | void> => {
       );
 
       return {
-        response: tracks.slice(0, 5),
+        response: tracks,
       };
     })
     .catch((error) => ({
