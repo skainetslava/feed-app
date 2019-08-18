@@ -6,24 +6,24 @@ export interface IIconProps {
     className?: string
 }
 
-const IconPlay: React.FC<IIconProps> = ({ w, h, className }) => {
+const IconPause: React.FC<IIconProps> = ({ w, h, className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0"
             y="0"
-            enableBackground="new 0 0 41.999 41.999"
+            enableBackground="new 0 0 357 357"
             version="1.1"
-            viewBox="0 0 41.999 41.999"
-            xmlSpace="preserve"
+            viewBox="0 0 357 357"
             fill="#fff"
+            xmlSpace="preserve"
             width={w}
             height={h}
             className={className}
         >
-            <path d="M36.068 20.176l-29-20A1 1 0 005.5.999v40a1 1 0 001.568.823l29-20a.999.999 0 000-1.646z" />
+            <path d="M25.5 357h102V0h-102v357zm204-357v357h102V0h-102z" />
         </svg>
     )
 };
 
-export default IconPlay;
+export default IconPause;

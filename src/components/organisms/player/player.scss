@@ -17,7 +17,8 @@
   align-items: center;
   justify-items: center;
 
-  &_play, &_pause {
+  &_play,
+  &_pause {
     grid-area: play;
     width: 40px;
     background: transparent;
@@ -27,13 +28,26 @@
 
   &_duration {
     grid-area: range;
-    position: relative;
-    width: 60%;
     display: flex;
     align-items: center;
+    position: relative;
+    width: 60%;
+    
+    &:hover {
+      .player_progress_slider {
+        opacity: 1;
+      }
+
+      .player_progress_base {
+        background: green;
+      }
+    }
 
     &_time {
       margin: 0 8px;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .015em;
     }
   }
 
@@ -41,17 +55,35 @@
     position: relative;
     grid-area: range;
     height: 4px;
-
     width: 100%;
-    background: white;
+    background: #404040;
+    border-radius: 2px;
+    z-index: 2;
+    
 
     &_base {
       position: absolute;
-      width: 5px;
-      height: 12px;
-      background: green;
-      bottom: -3px;
+      height: 4px;
+      width: 0%;
+      bottom: 0px;
+      border-radius: 2px;
       left: 0px;
+      background: #b3b3b3;
+      transition: 0.2s;
+    }
+
+    &_slider {
+      position: absolute;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      left: 0%;
+      bottom: -3px;
+      background: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+      opacity: 0;
+      transition: 0.2s;
+      cursor: pointer;
     }
   }
 }
