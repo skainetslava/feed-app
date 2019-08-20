@@ -1,25 +1,32 @@
 $backgroundColor: #282828;
 $baseBarColor: #404040;
+$activeBarColor: green;
 
 .player {
-  display: grid;
-  grid-template-areas:
-    "info play vol"
-    "info range vol";
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1.4fr 1fr;
-  align-items: center;
-  justify-items: center;
+  &_duration {
+    grid-area: range;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
 
-  position: fixed;
-  height: 91px;
-  width: 100%;
-  min-width: 704px;
-  bottom: 0;
-  padding: 12px;
-  box-sizing: border-box;
-  background: $backgroundColor;
-  z-index: 2;
+    &:hover {
+      .progress_slider {
+        opacity: 1;
+      }
+
+      .progress_base {
+        background: $activeBarColor;
+      }
+    }
+
+    &_time {
+      margin: 0 8px;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .015em;
+    }
+  }
 }
 
 .progress {

@@ -1,0 +1,24 @@
+$activeBarColor: green;
+
+.player {
+  &_controls {
+    grid-area: play;
+    display: flex;
+    align-items: center;
+  }
+
+  &_play,
+  &_pause {
+    width: 40px;
+    margin: 0 12px 0 11px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+
+    &:hover svg {
+      fill: #fff;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.player {
+  &_info {
+    grid-area: info;
+    display: flex;
+    justify-self: flex-start;
+
+    &_text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin: 0 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &_artist {
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: .015em;
+      opacity: 0.6;
+    }
+
+    &_title {
+      font-size: 14px;
+      line-height: 16px;
+      letter-spacing: .015em;
+    }
+
+    &_img {
+      height: 56px;
+      width: 56px;
+    }
+  }
+}

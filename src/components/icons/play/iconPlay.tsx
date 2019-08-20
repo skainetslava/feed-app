@@ -16,7 +16,7 @@ const IconPlay: React.FC<IIconProps> = ({ w, h, className }) => {
             version="1.1"
             viewBox="0 0 41.999 41.999"
             xmlSpace="preserve"
-            fill="#fff"
+            fill="#b3b3b3"
             width={w}
             height={h}
             className={className}

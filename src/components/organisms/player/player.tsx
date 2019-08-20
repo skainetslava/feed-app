@@ -2,14 +2,16 @@ import cls from "classnames";
 import { Howl } from "howler";
 import * as React from "react";
 
-// import { IconLibrary } from "src/components/icons/library";
-import { IconPause } from "src/components/icons/pause";
-import { IconPlay } from "src/components/icons/play";
+import { Controls } from "./blocks/controls";
+import { ProgressBar } from "./blocks/progress-bar";
+import { Volume } from "./blocks/volume";
 
 import { formateInMinutes } from "src/helpers/formateInMinutes";
 
 import "./player.scss";
+import { TrackInfo } from './blocks/info';
 
+const img = "https://cdns-images.dzcdn.net/images/cover/9232336ac18a40019e543f9d6a270039/500x500-000000-80-0-0.jpg";
 interface IPreviewProps {
     className?: string;
 }
@@ -30,7 +32,7 @@ const Player: React.FC<IPreviewProps> = ({ className }) => {
 
     React.useEffect(() => {
         syncCurrentTime();
-        return clearTimeout(syncCurrentTime());
+        return (() => clearTimeout(syncCurrentTime()));
     }, [])
 
     const syncCurrentTime = () => {
@@ -65,24 +67,18 @@ const Player: React.FC<IPreviewProps> = ({ className }) => {
 
     return (
         <div className={cls(className, "player")}>
-            {
-                !isPlaying && <button className="player_play" onClick={playAudio}>
-                    <IconPlay w={18} h={18} />
-                </button>
-            }
-            {
-                isPlaying && <button className="player_pause" onClick={pauseAudio}>
-                    <IconPause w={18} h={18} />
-                </button>
-            }
-            <div className="player_duration">
-                <span className="player_duration_time">{currentDuration}</span>
-                <div className="player_progress">
-                    <div className="player_progress_base" style={{ width: `${leftPosition}%` }}></div>
-                    <div className="player_progress_slider" style={{ left: `${leftPosition - 1}%` }}></div>
-                </div>
-                <span className="player_duration_time">{duration}</span>
-            </div>
+            <TrackInfo artist={"Twenty One Pilots"} title={"Stressed out"} img={img} />
+            <Controls
+                isPlaying={isPlaying}
+                pauseAudio={pauseAudio}
+                playAudio={playAudio}
+            />
+            <ProgressBar
+                leftPosition={leftPosition}
+                currentDuration={currentDuration}
+                duration={duration}
+            />
+            <Volume volumeLevel={leftPosition} />
         </div>
     )
 };
