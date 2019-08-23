@@ -72,3 +72,25 @@ export const getSearchingValue = createSelector(
     [SEARCHING_VALUE],
     (value) => value,
 )
+
+const PLAYER = (state: IStore) => state.player;
+
+export const getCurrentAudio = createSelector(
+    [PLAYER],
+    (data) =>  data.source,
+)
+
+export const getPlayerAudioStatus = createSelector(
+    [PLAYER],
+    (data) => data.isPlaying,
+)
+
+export const getPlaylist = createSelector(
+    [PLAYER],
+    (data) => data.playlist,
+)
+
+export const getDuration = createSelector(
+    [PLAYER],
+    (data) => data.timing,
+)

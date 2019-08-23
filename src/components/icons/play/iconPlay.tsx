@@ -3,10 +3,11 @@ import * as React from "react";
 export interface IIconProps {
     w: number,
     h: number,
-    className?: string
+    className?: string,
+    onClick?: () => void
 }
 
-const IconPlay: React.FC<IIconProps> = ({ w, h, className }) => {
+const IconPlay: React.FC<IIconProps> = ({ w, h, className, onClick }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +21,7 @@ const IconPlay: React.FC<IIconProps> = ({ w, h, className }) => {
             width={w}
             height={h}
             className={className}
+            onClick={onClick}
         >
             <path d="M36.068 20.176l-29-20A1 1 0 005.5.999v40a1 1 0 001.568.823l29-20a.999.999 0 000-1.646z" />
         </svg>

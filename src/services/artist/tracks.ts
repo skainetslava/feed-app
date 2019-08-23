@@ -23,6 +23,7 @@ export const fetchArtistMostPopularTracksAPI = async (id: number): Promise<IArti
       duration: item.duration,
       albumName: item.album.title,
       coverSmallTrack: item.album.cover_medium,
+      preview: item.preview,
     }),
   );
 

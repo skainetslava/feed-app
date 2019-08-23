@@ -7,6 +7,7 @@ export interface IChart {
 export interface ITrack {
     id: number,
     title: string,
+    preview: string,
     artist: string,
     artistId: number,
     duration: number,
@@ -31,4 +32,9 @@ export interface IArtist {
     name: string,
     picture: string,
     fans: number,
+}
+
+export interface ICurrentAudio {
+    source: ITrack,
+    timing: number
 }

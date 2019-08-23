@@ -19,6 +19,7 @@ export const searchDataApi = (value: string): Promise<ISearchData | void> => {
           artistId: item.artist.id,
           duration: item.duration,
           coverBigTrack: item.album.cover_big,
+          preview: item.preview,
         }),
       );
 

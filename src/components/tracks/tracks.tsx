@@ -9,14 +9,15 @@ import { ITrack } from "src/models";
 interface ITracksProps {
     limit?: number;
     tracks?: ITrack[],
-    className?: string
+    className?: string,
+    handlePlay?: (v: ITrack) => void
 }
 
-const Tracks: React.FC<ITracksProps> = ({ tracks, limit, className }) => {
+const Tracks: React.FC<ITracksProps> = ({ tracks, limit, className, handlePlay }) => {
     const renderTracks = () => {
         if (tracks && tracks.length > 0) {
             return tracks.slice(0, limit).map((track) => {
-                return <Track track={track} key={track.id} />;
+                return <Track track={track} key={track.id} handlePlay={handlePlay}/>;
             })
 
         }

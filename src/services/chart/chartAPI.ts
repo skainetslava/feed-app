@@ -27,6 +27,7 @@ export const fetchChartApi = (): Promise<IChartData | void> => {
           pictureBigArtist: item.artist.picture_big,
           coverSmallTrack: item.album.cover_small,
           coverBigTrack: item.album.cover_big,
+          preview: item.preview,
         }),
       );
 

@@ -1,17 +1,20 @@
 import * as React from "react";
+import { UserProvider } from "src/context"
 
-import { Player } from "src/components//organisms/player";
 import { Navbar } from "src/components/organisms/navbar";
+import { PlayerContainer } from "src/containers/player";
 
 import "./app.scss";
 
 const App: React.FC = ({ children }) => {
     return (
-        <div className="app">
-            <Navbar />
-            <Player />
-            {children}
-        </div>
+        <UserProvider value="699056262">
+            <div className="app">
+                <Navbar />
+                <PlayerContainer />
+                {children}
+            </div>
+        </UserProvider>
     )
 };
 

@@ -4,10 +4,11 @@ import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
 import { IAlbumStoreState } from "src/reducers/album";
-import { IChartStoreState } from "src/reducers/chart"
-
 import { IArtistStoreState } from "src/reducers/artist";
+import { IChartStoreState } from "src/reducers/chart"
+import { IPlayerStoreState } from "src/reducers/player";
 import { ISearchStoreState } from "src/reducers/search";
+
 import rootSaga from "src/sagas";
 import rootReducer from "../reducers/index";
 
@@ -16,6 +17,7 @@ export interface IStore {
     chart: IChartStoreState;
     artist: IArtistStoreState;
     search: ISearchStoreState;
+    player: IPlayerStoreState;
 }
 
 const configureStore = (initialState?: IStore) => {

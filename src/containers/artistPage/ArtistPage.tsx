@@ -9,6 +9,7 @@ import { RouteComponentProps } from "react-router-dom";
 import {
     fetchArtistData,
 } from "src/actions/artist";
+import { playAudio } from "src/actions/player";
 import { Artist } from "src/components/pages/artist";
 import { IAlbum, IArtist, ITrack } from "src/models";
 import { getArtistAlbums, getArtistData, getArtistMostPopularTracks } from "src/reducers/selectors";
@@ -23,12 +24,14 @@ interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
     albums: IAlbum[],
     isLoading?: boolean,
     onFetchArtistData?: (id: string) => void;
+    onPlayAudio?: (v: ITrack) => void
 }
 
 const ArtistPage: React.FC<IArtistContainerProps> = ({
     artist,
     tracks,
     albums,
+    onPlayAudio,
     onFetchArtistData,
     isLoading,
     match,
@@ -40,9 +43,9 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
     const renderLoading = (): JSX.Element => {
         return <div>Loading...</div>
     }
-    
+
     return (
-        artist ? <Artist artist={artist} tracks={tracks} albums={albums} /> : renderLoading()
+        artist ? <Artist artist={artist} tracks={tracks} albums={albums} handlePlay={onPlayAudio} /> : renderLoading()
     );
 };
 
@@ -55,6 +58,7 @@ const mapStateToProps = (state: IStore) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     onFetchArtistData: (id: string) => dispatch(fetchArtistData(id)),
+    onPlayAudio: (track: ITrack) => dispatch(playAudio(track)),
 });
 
 
