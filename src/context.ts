@@ -1,7 +1,7 @@
 import * as React from "react";
 
-const UserContext = React.createContext({})
+const CurrentAudioContext = React.createContext({})
 
-export const UserProvider = UserContext.Provider
-export const UserConsumer = UserContext.Consumer
-export default UserContext
+export const CurrentAudioProvider = CurrentAudioContext.Provider
+export const UserConsumer = CurrentAudioContext.Consumer
+export default CurrentAudioContext

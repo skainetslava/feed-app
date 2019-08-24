@@ -1,13 +1,13 @@
 import * as React from "react";
 
 export interface IIconProps {
-    w: number,
-    h: number,
+    w?: number,
+    h?: number,
     className?: string,
     onClick?: () => void
 }
 
-const IconPlay: React.FC<IIconProps> = ({ w, h, className, onClick }) => {
+const IconPlay: React.FC<IIconProps> = ({ w = 16, h = 16, className, onClick }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

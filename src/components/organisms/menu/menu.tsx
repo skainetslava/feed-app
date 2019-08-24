@@ -24,7 +24,7 @@ const MENU_TITLES = {
   },
 };
 
-const Menu: React.FC = () => {
+const Menu: React.FC = React.memo(() => {
   const menuKeys = Object.values(MENU_TITLES);
   return (
     <ul className="menu">
@@ -40,6 +40,6 @@ const Menu: React.FC = () => {
       })}
     </ul>
   );
-};
+});
 
 export default Menu;

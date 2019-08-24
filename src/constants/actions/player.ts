@@ -18,3 +18,6 @@ export type PREV_AUDIO = typeof PREV_AUDIO;
 
 export const SAVE_AUDIO = "SAVE_AUDIO";
 export type SAVE_AUDIO = typeof SAVE_AUDIO;
+
+export const CHANGE_VOLUME = "CHANGE_VOLUME";
+export type CHANGE_VOLUME = typeof CHANGE_VOLUME;

@@ -6,6 +6,11 @@ export interface IUpdateDurationAction {
     payload: number
 }
 
+export interface IChangeVolumeAction {
+    type: constants.CHANGE_VOLUME;
+    payload: number
+}
+
 export interface IContinueAudioAction {
     type: constants.CONTINUE_AUDIO;
 }
@@ -41,7 +46,15 @@ export type PlayerActionType =
     | constants.CONTINUE_AUDIO
     | constants.PAUSE_AUDIO
     | constants.NEXT_AUDIO
-    | constants.PREV_AUDIO;
+    | constants.PREV_AUDIO
+    | constants.CHANGE_VOLUME;
+
+export function changeVolume(payload: number): IChangeVolumeAction {
+    return {
+        type: constants.CHANGE_VOLUME,
+        payload,
+    }
+}
 
 export function updateDuration(payload: number): IUpdateDurationAction {
     return {
@@ -57,7 +70,6 @@ export function continueAudio(): IContinueAudioAction {
 }
 
 export function playAudio(payload?: ITrack): IPlayAudioAction {
-    console.log("object");
     return {
         type: constants.PLAY_AUDIO,
         payload,

@@ -10,7 +10,12 @@ interface IProgressBarProps {
     duration: string;
 }
 
-const ProgressBar: React.FC<IProgressBarProps> = ({ className, currentDuration, leftPosition, duration }) => {
+const ProgressBar: React.FC<IProgressBarProps> = React.memo(({
+    className,
+    currentDuration,
+    leftPosition,
+    duration,
+}) => {
     return (
         <div className={cls(className, "player_duration")}>
             <span className="player_duration_time">{currentDuration}</span>
@@ -21,6 +26,6 @@ const ProgressBar: React.FC<IProgressBarProps> = ({ className, currentDuration, 
             <span className="player_duration_time">{duration}</span>
         </div>
     )
-};
+});
 
 export default ProgressBar;

@@ -6,6 +6,10 @@
     padding: 6px 8px;
     transition: .3s;
 
+    &--active {
+        color: #1ed760;
+    }
+
     &:hover {
         background-color: rgba(0, 0, 0, .3);
     }
@@ -19,10 +23,26 @@
         margin: 0 0 0 4px;
     }
 
+    &_pause {
+        display: none;
+        fill: #1ed760;
+    }
+
     &_play {
+        &--active {
+            fill: #1ed760;
+        }
+    }
+
+    &_play,
+    &_on {
         align-self: flex-start;
         margin: 10px 4px 0 0;
         cursor: pointer;
+    }
+
+    &_on {
+        fill: #1ed760;
     }
 
     &_title {

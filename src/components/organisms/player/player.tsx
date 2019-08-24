@@ -19,6 +19,7 @@ interface IPreviewProps {
     track: ITrack;
     pauseAudio: () => void;
     playAudio: () => void;
+    handleChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const Player: React.FC<IPreviewProps> = ({
@@ -26,6 +27,7 @@ const Player: React.FC<IPreviewProps> = ({
     isPlaying,
     positionTrack,
     currentDuration,
+    handleChangeVolume,
     volumeLevel,
     duration,
     track,
@@ -45,14 +47,9 @@ const Player: React.FC<IPreviewProps> = ({
                 currentDuration={currentDuration}
                 duration={duration}
             />
-            <Volume volumeLevel={volumeLevel} />
+            <Volume volumeLevel={volumeLevel} handleChangeVolume={handleChangeVolume}/>
         </div>
     )
 };
 
 export default Player;
-// https://cdns-preview-b.dzcdn.net/stream/c-be897cd6f8f1c730f02fa9b5a11f6bb6-1.mp3
-
-// <button className="player_pause">
-//     <IconLibrary w={36} h={36} />
-// </button>

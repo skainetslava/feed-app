@@ -1,5 +1,5 @@
 import * as React from "react";
-import { App } from "src/components/app";
+import { AppContainer } from "src/containers/app";
 
 import { Switch } from "react-router";
 import { Redirect, Route, RouteProps, Router } from "react-router-dom";
@@ -14,7 +14,7 @@ import SearchRoutes from "./search";
 
 const Routes: React.FC<RouteProps> = () => (
   <Router history={history}>
-    <App>
+    <AppContainer>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/chart" />} />
         <Route exact path="/chart" component={ChartPage} />
@@ -23,7 +23,7 @@ const Routes: React.FC<RouteProps> = () => (
         <Route exact path="/artist/:id" component={ArtistPage} />
         <SearchRoutes />
       </Switch>
-    </App>
+    </AppContainer>
   </Router >
 );
 

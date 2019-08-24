@@ -14,7 +14,7 @@ interface IPreviewProps {
     type: "artist" | "album";
 }
 
-const Preview: React.FC<IPreviewProps> = ({ id, className, cover, title, artist, type }) => {
+const Preview: React.FC<IPreviewProps> = React.memo(({ id, className, cover, title, artist, type }) => {
     const shapeClass = type === "album" ? "preview_square" : "preview_circle";
     return (
         <Link to={`/${type}/${id}`}>
@@ -28,6 +28,6 @@ const Preview: React.FC<IPreviewProps> = ({ id, className, cover, title, artist,
             </div>
         </Link>
     )
-};
+});
 
 export default Preview;

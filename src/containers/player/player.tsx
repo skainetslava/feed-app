@@ -8,19 +8,22 @@ import { ITrack } from "src/models";
 import { IStore } from "src/store";
 
 
-import { continueAudio, pauseAudio, updateDuration } from "src/actions/player";
+import { changeVolume, continueAudio, pauseAudio, updateDuration } from "src/actions/player";
 import { formateInMinutes } from "src/helpers/formateInMinutes";
-import { getCurrentAudio, getDuration, getPlayerAudioStatus, getPlaylist } from "src/reducers/selectors";
+import { getCurrentAudio, getDuration, getPausingAudioStatus, getPlayerAudioStatus, getPlaylist, getVolume } from "src/reducers/selectors";
 
 
 interface IPlayerContainerProps {
     currentAudio?: ITrack,
     timing?: number,
+    volume?: number,
     isPlaying?: boolean,
+    isPausing?: boolean,
     playlist?: ITrack[],
     onContinueAudio?: () => void,
     onPauseAudio?: () => void,
     onUpdateDuration?: (v: number) => void
+    onChangeVolumePlayer?: (v: number) => void
 }
 
 let timer: any;
@@ -29,11 +32,14 @@ let audio: any; // global need for working of stop(), pause() :(
 const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     currentAudio,
     isPlaying = false,
+    isPausing,
     timing = 0,
     playlist,
+    volume = 100,
     onContinueAudio,
     onPauseAudio,
     onUpdateDuration,
+    onChangeVolumePlayer,
 }) => {
 
     if (!currentAudio) {
@@ -43,7 +49,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     const isInitMount = React.useRef(true);
 
     React.useEffect(() => {
-        audio && handlePause();
+        audio && onPausePlayer();
 
         audio = new Howl({
             src: [currentAudio.preview],
@@ -53,7 +59,8 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
         if (isInitMount.current) {
             isInitMount.current = false;
         } else {
-            handlePlay();
+            onPlayPlayer();
+            document.title = `${currentAudio.artist} - ${currentAudio.title}`
         }
 
         return (() => {
@@ -61,22 +68,51 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
         });
     }, [currentAudio.preview])
 
-    const syncCurrentTime = () => {
+
+    React.useEffect(() => {
+        if (isInitMount.current) {
+            isInitMount.current = false;
+        } else {
+            !isPausing ? onPlayPlayer() : onPausePlayer();
+        }
+        return (() => {
+            clearInterval(timer)
+        });
+    }, [isPausing])
+
+    React.useEffect(() => {
+       audio.volume(volume / 100)
+    }, [volume])
+
+    const syncCurrentTime = (): void => {
         timer = setInterval(() => {
             onUpdateDuration && onUpdateDuration(Math.round(audio.seek()))
         }, 1000)
     }
 
-    const handlePlay = (): void => {
+    const onPlayPlayer = (): void => {
         syncCurrentTime();
         audio.seek(timing);
         audio.play();
+    }
+
+    const onPausePlayer = (): void => {
+        audio.pause();
+        clearInterval(timer);
+    }
+
+    const handleChangeVolume = (event: React.MouseEvent<HTMLDivElement>) => {
+        const currentTargetRect = event.currentTarget.getBoundingClientRect();
+        const offsetX: number = event.pageX - currentTargetRect.left;
+
+        onChangeVolumePlayer && onChangeVolumePlayer(offsetX);
+    }
+
+    const handlePlay = (): void => {
         onContinueAudio && onContinueAudio();
     }
 
-    const handlePause = () => {
-        audio.pause();
-        clearInterval(timer);
+    const handlePause = (): void => {
         onPauseAudio && onPauseAudio();
     }
 
@@ -95,7 +131,8 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             positionTrack={leftPosition}
             pauseAudio={handlePause}
             playAudio={handlePlay}
-            volumeLevel={0}
+            volumeLevel={volume}
+            handleChangeVolume={handleChangeVolume}
         />
     );
 };
@@ -105,12 +142,15 @@ const mapStateToProps = (state: IStore) => ({
     isPlaying: getPlayerAudioStatus(state),
     playlist: getPlaylist(state),
     timing: getDuration(state),
+    isPausing: getPausingAudioStatus(state),
+    volume: getVolume(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     onContinueAudio: () => dispatch(continueAudio()),
     onPauseAudio: () => dispatch(pauseAudio()),
     onUpdateDuration: (time: number) => dispatch(updateDuration(time)),
+    onChangeVolumePlayer: (value: number) => dispatch(changeVolume(value)),
 });
 
 

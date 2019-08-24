@@ -11,7 +11,7 @@ interface IHeaderCoverProps {
     listeners?: number,
 }
 
-const HeaderCover: React.SFC<IHeaderCoverProps> = ({ title, listeners, withActions }) => {
+const HeaderCover: React.SFC<IHeaderCoverProps> = React.memo(({ title, listeners, withActions }) => {
     return <div className="cover_title">
         {listeners && <p className="cover_title_listeners">{formateWithDots(listeners)} MONTHLY LISTENERS</p>}
         <p className="cover_title_text">{title}</p>
@@ -23,6 +23,6 @@ const HeaderCover: React.SFC<IHeaderCoverProps> = ({ title, listeners, withActio
             </>
         }
     </div>
-};
+});
 
 export default HeaderCover;

@@ -3,15 +3,15 @@ import { getItemFromLocalStorage } from "src/helpers/getItemFromLocalStorage";
 import { ITrack } from "src/models";
 import * as constants from "../constants/actions/player";
 
-const track: ITrack = {
-    id: 1,
-    artistId: 1,
-    artist: "Twenty one pilots",
-    title: "Stressed out",
-    preview: "https://cdns-preview-0.dzcdn.net/stream/c-00f5ada432d79bcedcc9d4e4c6856888-3.mp3",
-    coverSmallTrack: "https://cdns-images.dzcdn.net/images/cover/9232336ac18a40019e543f9d6a270039/500x500-000000-80-0-0.jpg",
-    duration: 164,
-}
+// const track: ITrack = {
+//     id: 1,
+//     artistId: 1,
+//     artist: "Twenty one pilots",
+//     title: "Stressed out",
+//     preview: "https://cdns-preview-0.dzcdn.net/stream/c-00f5ada432d79bcedcc9d4e4c6856888-3.mp3",
+//     coverSmallTrack: "https://cdns-images.dzcdn.net/images/cover/9232336ac18a40019e543f9d6a270039/500x500-000000-80-0-0.jpg",
+//     duration: 164,
+// }
 
 export interface IPlayerStoreState {
     playlist: ITrack[];
@@ -19,6 +19,8 @@ export interface IPlayerStoreState {
     timing: number;
     isLoading: boolean;
     isPlaying: boolean;
+    isPausing: boolean;
+    volume: number;
 }
 
 const initialState: IPlayerStoreState = {
@@ -27,6 +29,8 @@ const initialState: IPlayerStoreState = {
     timing: getItemFromLocalStorage<number>("timingAudio") || 0,
     isLoading: false,
     isPlaying: false,
+    isPausing: true,
+    volume: 100,
 };
 
 interface IPlayerAction {
@@ -42,12 +46,22 @@ export default function playerReducer(
             return {
                 ...state,
                 isPlaying: true,
+                isPausing: false,
             }
+
+        case constants.CHANGE_VOLUME:
+            const volume = action.payload;
+            return {
+                ...state,
+                volume,
+            };
+
 
         case constants.SAVE_AUDIO:
             const audio = action.payload;
             return {
                 ...state,
+                isPausing: false,
                 isPlaying: true,
                 source: audio,
                 timing: 0,
@@ -56,6 +70,7 @@ export default function playerReducer(
         case constants.PAUSE_AUDIO:
             return {
                 ...state,
+                isPausing: true,
                 isPlaying: false,
             }
         case constants.UPDATE_DURATION:

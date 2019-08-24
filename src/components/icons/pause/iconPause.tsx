@@ -1,12 +1,13 @@
 import * as React from "react";
 
 export interface IIconProps {
-    w: number,
-    h: number,
-    className?: string
+    w?: number;
+    h?: number;
+    className?: string;
+    onClick?: () => void;
 }
 
-const IconPause: React.FC<IIconProps> = ({ w, h, className }) => {
+const IconPause: React.FC<IIconProps> = ({ w = 16, h = 16, className, onClick }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -19,6 +20,7 @@ const IconPause: React.FC<IIconProps> = ({ w, h, className }) => {
             xmlSpace="preserve"
             width={w}
             height={h}
+            onClick={onClick}
             className={className}
         >
             <path d="M25.5 357h102V0h-102v357zm204-357v357h102V0h-102z" />

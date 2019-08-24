@@ -3,7 +3,7 @@ import { IconLogo } from "src/components/icons/logo";
 import { Menu } from "src/components/organisms/menu";
 import "./navbar.scss";
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC = React.memo(() => {
   return (
     <div className="navbar">
       <div className="navbar_wrapper">
@@ -15,6 +15,6 @@ const NavBar: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default NavBar;

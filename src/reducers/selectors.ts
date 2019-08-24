@@ -73,24 +73,44 @@ export const getSearchingValue = createSelector(
     (value) => value,
 )
 
-const PLAYER = (state: IStore) => state.player;
+const PLAYER_SOURCE = (state: IStore) => state.player.source;
 
 export const getCurrentAudio = createSelector(
-    [PLAYER],
-    (data) =>  data.source,
+    [PLAYER_SOURCE],
+    (data) =>  data,
 )
+
+const PLAYER_PLAYING = (state: IStore) => state.player.isPlaying;
 
 export const getPlayerAudioStatus = createSelector(
-    [PLAYER],
-    (data) => data.isPlaying,
+    [PLAYER_PLAYING],
+    (data) => data,
 )
+
+const PLAYER_PAUSING = (state: IStore) => state.player.isPausing;
+
+export const getPausingAudioStatus = createSelector(
+    [PLAYER_PAUSING],
+    (data) => data,
+)
+
+const PLAYER_VOLUME = (state: IStore) => state.player.volume;
+
+export const getVolume = createSelector(
+    [PLAYER_VOLUME],
+    (volume) => volume,
+)
+
+const PLAYER_PLAYLIST = (state: IStore) => state.player.playlist;
 
 export const getPlaylist = createSelector(
-    [PLAYER],
-    (data) => data.playlist,
+    [PLAYER_PLAYLIST],
+    (playlist) => playlist,
 )
 
+const PLAYER_TIMING= (state: IStore) => state.player.timing;
+
 export const getDuration = createSelector(
-    [PLAYER],
-    (data) => data.timing,
+    [PLAYER_TIMING],
+    (timing) => timing,
 )

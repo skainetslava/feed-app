@@ -9,10 +9,10 @@ interface IButton {
   color?: "green" | "red";
 }
 
-const Button: React.FC<IButton> = ({ title, className, color }) => {
+const Button: React.FC<IButton> = React.memo(({ title, className, color }) => {
   return (
     <button className={cls(className, "btn", `btn--${color}`)}>{title}</button>
   );
-};
+});
 
 export default Button;

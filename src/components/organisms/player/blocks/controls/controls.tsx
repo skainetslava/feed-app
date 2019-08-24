@@ -1,5 +1,5 @@
-import * as React from "react";
 import cls from "classnames";
+import * as React from "react";
 
 import { IconControlNext } from "src/components/icons/control-next";
 import { IconControlPrev } from "src/components/icons/control-prev";
@@ -15,7 +15,7 @@ interface IControlsProps {
     pauseAudio: () => void;
 }
 
-const Controls: React.FC<IControlsProps> = ({ className, isPlaying, playAudio, pauseAudio }) => {
+const Controls: React.FC<IControlsProps> = React.memo(({ className, isPlaying, playAudio, pauseAudio }) => {
     return (
         <div className={cls(className, "player_controls")}>
             <IconControlPrev w={13} h={12} />
@@ -32,6 +32,6 @@ const Controls: React.FC<IControlsProps> = ({ className, isPlaying, playAudio, p
             <IconControlNext w={12} h={12} />
         </div>
     )
-};
+});
 
 export default Controls;
