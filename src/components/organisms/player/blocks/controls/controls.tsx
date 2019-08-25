@@ -13,12 +13,21 @@ interface IControlsProps {
     className?: string;
     playAudio: () => void;
     pauseAudio: () => void;
+    prevAudio: () => void;
+    nextAudio: () => void;
 }
 
-const Controls: React.FC<IControlsProps> = React.memo(({ className, isPlaying, playAudio, pauseAudio }) => {
+const Controls: React.FC<IControlsProps> = React.memo(({
+    className,
+    isPlaying,
+    playAudio,
+    pauseAudio,
+    nextAudio,
+    prevAudio,
+}) => {
     return (
         <div className={cls(className, "player_controls")}>
-            <IconControlPrev w={13} h={12} />
+            <IconControlPrev  className="player_prev"w={13} h={12} onClick={prevAudio}/>
             {
                 !isPlaying && <button className="player_play" onClick={playAudio}>
                     <IconPlay w={18} h={18} />
@@ -29,7 +38,7 @@ const Controls: React.FC<IControlsProps> = React.memo(({ className, isPlaying, p
                     <IconPause w={18} h={18} />
                 </button>
             }
-            <IconControlNext w={12} h={12} />
+            <IconControlNext className="player_next" w={12} h={12} onClick={nextAudio}/>
         </div>
     )
 });

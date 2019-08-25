@@ -13,11 +13,20 @@ export type PAUSE_AUDIO = typeof PAUSE_AUDIO;
 export const NEXT_AUDIO = "NEXT_AUDIO";
 export type NEXT_AUDIO = typeof NEXT_AUDIO;
 
+export const NEXT_AUDIO_REQUEST = "NEXT_AUDIO_REQUEST";
+export type NEXT_AUDIO_REQUEST = typeof NEXT_AUDIO_REQUEST;
+
 export const PREV_AUDIO = "PREV_AUDIO";
 export type PREV_AUDIO = typeof PREV_AUDIO;
+
+export const PREV_AUDIO_REQUEST = "PREV_AUDIO_REQUEST";
+export type PREV_AUDIO_REQUEST = typeof PREV_AUDIO_REQUEST;
 
 export const SAVE_AUDIO = "SAVE_AUDIO";
 export type SAVE_AUDIO = typeof SAVE_AUDIO;
 
 export const CHANGE_VOLUME = "CHANGE_VOLUME";
 export type CHANGE_VOLUME = typeof CHANGE_VOLUME;
+
+export const UPDATE_PLAYLIST = "UPDATE_PLAYLIST";
+export type UPDATE_PLAYLIST = typeof UPDATE_PLAYLIST;

@@ -28,6 +28,9 @@ export default function artistReducer(
       return {
         ...state,
         isLoading: true,
+        data: null,
+        tracks: [],
+        albums: [],
       };
     case constants.FETCH_DATA_ARTIST_SUCCESS:
       const artist = action.payload;
@@ -46,6 +49,7 @@ export default function artistReducer(
       return {
         ...state,
         isLoading: true,
+        tracks: [],
       };
     case constants.FETCH_ARTIST_TRACKS_SUCCESS:
       const tracks = action.payload;
@@ -57,7 +61,7 @@ export default function artistReducer(
     case constants.FETCH_ARTIST_TRACKS_FAILURE:
       return {
         ...state,
-        error:  action.payload.message,
+        error: action.payload.message,
         isLoading: false,
         tracks: [],
       };
@@ -66,6 +70,7 @@ export default function artistReducer(
       return {
         ...state,
         isLoading: true,
+        albums: [],
       };
     case constants.FETCH_ARTIST_ALBUMS_SUCCESS:
       const albums = action.payload;

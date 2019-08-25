@@ -34,16 +34,27 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
     isLoading,
     match,
 }) => {
+
+    const isInitMount = React.useRef(true);
+
     React.useEffect(() => {
-        onFetchArtistData && onFetchArtistData(match.params.id)
+        if (isInitMount.current) {
+            isInitMount.current = false;
+        } else {
+            onFetchArtistData && onFetchArtistData(match.params.id)
+        }
     }, [match.params.id]);
+
+    React.useLayoutEffect(() => {
+        onFetchArtistData && onFetchArtistData(match.params.id)
+    }, []);
 
     const renderLoading = (): JSX.Element => {
         return <div>Loading...</div>
     }
 
     return (
-        artist ? <Artist artist={artist} tracks={tracks} albums={albums}  /> : renderLoading()
+        artist ? <Artist artist={artist} tracks={tracks} albums={albums} /> : renderLoading()
     );
 };
 

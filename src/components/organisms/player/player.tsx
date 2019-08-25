@@ -9,7 +9,7 @@ import { ITrack } from "src/models";
 import { TrackInfo } from "./blocks/info";
 import "./player.scss";
 
-interface IPreviewProps {
+interface IPlayerProps {
     isPlaying: boolean;
     className?: string;
     positionTrack: number;
@@ -19,10 +19,12 @@ interface IPreviewProps {
     track: ITrack;
     pauseAudio: () => void;
     playAudio: () => void;
+    prevAudio: () => void;
+    nextAudio: () => void;
     handleChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const Player: React.FC<IPreviewProps> = ({
+const Player: React.FC<IPlayerProps> = ({
     className,
     isPlaying,
     positionTrack,
@@ -33,21 +35,29 @@ const Player: React.FC<IPreviewProps> = ({
     track,
     pauseAudio,
     playAudio,
+    nextAudio,
+    prevAudio,
 }) => {
     return (
         <div className={cls(className, "player")}>
-            <TrackInfo artist={track.artist} title={track.title} img={track.coverSmallTrack || ""} />
+            <TrackInfo
+                artist={track.artist}
+                title={track.title}
+                img={track.coverBigTrack || track.coverSmallTrack || ""}
+            />
             <Controls
                 isPlaying={isPlaying}
                 pauseAudio={pauseAudio}
                 playAudio={playAudio}
+                nextAudio={nextAudio}
+                prevAudio={prevAudio}
             />
             <ProgressBar
                 leftPosition={positionTrack}
                 currentDuration={currentDuration}
                 duration={duration}
             />
-            <Volume volumeLevel={volumeLevel} handleChangeVolume={handleChangeVolume}/>
+            <Volume volumeLevel={volumeLevel} handleChangeVolume={handleChangeVolume} />
         </div>
     )
 };

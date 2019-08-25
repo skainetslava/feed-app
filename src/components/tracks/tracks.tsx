@@ -12,11 +12,11 @@ interface ITracksProps {
     className?: string,
 }
 
-const Tracks: React.FC<ITracksProps> = ({ tracks, limit, className }) => {
+const Tracks: React.FC<ITracksProps> = React.memo(({ tracks, limit, className }) => {
     const renderTracks = () => {
         if (tracks && tracks.length > 0) {
             return tracks.slice(0, limit).map((track) => {
-                return <TrackContainer track={track} key={track.id} />;
+                return <TrackContainer track={track} key={track.id} tracks={tracks} />;
             })
         }
         return null;
@@ -27,6 +27,6 @@ const Tracks: React.FC<ITracksProps> = ({ tracks, limit, className }) => {
             {renderTracks()}
         </div>
     )
-};
+});
 
 export default Tracks;

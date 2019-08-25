@@ -25,7 +25,6 @@ export interface ISaveAudioAction {
     payload?: ITrack
 }
 
-
 export interface IPauseAudioAction {
     type: constants.PAUSE_AUDIO;
 }
@@ -39,6 +38,18 @@ export interface IPrevAudioAction {
     payload: ITrack
 }
 
+export interface IPrepareNextAudioAction {
+    type: constants.NEXT_AUDIO_REQUEST;
+}
+export interface IPreparePrevAudioAction {
+    type: constants.PREV_AUDIO_REQUEST;
+}
+
+export interface IUpdatePlaylistAction {
+    type: constants.UPDATE_PLAYLIST;
+    payload: ITrack[]
+}
+
 export type PlayerActionType =
     constants.PLAY_AUDIO
     | constants.SAVE_AUDIO
@@ -47,7 +58,15 @@ export type PlayerActionType =
     | constants.PAUSE_AUDIO
     | constants.NEXT_AUDIO
     | constants.PREV_AUDIO
-    | constants.CHANGE_VOLUME;
+    | constants.CHANGE_VOLUME
+    | constants.UPDATE_PLAYLIST;
+
+export function updatePlaylist(payload: ITrack[]): IUpdatePlaylistAction {
+    return {
+        type: constants.UPDATE_PLAYLIST,
+        payload,
+    }
+}
 
 export function changeVolume(payload: number): IChangeVolumeAction {
     return {
@@ -89,15 +108,26 @@ export function pauseAudio(): IPauseAudioAction {
     }
 }
 
-export function goToPrevAudio(payload: ITrack): IPrevAudioAction {
+export function preparePrevAudio(): IPreparePrevAudioAction {
     return {
-        type: constants.PREV_AUDIO,
+        type: constants.PREV_AUDIO_REQUEST,
+    }
+}
+export function prepareNextAudio(): IPrepareNextAudioAction {
+    return {
+        type: constants.NEXT_AUDIO_REQUEST,
+    }
+}
+
+export function goToNextTrack(payload: ITrack): INextAudioAction {
+    return {
+        type: constants.NEXT_AUDIO,
         payload,
     }
 }
-export function goToNextAudio(payload: ITrack): INextAudioAction {
+export function goToPrevTrack(payload: ITrack): IPrevAudioAction {
     return {
-        type: constants.NEXT_AUDIO,
+        type: constants.PREV_AUDIO,
         payload,
     }
 }

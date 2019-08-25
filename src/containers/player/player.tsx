@@ -8,9 +8,25 @@ import { ITrack } from "src/models";
 import { IStore } from "src/store";
 
 
-import { changeVolume, continueAudio, pauseAudio, updateDuration } from "src/actions/player";
+import {
+    changeVolume,
+    continueAudio,
+    pauseAudio,
+    prepareNextAudio,
+    preparePrevAudio,
+    updateDuration,
+} from "src/actions/player";
+
 import { formateInMinutes } from "src/helpers/formateInMinutes";
-import { getCurrentAudio, getDuration, getPausingAudioStatus, getPlayerAudioStatus, getPlaylist, getVolume } from "src/reducers/selectors";
+
+import {
+    getCurrentAudio,
+    getDuration,
+    getPausingAudioStatus,
+    getPlayerAudioStatus,
+    getPlaylist,
+    getVolume,
+} from "src/reducers/selectors";
 
 
 interface IPlayerContainerProps {
@@ -23,7 +39,9 @@ interface IPlayerContainerProps {
     onContinueAudio?: () => void,
     onPauseAudio?: () => void,
     onUpdateDuration?: (v: number) => void
-    onChangeVolumePlayer?: (v: number) => void
+    onChangeVolumePlayer?: (v: number) => void,
+    onGoToPrevAudio?: () => void,
+    onGoToNextAudio?: () => void,
 }
 
 let timer: any;
@@ -40,6 +58,8 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     onPauseAudio,
     onUpdateDuration,
     onChangeVolumePlayer,
+    onGoToPrevAudio,
+    onGoToNextAudio,
 }) => {
 
     if (!currentAudio) {
@@ -53,7 +73,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
         audio = new Howl({
             src: [currentAudio.preview],
-            loop: true,
+            onend: handleNext,
         });
 
         if (isInitMount.current) {
@@ -81,7 +101,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     }, [isPausing])
 
     React.useEffect(() => {
-       audio.volume(volume / 100)
+        audio.volume(volume / 100)
     }, [volume])
 
     const syncCurrentTime = (): void => {
@@ -91,6 +111,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     }
 
     const onPlayPlayer = (): void => {
+        clearInterval(timer);
         syncCurrentTime();
         audio.seek(timing);
         audio.play();
@@ -110,10 +131,22 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
     const handlePlay = (): void => {
         onContinueAudio && onContinueAudio();
+        clearInterval(timer)
     }
 
     const handlePause = (): void => {
         onPauseAudio && onPauseAudio();
+        clearInterval(timer)
+    }
+
+    const handleNext = (): void => {
+        onGoToNextAudio && onGoToNextAudio();
+        clearInterval(timer)
+    }
+
+    const handlePrev = (): void => {
+        onGoToPrevAudio && onGoToPrevAudio();
+        clearInterval(timer)
     }
 
     const leftPosition: number = audio ? 100 / audio.duration() * timing : 100 / 31 * timing;
@@ -131,6 +164,8 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             positionTrack={leftPosition}
             pauseAudio={handlePause}
             playAudio={handlePlay}
+            nextAudio={handleNext}
+            prevAudio={handlePrev}
             volumeLevel={volume}
             handleChangeVolume={handleChangeVolume}
         />
@@ -151,6 +186,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     onPauseAudio: () => dispatch(pauseAudio()),
     onUpdateDuration: (time: number) => dispatch(updateDuration(time)),
     onChangeVolumePlayer: (value: number) => dispatch(changeVolume(value)),
+    onGoToPrevAudio: () => dispatch(preparePrevAudio()),
+    onGoToNextAudio: () => dispatch(prepareNextAudio()),
 });
 
 
