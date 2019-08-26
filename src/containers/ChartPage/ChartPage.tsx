@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import { IStore } from "src/store";
 
+import { IPlayPage, playPage } from "src/actions/artist";
 import {
     fetchChartRequest,
     IChartAction,
@@ -18,9 +19,10 @@ interface IChartContainerProps {
     tracks?: ITrack[];
     isLoading?: boolean,
     onFetchChart?: () => void;
+    onPlayPage: (t: ITrack[]) => void
 }
 
-const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoading }) => {
+const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoading, onPlayPage }) => {
     React.useEffect(() => {
         if (!tracks || tracks.length === 0) {
             onFetchChart && onFetchChart();
@@ -39,8 +41,19 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
         return undefined;
     }
 
+    const handlePlayArtist = () => {
+        tracks && onPlayPage(tracks);
+    }
+
     return (
-        <Cover image={getTitleImage()} withActions={true} title="Most popular songs" hasTabs={true}>
+        <Cover
+            image={getTitleImage()}
+            withActions={{
+                onPlay: handlePlayArtist,
+            }}
+            title="Most popular songs"
+            hasTabs={true}
+        >
             {!isLoading ? <Tracks className="chart-tracks" tracks={tracks} /> : renderLoading()}
         </Cover >
     );
@@ -51,8 +64,9 @@ const mapStateToProps = (state: IStore) => ({
     isLoading: getChartLoadingStatus(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<IChartAction | IPlayPage>) => ({
     onFetchChart: () => dispatch(fetchChartRequest()),
+    onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
 });
 
 

@@ -5,9 +5,13 @@ import { Button } from "src/components/organisms/button";
 import { formateWithDots } from "src/helpers/formateWithDots";
 import "./headerCover.scss";
 
+export interface IWithActions {
+    onPlay: () => void
+}
+
 interface IHeaderCoverProps {
     title?: string,
-    withActions: boolean,
+    withActions: IWithActions,
     listeners?: number,
 }
 
@@ -18,8 +22,12 @@ const HeaderCover: React.SFC<IHeaderCoverProps> = React.memo(({ title, listeners
         {
             withActions &&
             <>
-                <div className="cover_title_play"><Button title="Play" color="green" /></div>
-                <div className="cover_title_follow"><Button title="Follow" /></div>
+                <div className="cover_title_play">
+                    <Button title="Play" color="green" onClick={withActions.onPlay} />
+                </div>
+                <div className="cover_title_follow">
+                    <Button title="Follow" onClick={() => { }} />
+                </div>
             </>
         }
     </div>

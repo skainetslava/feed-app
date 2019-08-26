@@ -7,7 +7,7 @@ import { IStore } from "src/store";
 import { RouteComponentProps } from "react-router-dom";
 
 import {
-    fetchArtistData,
+    fetchArtistData, playPage,
 } from "src/actions/artist";
 
 import { Artist } from "src/components/pages/artist";
@@ -24,6 +24,7 @@ interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
     albums: IAlbum[],
     isLoading?: boolean,
     onFetchArtistData?: (id: string) => void;
+    onPlayPage: (t: ITrack[]) => void
 }
 
 const ArtistPage: React.FC<IArtistContainerProps> = ({
@@ -33,6 +34,7 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
     onFetchArtistData,
     isLoading,
     match,
+    onPlayPage,
 }) => {
 
     const isInitMount = React.useRef(true);
@@ -53,8 +55,19 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
         return <div>Loading...</div>
     }
 
+    const handlePlayArtist = () => {
+        onPlayPage(tracks);
+    }
+
     return (
-        artist ? <Artist artist={artist} tracks={tracks} albums={albums} /> : renderLoading()
+        artist
+            ? <Artist
+                artist={artist}
+                tracks={tracks}
+                albums={albums}
+                onPlayPage={handlePlayArtist}
+            />
+            : renderLoading()
     );
 };
 
@@ -67,6 +80,7 @@ const mapStateToProps = (state: IStore) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     onFetchArtistData: (id: string) => dispatch(fetchArtistData(id)),
+    onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
 });
 
 

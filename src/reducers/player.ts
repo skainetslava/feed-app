@@ -1,6 +1,7 @@
 import { PlayerActionType } from "src/actions/player";
 import { getItemFromLocalStorage } from "src/helpers/getItemFromLocalStorage";
 import { ITrack } from "src/models";
+import { PLAY_PAGE } from "../constants/actions/artist";
 import * as constants from "../constants/actions/player";
 
 export interface IPlayerStoreState {
@@ -24,7 +25,7 @@ const initialState: IPlayerStoreState = {
 };
 
 interface IPlayerAction {
-    type: PlayerActionType;
+    type: PlayerActionType | PLAY_PAGE;
     payload: ITrack[] & ITrack & number;
 }
 
@@ -32,6 +33,17 @@ interface IPlayerAction {
 export default function playerReducer(
     state: IPlayerStoreState = initialState, action: IPlayerAction): IPlayerStoreState {
     switch (action.type) {
+        case PLAY_PAGE:
+            const playlist = action.payload;
+            return {
+                ...state,
+                isPausing: false,
+                isPlaying: true,
+                playlist,
+                source: playlist[0],
+                timing: 0,
+            }
+
         case constants.UPDATE_PLAYLIST:
             return {
                 ...state,

@@ -1,4 +1,4 @@
-import { IArtist } from "src/models";
+import { IArtist, ITrack } from "src/models";
 import { IArtistData } from "src/services/artist/artistAPI";
 import { IArtistTracksData } from "src/services/artist/tracks";
 import * as constants from "../constants/actions/artist";
@@ -24,7 +24,8 @@ export type ArtistDataActionType =
     constants.FETCH_ARTIST_TRACKS_SUCCESS |
     constants.FETCH_ARTIST_ALBUMS_FAILURE |
     constants.FETCH_ARTIST_ALBUMS_REQUEST |
-    constants.FETCH_ARTIST_ALBUMS_SUCCESS;
+    constants.FETCH_ARTIST_ALBUMS_SUCCESS |
+    constants.PLAY_PAGE;
 
 export interface IArtistDataAction {
     type: ArtistDataActionType;
@@ -67,6 +68,17 @@ export interface IFetchArtistTracksFailure {
     payload: IArtistTracksData;
 }
 
+export interface IPlayPage {
+    type: constants.PLAY_PAGE;
+    payload: ITrack[];
+}
+
+export function playPage(tracks: ITrack[]): IPlayPage {
+    return {
+        type: constants.PLAY_PAGE,
+        payload: tracks,
+    };
+}
 
 export function fetchArtistTracks(id: string): IFetchArtistTracksRequest {
     return {

@@ -7,10 +7,11 @@ import { Tracks } from "../../tracks";
 import { AlbumHeader } from "./blocks/albumHeader";
 
 interface IAlbumComponentProps {
-    album: IAlbum
+    album: IAlbum,
+    playAlbum: () => void
 }
 
-const Album: React.FC<IAlbumComponentProps> = ({ album }) => {
+const Album: React.FC<IAlbumComponentProps> = ({ album, playAlbum }) => {
     return (
         <div className="album">
             <AlbumHeader
@@ -19,6 +20,7 @@ const Album: React.FC<IAlbumComponentProps> = ({ album }) => {
                 releaseDate={album.releaseDate || 2019}
                 coverBigTrack={album.coverBigTrack}
                 count={album.tracks ? album.tracks.length : 0}
+                playAlbum={playAlbum}
             />
             <div className="album_tracks">
                 <Tracks tracks={album.tracks} />

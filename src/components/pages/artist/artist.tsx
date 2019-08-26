@@ -11,11 +11,19 @@ interface IArtistComponentProps {
     artist: IArtist,
     tracks: ITrack[],
     albums: IAlbum[],
+    onPlayPage: () => void
 }
 
-const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums }) => {
+const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums, onPlayPage }) => {
     return (
-        <Cover title={artist.name} withActions={true} image={artist.picture} listeners={artist.fans}>
+        <Cover
+            title={artist.name}
+            withActions={{
+                onPlay: onPlayPage,
+            }}
+            image={artist.picture}
+            listeners={artist.fans}
+        >
             <div className="artist_tracks">
                 <p className="artist_tracks_title">Popular</p>
                 <Tracks className="artist_tracks_wrapper" tracks={tracks} />

@@ -5,11 +5,12 @@ import { HeaderCover } from "src/components/organisms/header-cover";
 import { Tabs } from "src/components/organisms/tabs";
 import { TABS_TITLES } from "src/constants/tabs";
 
+import { IWithActions } from "../header-cover/headerCover";
+
 import "./cover.scss";
 
-
 interface ICoverProps {
-    withActions: boolean,
+    withActions: IWithActions,
     listeners?: number,
     title?: string,
     image?: string,
