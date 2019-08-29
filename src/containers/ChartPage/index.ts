@@ -1,1 +1,1 @@
-export { default as ChartPage } from "./chartPage"
+export { default as ChartPage } from "./ChartPage"

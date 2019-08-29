@@ -4,7 +4,7 @@ import { IArtist, ITrack } from "src/models";
 import { Preview } from "src/components/organisms/preview";
 import { Tracks } from "src/components/tracks";
 
-import "./SearchResults.scss";
+import "./searchResults.scss";
 
 interface ISearchResultsComponentProps {
     tracksLimit?: number,

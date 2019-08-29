@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route, RouteProps } from "react-router-dom";
 
-import { SearchPage } from "src/containers/SearchPage";
+import { SearchPage } from "src/containers/searchPage";
 import { SearchArtistsContainer } from "src/containers/searchPage/blocks/searchArtists";
 import { SearchResultsContainer } from "src/containers/searchPage/blocks/searchResults";
 import { SearchTracksContainer } from "src/containers/searchPage/blocks/searchTracks";
