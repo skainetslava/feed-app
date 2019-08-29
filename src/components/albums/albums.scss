@@ -2,6 +2,7 @@
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(205px, 1fr));
     grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    grid-gap: 8px;
     position: relative;
 }
 
