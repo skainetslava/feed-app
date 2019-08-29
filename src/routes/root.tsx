@@ -12,7 +12,8 @@ import { ChartPage } from "src/containers/ChartPage";
 import history from "src/history";
 import SearchRoutes from "./search";
 
-export default <Router history={history}>
+const Routes: React.FC<RouteProps> = () => (
+  <Router history={history}>
     <AppContainer>
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/chart" />} />
@@ -24,6 +25,6 @@ export default <Router history={history}>
       </Switch>
     </AppContainer>
   </Router >
-// );
+);
 
-// export default Routes;
+export default Routes;
