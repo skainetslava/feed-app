@@ -8,8 +8,11 @@
     "@types/redux-logger": "^3.0.6",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
     "howler": "^2.1.2",
     "node-sass": "^4.10.0",
+    "path": "^0.12.7",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
@@ -24,17 +27,15 @@
     "safe-localstorage": "^1.0.1",
     "webpack-merge": "^4.1.4"
   },
-
   "engines": {
     "npm": "5.7.1",
     "node": "11.14.0"
   },
-
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --color --hot --config config/webpack.dev.js",
-    "build": "webpack -p  --inline --progress --color --hot --config config/webpack.prod.js"
+    "dev": "webpack-dev-server --inline --progress --color --hot --config config/webpack.dev.js",
+    "build": "webpack -p  --inline --progress --color --hot --config config/webpack.prod.js",
+    "start": "node server.js"
   },
-  
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/history": "^4.7.1",

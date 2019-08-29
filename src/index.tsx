@@ -1,11 +1,11 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './store';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import configureStore from "./store";
 
-//import { ChartPage } from './containers/ChartPage';
-import Routes from 'src/routes/root';
-import './index.css';
+// import { ChartPage } from './containers/ChartPage';
+import Routes from "src/routes/root";
+import "./index.scss";
 
 const store = configureStore();
 
@@ -15,4 +15,4 @@ const App = () => (
     </Provider>
 );
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
+ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);

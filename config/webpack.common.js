@@ -16,7 +16,7 @@ module.exports = {
     },
 
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".scss", ".svg"],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".scss", ".css", ".svg"],
         alias: {
             src: path.resolve(__dirname, '../src')
         }
