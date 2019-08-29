@@ -31,8 +31,8 @@ const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
 }) => {
     React.useEffect(() => {
         const value = match.params.value || "";
-        !searchingValue && onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "results", value });
-    }, [])
+        onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "results", value });
+    }, [searchingValue])
 
     return (
         <SearchResults tracks={tracks} artists={artists} tracksLimit={5} artistsLimit={10} />

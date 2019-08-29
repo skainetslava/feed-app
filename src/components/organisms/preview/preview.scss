@@ -83,7 +83,11 @@
   }
 
   &_artist {
-    margin: 12px 0 4px;
     opacity: 0.6;
+    margin: 6px 0 4px;
+    
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

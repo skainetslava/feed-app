@@ -3,7 +3,14 @@ import { all, fork } from "redux-saga/effects";
 import { watchLoadAlbum } from "./album";
 import { watchLoadArtist } from "./artist";
 import { watchLoadChart } from "./chart";
-import { watchControlNextAudio, watchControlPrevAudio, watchPausingAudio, watchPlayingAudio, watchUpdatingPlaylist } from "./player";
+import {
+  watchControlNextAudio,
+  watchControlPrevAudio,
+  watchPausingAudio,
+  watchPlayingAudio,
+  watchPlayingPage,
+  watchUpdatingPlaylist,
+} from "./player";
 import { watchLoadSearch, watchLoadSearchingValue } from "./search";
 
 export default function* rootSaga() {
@@ -18,5 +25,6 @@ export default function* rootSaga() {
     fork(watchControlNextAudio),
     fork(watchControlPrevAudio),
     fork(watchUpdatingPlaylist),
+    fork(watchPlayingPage),
   ]);
 }

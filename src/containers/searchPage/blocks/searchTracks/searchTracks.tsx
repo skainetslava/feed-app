@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IArtist } from "src/models";
+import { ITrack } from "src/models";
 import { IStore } from "src/store";
 
 import { RouteComponentProps } from "react-router-dom";
@@ -9,35 +9,35 @@ import { Dispatch } from "redux";
 
 import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults";
-import { getSearchArtists, getSearchingValue } from "src/reducers/selectors";
+import { getSearchingValue, getSearchTracks } from "src/reducers/selectors";
 import { ISearchingRouteProps } from "../searchResults/searchResults";
 
 interface ISearchArtistsContainerProps extends RouteComponentProps<ISearchingRouteProps> {
     searchingValue: string,
-    artists?: IArtist[];
+    tracks?: ITrack[];
     isLoading?: boolean;
     onRedirectSearchingValue?: (redirectData: IRedirectProps) => void;
 }
 
-const SearchArtistsContainer: React.FC<ISearchArtistsContainerProps> = ({
-    artists,
+const SearchTracksContainer: React.FC<ISearchArtistsContainerProps> = ({
+    tracks,
     searchingValue,
     onRedirectSearchingValue,
     match,
 }) => {
     React.useEffect(() => {
         const value = match.params.value || "";
-        onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "artists", value });
-    }, [])
+        onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "songs", value });
+    }, [match.params.value])
 
     return (
-        <SearchResults artists={artists} />
+        <SearchResults tracks={tracks} />
     );
 };
 
 const mapStateToProps = (state: IStore) => ({
     searchingValue: getSearchingValue(state),
-    artists: getSearchArtists(state),
+    tracks: getSearchTracks(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -46,4 +46,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 
 export default connect<{}, {}, ISearchArtistsContainerProps>
-    (mapStateToProps, mapDispatchToProps)(SearchArtistsContainer);
+    (mapStateToProps, mapDispatchToProps)(SearchTracksContainer);

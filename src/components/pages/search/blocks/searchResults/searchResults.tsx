@@ -18,20 +18,28 @@ const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracksLimit, ar
         if (!tracks || tracks.length === 0) {
             return null;
         }
-
+        const isResultsPage = tracks.length && artists && artists.length;
         const previewTrack = tracks[0];
+
         return (
-            <div className="search_tracks">
-                <Preview
-                    className="search_tracks_top-result"
-                    id={previewTrack.id}
-                    title={previewTrack.title}
-                    artist={previewTrack.artist}
-                    cover={previewTrack.coverBigTrack}
-                    type="album"
-                />
-                <Tracks tracks={tracks} limit={tracksLimit} className="search_tracks_items" />
-            </div>
+            <>
+                {
+                    isResultsPage && <div className="search_tracks">
+                        <Preview
+                            className="search_tracks_top-result"
+                            id={previewTrack.id}
+                            title={previewTrack.title}
+                            artist={previewTrack.artist}
+                            artistId={previewTrack.artistId}
+                            cover={previewTrack.coverBigTrack}
+                            type="album"
+                        />
+                        <Tracks tracks={tracks} limit={tracksLimit} className="search_tracks_items" />
+                    </div>
+                }
+                {!isResultsPage && <Tracks tracks={tracks} limit={tracksLimit} className="search_tracks_items" />}
+            </>
+
         );
     }
 
@@ -54,6 +62,7 @@ const SearchResults: React.FC<ISearchResultsComponentProps> = ({ tracksLimit, ar
                                     key={artist.id}
                                     artist={artist.name}
                                     cover={artist.picture}
+                                    artistId={artist.id}
                                     type="artist"
                                 />
                             )

@@ -67,8 +67,6 @@ export default function searchReducer(
                 ...state,
                 isLoading: true,
                 searchingValue: value,
-                tracks: [],
-                artists: [],
             };
         default:
             return state;

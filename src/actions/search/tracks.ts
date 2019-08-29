@@ -23,6 +23,7 @@ export type SearchDataActionType =
     constants.SEARCH_ARTIST_SUCCESS |
     constants.SEARCH_ARTIST_REQUEST |
     constants.SEARCH_ARTIST_FAILURE | 
+    constants.REDIRECT_BY_SEARCHING_VALUE |
     constants.SAVE_SEARCHING_VALUE;
 
 export interface ISearchDataAction {
@@ -31,7 +32,6 @@ export interface ISearchDataAction {
 }
 
 export function searchData(value: string): ISearchDataRequest {
-    console.log(value);
     return {
         type: constants.SEARCH_DATA_REQUEST,
         payload: value,

@@ -11,22 +11,24 @@ interface IPreviewProps {
     cover?: string;
     title?: string;
     artist: string;
+    artistId?: number;
     type: "artist" | "album";
 }
 
-const Preview: React.FC<IPreviewProps> = React.memo(({ id, className, cover, title, artist, type }) => {
+const Preview: React.FC<IPreviewProps> = React.memo(({ id, className, cover, title, artist, type, artistId }) => {
     const shapeClass = type === "album" ? "preview_square" : "preview_circle";
     return (
-        <Link to={`/${type}/${id}`}>
-            <div className={cls(className, "preview")}>
+        <div className={cls(className, "preview")}>
+            <Link to={`/${type}/${id}`}>
                 <div className={cls(shapeClass, "preview_cover")}>
                     <IconPlay className="preview_play" w={36} h={36} />
                     <img className={cls(shapeClass, "preview_img")} src={cover} alt={title} />
                 </div>
                 {title && <p className="preview_title">{title}</p>}
-                <div className="preview_artist">{artist}</div>
-            </div>
-        </Link>
+            </Link>
+            <Link to={`/artist/${artistId}`} className="preview_artist">{artist}</Link>
+        </div>
+
     )
 });
 

@@ -10,14 +10,15 @@ import { IWithActions } from "../header-cover/headerCover";
 import "./cover.scss";
 
 interface ICoverProps {
-    withActions: IWithActions,
+    children: React.ReactNode,
+    withActions: IWithActions | null,
     listeners?: number,
     title?: string,
     image?: string,
     hasTabs?: boolean
 }
 
-const Cover: React.FC<ICoverProps> = React.memo(({ image, title, withActions, listeners, hasTabs, children }) => {
+const Cover: React.FC<ICoverProps> = ({ image, title, withActions, listeners, hasTabs, children }) => {
     const style = image ? { backgroundImage: `url(${image})` } : undefined;
     return (
         <div className={cls("cover", { "cover--black ": image })}>
@@ -31,6 +32,6 @@ const Cover: React.FC<ICoverProps> = React.memo(({ image, title, withActions, li
             {children}
         </div>
     )
-});
+};
 
-export default Cover;
+export default React.memo(Cover);

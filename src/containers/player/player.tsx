@@ -47,7 +47,7 @@ interface IPlayerContainerProps {
 let timer: any;
 let audio: any; // global need for working of stop(), pause() :(
 
-const PlayerContainer: React.FC<IPlayerContainerProps> = ({
+const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
     currentAudio,
     isPlaying = false,
     isPausing,
@@ -140,11 +140,17 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     }
 
     const handleNext = (): void => {
+        if (!playlist || playlist.length === 0) {
+            return;
+        }
         onGoToNextAudio && onGoToNextAudio();
         clearInterval(timer)
     }
 
     const handlePrev = (): void => {
+        if (!playlist || playlist.length === 0) {
+            return;
+        }
         onGoToPrevAudio && onGoToPrevAudio();
         clearInterval(timer)
     }
@@ -154,7 +160,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     const duration: string = audio
         ? formateInMinutes(audio.duration().toFixed())
         : formateInMinutes(currentAudio.duration);
-
+        
     return (
         <Player
             track={currentAudio}
@@ -170,7 +176,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             handleChangeVolume={handleChangeVolume}
         />
     );
-};
+});
 
 const mapStateToProps = (state: IStore) => ({
     currentAudio: getCurrentAudio(state),

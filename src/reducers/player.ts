@@ -1,5 +1,5 @@
 import { PlayerActionType } from "src/actions/player";
-import { getItemFromLocalStorage } from "src/helpers/getItemFromLocalStorage";
+import { getItemFromLocalStorage } from "src/helpers/fromLocalStorage";
 import { ITrack } from "src/models";
 import { PLAY_PAGE } from "../constants/actions/artist";
 import * as constants from "../constants/actions/player";
