@@ -24,9 +24,17 @@
     "safe-localstorage": "^1.0.1",
     "webpack-merge": "^4.1.4"
   },
-  "scripts": {
-    "start": "webpack-dev-server --inline --progress --color --hot --config config/webpack.dev.js"
+
+  "engines": {
+    "npm": "5.7.1",
+    "node": "11.14.0"
   },
+
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --color --hot --config config/webpack.dev.js",
+    "build": "webpack -p  --inline --progress --color --hot --config config/webpack.prod.js"
+  },
+  
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/history": "^4.7.1",

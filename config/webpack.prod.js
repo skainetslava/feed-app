@@ -5,7 +5,6 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMonitor = require('webpack-monitor');
 
 const common = require('./webpack.common.js');
 
@@ -84,13 +83,6 @@ module.exports = merge(common, {
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
             },
-        }),
-        new WebpackMonitor({
-            capture: true, // -> default 'true'
-            target: '../monitor/myStatsStore.json', // default -> '../monitor/stats.json'
-            launch: true, // -> default 'false'
-            port: 8080, // default -> 8081
-            excludeSourceMaps: true // default 'true'
-        }),
+        })
     ],
 });
