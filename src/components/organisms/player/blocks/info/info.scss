@@ -19,6 +19,10 @@
       line-height: 16px;
       letter-spacing: .015em;
       opacity: 0.6;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     &_title {

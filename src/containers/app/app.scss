@@ -1,8 +1,10 @@
 .app {
+    height: 100%;
+}
+
+#root {
     display: grid;
     grid-template-columns: 230px 1fr;
-    height: 100%;
-
-    //background-image: linear-gradient(to right bottom, rgb(137, 16, 42), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
-
+    grid-template-rows: 1fr 91px;
+    min-height: 100vh;
 }

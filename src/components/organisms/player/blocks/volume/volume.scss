@@ -112,6 +112,7 @@ $activeBarColor: green;
   background: $baseBarColor;
   border-radius: 2px;
   z-index: 2;
+  cursor: pointer;
 
   &_base {
     position: absolute;

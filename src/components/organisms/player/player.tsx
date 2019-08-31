@@ -42,6 +42,7 @@ const Player: React.FC<IPlayerProps> = ({
         <div className={cls(className, "player")}>
             <TrackInfo
                 artist={track.artist}
+                artistId={track.artistId}
                 title={track.title}
                 img={track.coverBigTrack || track.coverSmallTrack || ""}
             />

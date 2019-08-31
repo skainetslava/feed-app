@@ -23,11 +23,13 @@ const AppContainer: React.FC<IAppContainerProps> = ({
 }) => {
     return (
         <CurrentAudioProvider value={currentAudio ? currentAudio.id : {}}>
+            <Navbar />
+
             <div className="app">
-                <Navbar />
-                <PlayerContainer />
                 {children}
             </div>
+            <PlayerContainer />
+
         </CurrentAudioProvider>
 
     );
