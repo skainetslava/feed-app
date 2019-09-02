@@ -47,8 +47,17 @@ interface IPlayerContainerProps {
 let timer: any;
 let audio: any; // global need for working of stop(), pause() :(
 
+const initialAudio: ITrack = {
+    id: 0,
+    artistId: 0,
+    preview: "",
+    artist: "",
+    title: "",
+    duration: 0,
+}
+
 const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
-    currentAudio,
+    currentAudio = initialAudio,
     isPlaying = false,
     isPausing,
     timing = 0,
@@ -63,7 +72,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
 }) => {
 
     if (!currentAudio) {
-        return null;
+        currentAudio = initialAudio;
     }
 
     const isInitMount = React.useRef(true);
@@ -130,6 +139,9 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
     }
 
     const handlePlay = (): void => {
+        if (!currentAudio.preview) {
+            return;
+        }
         onContinueAudio && onContinueAudio();
         clearInterval(timer)
     }
@@ -160,7 +172,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
     const duration: string = audio
         ? formateInMinutes(audio.duration().toFixed())
         : formateInMinutes(currentAudio.duration);
-        
+
     return (
         <Player
             track={currentAudio}

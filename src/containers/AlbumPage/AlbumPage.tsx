@@ -6,12 +6,20 @@ import { IStore } from "src/store";
 
 import { RouteComponentProps } from "react-router-dom";
 import {
+    CSSTransition,
+} from "react-transition-group";
+
+import {
     fetchAlbumData,
 } from "src/actions/album";
+import { playPage } from "src/actions/artist";
+
 import { Album } from "src/components/pages/album";
+import { useBackground } from "src/containers/hooks/useBackground"
+
 import { IAlbum, ITrack } from "src/models";
-import { getAlbumData } from "src/reducers/selectors";
-import { playPage } from 'src/actions/artist';
+
+import { getAlbumData, getAlbumLoadingStatus } from "src/reducers/selectors";
 
 interface IRouteProps {
     id: string;
@@ -24,27 +32,32 @@ interface IAlbumContainerProps extends RouteComponentProps<IRouteProps> {
     onPlayPage: (t: ITrack[]) => void;
 }
 
+
 const AlbumPage: React.FC<IAlbumContainerProps> = ({ album, onFetchAlbumData, onPlayPage, isLoading, match }) => {
     React.useEffect(() => {
         onFetchAlbumData && onFetchAlbumData(match.params.id)
     }, []);
 
+    useBackground(match.params.id);
+
     const handlePlayPage = () => {
         album && album.tracks && onPlayPage(album.tracks)
     }
 
-    const renderLoading = (): JSX.Element => {
-        return <div>Loading...</div>
-    }
-
     return (
-        album ? <Album album={album} playAlbum={handlePlayPage} /> : renderLoading()
+        <CSSTransition
+            in={!isLoading}
+            timeout={500}
+            classNames="album-transition"
+        >
+            <Album album={album} playAlbum={handlePlayPage} />
+        </CSSTransition>
     );
 };
 
 const mapStateToProps = (state: IStore) => ({
     album: getAlbumData(state),
-    // isLoading: getALoadingStatus(state),
+    isLoading: getAlbumLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -15,6 +15,10 @@ interface IArtistComponentProps {
 }
 
 const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums, onPlayPage }) => {
+    if (!artist) {
+        return null;
+    }
+
     return (
         <Cover
             title={artist.name}

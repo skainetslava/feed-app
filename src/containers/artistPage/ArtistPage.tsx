@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { connect } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 import { Dispatch } from "redux";
 import { IStore } from "src/store";
 
@@ -12,7 +13,13 @@ import {
 
 import { Artist } from "src/components/pages/artist";
 import { IAlbum, IArtist, ITrack } from "src/models";
-import { getArtistAlbums, getArtistData, getArtistMostPopularTracks } from "src/reducers/selectors";
+
+import {
+    getArtistAlbums,
+    getArtistData,
+    getArtistLoadingStatus,
+    getArtistMostPopularTracks,
+} from "src/reducers/selectors";
 
 interface IRouteProps {
     id: string;
@@ -51,23 +58,23 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
         onFetchArtistData && onFetchArtistData(match.params.id)
     }, []);
 
-    const renderLoading = (): JSX.Element => {
-        return <div>Loading...</div>
-    }
-
     const handlePlayArtist = () => {
         onPlayPage(tracks);
     }
 
     return (
-        artist
-            ? <Artist
+        <CSSTransition
+            in={!isLoading}
+            timeout={500}
+            classNames="transition"
+        >
+            <Artist
                 artist={artist}
                 tracks={tracks}
                 albums={albums}
                 onPlayPage={handlePlayArtist}
             />
-            : renderLoading()
+        </CSSTransition>
     );
 };
 
@@ -75,7 +82,7 @@ const mapStateToProps = (state: IStore) => ({
     artist: getArtistData(state),
     tracks: getArtistMostPopularTracks(state),
     albums: getArtistAlbums(state),
-    // isLoading: getALoadingStatus(state),
+    isLoading: getArtistLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

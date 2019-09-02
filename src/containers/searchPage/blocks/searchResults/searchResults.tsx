@@ -6,6 +6,7 @@ import { Dispatch } from "redux";
 import { IArtist, ITrack } from "src/models";
 import { IStore } from "src/store";
 
+import { CSSTransition } from "react-transition-group";
 import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults"
 import { getSearchArtists, getSearchingValue, getSearchTracks } from "src/reducers/selectors";
@@ -34,8 +35,16 @@ const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
         onRedirectSearchingValue && onRedirectSearchingValue({ tabName: "results", value });
     }, [searchingValue])
 
+    const hasData = !tracks || !tracks.length;
+
     return (
-        <SearchResults tracks={tracks} artists={artists} tracksLimit={5} artistsLimit={10} />
+        <CSSTransition
+            in={!hasData}
+            timeout={500}
+            classNames="transition"
+        >
+            <SearchResults tracks={tracks} artists={artists} tracksLimit={5} artistsLimit={10} />
+        </CSSTransition>
     );
 };
 

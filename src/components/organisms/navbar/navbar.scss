@@ -1,14 +1,36 @@
+$minTabletScreen: 768px;
+
 .navbar {
   position: relative;
-  height: 100vh;
   width: 230px;
   padding-top: 24px;
+  overflow: hidden;
+  
   background-color: rgba(0, 0, 0, 0.8);
+  transition: 0.3s;
 
   &_wrapper {
-   position: fixed;
+    position: fixed;
+  }
+}
+
+@media only screen and (max-width: $minTabletScreen) {
+  .navbar {
+    width: 62px;
+    padding-top: 12px;
+
+    &_wrapper {
+      position: relative;
+    }
   }
 
+  .logo {
+    padding-left: 8px !important;
+
+    &_title {
+      display: none;
+    }
+  }
 }
 
 .logo {

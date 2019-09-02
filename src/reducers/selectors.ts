@@ -52,6 +52,21 @@ export const getArtistAlbums = createSelector(
     (albums) => albums,
 )
 
+const LOADING_ALBUMS = (state: IStore) => state.album.isLoading;
+
+export const getAlbumLoadingStatus = createSelector(
+    [LOADING_ALBUMS],
+    (isLoading) => isLoading,
+)
+
+const LOADING_ARTIST = (state: IStore) => state.artist.isLoading;
+
+export const getArtistLoadingStatus = createSelector(
+    [LOADING_ARTIST],
+    (isLoading) => isLoading,
+)
+
+
 const SEARCH_TRACKS = (state: IStore) => state.search.tracks;
 
 export const getSearchTracks = createSelector(
@@ -108,9 +123,10 @@ export const getPlaylist = createSelector(
     (playlist) => playlist,
 )
 
-const PLAYER_TIMING= (state: IStore) => state.player.timing;
+const PLAYER_TIMING = (state: IStore) => state.player.timing;
 
 export const getDuration = createSelector(
     [PLAYER_TIMING],
     (timing) => timing,
 )
+

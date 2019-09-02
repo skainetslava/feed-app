@@ -21,6 +21,7 @@ export default function albumReducer(
       return {
         ...state,
         isLoading: true,
+        data: null,
       };
     case constants.FETCH_DATA_ALBUM_SUCCESS:
       const album = action.payload;

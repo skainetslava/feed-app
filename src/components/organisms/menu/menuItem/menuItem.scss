@@ -13,7 +13,8 @@
   &_icon {
     padding-left: 20px;
   }
-  &_link {
+
+  &_title {
     margin-left: 16px;
     font-size: 0.8rem;
     text-decoration: none;
@@ -22,6 +23,17 @@
 
     &:hover {
       opacity: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .menu-item {
+    &_icon {
+      padding-left: 12px;
+    }
+    &_title {
+      display: none;
     }
   }
 }

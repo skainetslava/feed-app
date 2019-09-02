@@ -8,10 +8,12 @@ import {
     fetchChartRequest,
     IChartAction,
 } from "src/actions/chart";
+
 import { Albums } from "src/components/albums";
 import { Cover } from "src/components/organisms/cover";
-// import { changeBackground } from "src/helpers/changeBackground";
+
 import { IAlbum } from "src/models";
+
 import { getChartAlbums, getChartLoadingStatus } from "src/reducers/selectors";
 
 interface IAlbumsChartContainerProps {
@@ -28,9 +30,6 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({ albums, onFetch
         }
     }, [albums]);
 
-    // React.useLayoutEffect(() => {
-    //     changeBackground();
-    // }, [albums]);
 
     const renderLoading = (): JSX.Element => {
         return <div>Loading...</div>

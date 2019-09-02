@@ -7,4 +7,29 @@
     grid-template-columns: 230px 1fr;
     grid-template-rows: 1fr 91px;
     min-height: 100vh;
+
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: 61px 1fr;
+        grid-template-rows: 1fr 91px;
+    }
+}
+
+.transition {
+    &-enter {
+        opacity: 0;
+    }
+
+    &-enter-active {
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+    }
+
+    &-exit {
+        opacity: 1;
+    }
+
+    &-exit-active {
+        opacity: 0;
+        transition: opacity 500ms ease-in;
+    }
 }
