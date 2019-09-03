@@ -15,7 +15,6 @@ $activeBarColor: green;
   position: fixed;
   height: 91px;
   width: 100%;
-  min-width: 704px;
   bottom: 0;
   padding: 12px;
   box-sizing: border-box;
@@ -137,5 +136,21 @@ $activeBarColor: green;
     opacity: 0;
     transition: 0.2s;
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .player { 
+    grid-template-columns: 0.5fr 1fr !important;
+
+    &_info {
+      &_img {
+        display: none;
+      }
+    }
+
+    &_volume {
+      display: none;
+    }
   }
 }

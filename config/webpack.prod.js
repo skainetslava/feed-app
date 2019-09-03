@@ -2,7 +2,6 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 
 const path = require("path");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -81,7 +80,7 @@ module.exports = merge(common, {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: "React",
+      title: "Spotifly",
       template: "./public/index.html",
       inject: "body",
       filename: "index.html"

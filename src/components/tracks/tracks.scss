@@ -2,6 +2,13 @@
     margin: 32px;
 }
 
+
+@media only screen and (max-width: 768px) {
+    .chart-tracks {
+        margin: 8px;
+    }
+  }
+
 .track-transition {
     &-enter {
         opacity: 0;

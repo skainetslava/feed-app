@@ -37,3 +37,20 @@
         margin: 0 16px;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .search {
+        &_content {
+            margin: 0;
+        }
+
+        &_artists {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .search_tracks {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+}

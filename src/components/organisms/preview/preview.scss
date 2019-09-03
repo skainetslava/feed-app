@@ -85,9 +85,21 @@
   &_artist {
     opacity: 0.6;
     margin: 6px 0 4px;
-    
+
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .preview {
+    align-self: center;
+    justify-self: center;
+
+    &_img {
+      width: 121px;
+      height: 121px;
     }
   }
 }
