@@ -1,12 +1,11 @@
-// import { normalizeData } from 'src/schemas';
-// import { allPhotosSchema } from 'src/schemas/feed';
-import { IAlbum, ITrack } from "src/models";
+import { IAlbum, IPlaylist, ITrack } from "src/models";
 import { getData } from "../api";
 
 export interface IChartData {
   response?: {
-      tracks: ITrack[],
-      albums: IAlbum[],
+    tracks: ITrack[],
+    albums: IAlbum[],
+    playlists: IPlaylist[],
   };
   error?: object;
 }
@@ -15,7 +14,7 @@ export const fetchChartApi = (): Promise<IChartData | void> => {
   const promise = getData({ url: `/chart` })
     .then((response) => {
       const { data } = response;
-      // const normalizedPhotos = normalizeData(data, allPhotosSchema);
+
       const tracks = data.tracks.data.map(
         (item: any): ITrack => ({
           id: item.id,
@@ -41,8 +40,21 @@ export const fetchChartApi = (): Promise<IChartData | void> => {
         }),
       );
 
+      const playlists = data.playlists.data.map(
+        (item: any): IPlaylist => ({
+          id: item.id,
+          title: item.title,
+          coverSmallTrack: item.picture_small,
+          coverBigTrack: item.picture_big,
+        }),
+      );
+
       return {
-        response: { tracks, albums },
+        response: {
+          tracks,
+          albums,
+          playlists,
+        },
       };
     })
     .catch((error) => {

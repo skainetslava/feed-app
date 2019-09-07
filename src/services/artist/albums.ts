@@ -2,7 +2,10 @@ import { IAlbum } from "src/models";
 import { getData } from "../api";
 
 export interface IArtistAlbumsData {
-    response?: IAlbum[];
+    response?: {
+        albums: IAlbum[];
+        singles: IAlbum [];
+    };
     error?: object;
 }
 
@@ -14,18 +17,24 @@ export const fetchArtistAlbumsAPI = async (id: number): Promise<IArtistAlbumsDat
         return { error };
     }
 
-    const albums = data.data.map(
+    const albumsData = data.data.map(
         (item: any): IAlbum => ({
             id: item.id,
             title: item.title,
-            // artist: item.artist.name,
+            recordType: item.record_type,
             coverSmallTrack: item.cover_small,
             coverBigTrack: item.cover_big,
             releaseDate: new Date(data.release_date).getFullYear(),
         }),
     );
 
+    const albums = albumsData.filter((item: IAlbum) => item.recordType === "album");
+    const singles = albumsData.filter((item: IAlbum) => item.recordType !== "album");
+
     return {
-        response: albums,
+        response: {
+            albums,
+            singles,
+        },
     };
 };

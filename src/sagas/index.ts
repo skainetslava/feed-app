@@ -11,6 +11,7 @@ import {
   watchPlayingPage,
   watchUpdatingPlaylist,
 } from "./player";
+import { watchLoadPlaylist } from "./playlist";
 import { watchLoadSearch, watchLoadSearchingValue } from "./search";
 
 export default function* rootSaga() {
@@ -26,5 +27,6 @@ export default function* rootSaga() {
     fork(watchControlPrevAudio),
     fork(watchUpdatingPlaylist),
     fork(watchPlayingPage),
+    fork(watchLoadPlaylist),
   ]);
 }

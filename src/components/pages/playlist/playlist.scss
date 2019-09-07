@@ -1,0 +1,36 @@
+$minTabletScreen: 1128px;
+
+.playlist {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-gap: 28px;
+  background: none;
+  padding: 28px 64px;
+
+  @media only screen and (max-width: $minTabletScreen) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 1fr;
+    padding: 16px;
+  }
+}
+
+.playlist-transition {
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+}

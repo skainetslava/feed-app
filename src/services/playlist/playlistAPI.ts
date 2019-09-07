@@ -1,13 +1,13 @@
-import { IAlbum, ITrack } from "src/models";
+import { IPlaylist, ITrack } from "src/models";
 import { getData } from "../api";
 
-export interface IAlbumData {
-  response?: IAlbum;
+export interface IPlaylistData {
+  response?: IPlaylist;
   error?: object;
 }
 
-export const fetchAlbumDataApi = (id: number): Promise<IAlbumData | void> => {
-  const promise = getData({ url: `/album/${id}` })
+export const fetchPlaylistDataApi = (id: number): Promise<IPlaylistData | void> => {
+  const promise = getData({ url: `/playlist/${id}` })
     .then((response) => {
       const { data } = response;
 
@@ -22,19 +22,16 @@ export const fetchAlbumDataApi = (id: number): Promise<IAlbumData | void> => {
         }),
       );
 
-      const album: IAlbum = {
+      const playlist: IPlaylist = {
         id: data.id,
         title: data.title,
-        artist: data.artist.name,
-        coverSmallTrack: data.cover_small,
-        coverBigTrack: data.cover_big,
+        coverSmallTrack: data.picture_small,
+        coverBigTrack: data.picture_big,
         tracks,
-        recordType: data.record_type,
-        releaseDate: new Date(data.release_date).getFullYear(),
       };
 
       return {
-        response: album,
+        response: playlist,
       };
     })
     .catch((error) => ({

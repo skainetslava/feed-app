@@ -1,1 +1,0 @@
-export { default as Album } from "./albumItem";

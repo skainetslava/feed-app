@@ -24,7 +24,17 @@ export interface IAlbum {
     coverSmallTrack: string,
     coverBigTrack: string,
     tracks?: ITrack[],
-    releaseDate?: number
+    releaseDate?: number,
+    recordType?: string,
+}
+
+export interface IPlaylist {
+    id: number,
+    title: string,
+    coverSmallTrack: string,
+    coverBigTrack: string,
+    tracks?: ITrack[],
+    creationDate?: number
 }
 
 export interface IArtist {

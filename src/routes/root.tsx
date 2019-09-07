@@ -6,6 +6,8 @@ import { AlbumPage } from "src/containers/AlbumPage";
 import { AlbumsChartPage } from "src/containers/AlbumsChartPage";
 import { ArtistPage } from "src/containers/artistPage";
 import { ChartPage } from "src/containers/ChartPage";
+import { PlaylistPage } from "src/containers/playlistPage";
+import { PlaylistsChartPage } from "src/containers/playlistsChartPage";
 
 // tslint:disable-next-line:no-var-requires
 const { AnimatedSwitch } = require("react-router-transition");
@@ -26,7 +28,9 @@ const Routes: React.FC<RouteProps> = () => (
         <Route exact path="/" render={() => <Redirect to="/chart" />} />
         <Route exact path="/chart" component={ChartPage} />
         <Route exact path="/albums" component={AlbumsChartPage} />
+        <Route exact path="/playlists" component={PlaylistsChartPage} />
         <Route exact path="/album/:id" component={AlbumPage} />
+        <Route exact path="/playlist/:id" component={PlaylistPage} />
         <Route exact path="/artist/:id" component={ArtistPage} />
         <SearchRoutes />
       </ AnimatedSwitch>

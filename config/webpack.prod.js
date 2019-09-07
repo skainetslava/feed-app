@@ -79,12 +79,6 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      title: "Spotifly",
-      template: "./public/index.html",
-      inject: "body",
-      filename: "index.html"
-    }),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",

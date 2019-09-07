@@ -28,7 +28,10 @@ interface IRouteProps {
 interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
     artist: IArtist,
     tracks: ITrack[],
-    albums: IAlbum[],
+    albums: {
+        albums: IAlbum[],
+        singles: IAlbum[],
+    },
     isLoading?: boolean,
     onFetchArtistData?: (id: string) => void;
     onPlayPage: (t: ITrack[]) => void
@@ -37,7 +40,7 @@ interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
 const ArtistPage: React.FC<IArtistContainerProps> = ({
     artist,
     tracks,
-    albums,
+    albums: { albums, singles },
     onFetchArtistData,
     isLoading,
     match,
@@ -72,6 +75,7 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
                 artist={artist}
                 tracks={tracks}
                 albums={albums}
+                singles={singles}
                 onPlayPage={handlePlayArtist}
             />
         </CSSTransition>

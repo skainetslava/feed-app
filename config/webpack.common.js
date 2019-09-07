@@ -60,7 +60,7 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            title: "React",
+            title: "Spootifly Web",
             template: './public/index.html',
             filename: 'index.html'
         })

@@ -1,4 +1,4 @@
-.album-item {
+.media-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,13 +10,13 @@
   font-size: 0.8rem;
 
   &:hover {
-    .album-item_cover {
+    .media-item_cover {
       &:before {
         opacity: 1;
       }
     }
 
-    .album-item_play {
+    .media-item_play {
       opacity: 1;
       z-index: 2;
     }

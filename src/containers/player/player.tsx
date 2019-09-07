@@ -83,6 +83,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
         audio = new Howl({
             src: [currentAudio.preview],
             onend: handleNext,
+            volume: volume / 100,
         });
 
         if (isInitMount.current) {

@@ -3,7 +3,7 @@ import { IAlbum, IArtist, ITrack } from "src/models";
 
 import "./artist.scss";
 
-import { Albums } from "src/components/albums";
+import { MediaList } from "src/components/mediaList";
 import { Cover } from "src/components/organisms/cover";
 import { Tracks } from "src/components/tracks";
 
@@ -11,10 +11,11 @@ interface IArtistComponentProps {
     artist: IArtist,
     tracks: ITrack[],
     albums: IAlbum[],
+    singles: IAlbum[],
     onPlayPage: () => void
 }
 
-const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums, onPlayPage }) => {
+const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums, singles, onPlayPage }) => {
     if (!artist) {
         return null;
     }
@@ -34,10 +35,16 @@ const Artist: React.FC<IArtistComponentProps> = ({ artist, tracks, albums, onPla
             </div>
             {
                 tracks.length > 0 &&
-                <div className="artist_albums">
-                    <p className="artist_albums_title">Albums</p>
-                    <Albums className="artist_albums_wrapper" albums={albums} />
-                </div>
+                <>
+                    <div className="artist_albums">
+                        <p className="artist_albums_title">Albums</p>
+                        <MediaList className="artist_albums_wrapper" type="album" list={albums} />
+                    </div>
+                    <div className="artist_albums">
+                        <p className="artist_albums_title">Singles and EP's</p>
+                        <MediaList className="artist_albums_wrapper" type="album" list={singles} />
+                    </div>
+                </>
             }
         </Cover >
 

@@ -17,6 +17,13 @@ export const getChartAlbums = createSelector(
     (albums) => albums,
 );
 
+const CHART_PLAYLISTS = (state: IStore) => state.chart.playlists;
+
+export const getChartPlaylists = createSelector(
+    [CHART_PLAYLISTS],
+    (playlists) => playlists,
+);
+
 const CHART_STATUS = (state: IStore) => state.chart.isLoading;
 
 export const getChartLoadingStatus = createSelector(
@@ -29,6 +36,20 @@ const ALBUM_DATA = (state: IStore) => state.album.data;
 export const getAlbumData = createSelector(
     [ALBUM_DATA],
     (album) => album,
+)
+
+const PLAYLIST_DATA = (state: IStore) => state.playlist.data;
+
+export const getPlaylistData = createSelector(
+    [PLAYLIST_DATA],
+    (playlist) => playlist,
+)
+
+const PLAYLIST_STATUS = (state: IStore) => state.playlist.isLoading;
+
+export const getPlaylistLoadingStatus = createSelector(
+    [PLAYLIST_STATUS],
+    (isLoading) => isLoading,
 )
 
 const ARTIST_DATA = (state: IStore) => state.artist.data;
