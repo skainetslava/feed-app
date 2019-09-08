@@ -1,0 +1,33 @@
+.playlist-modal {
+  position: absolute;
+  top: 0;
+  height: calc(100% - 90px);
+  width: calc(100% - 230px);
+  overflow-y: scroll;
+  background-image: linear-gradient(to right bottom, rgb(18, 18, 18), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
+  z-index: 4;
+
+  &_close {
+    position: absolute;
+    top: 24px;
+    right: 36px;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    &:hover {
+      color: green;
+    }
+  }
+
+  &_content {
+    padding: 32px;
+  }
+
+  &_title {
+    margin: 8px 0;
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}

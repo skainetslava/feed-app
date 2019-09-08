@@ -19,7 +19,7 @@ import { useBackground } from "src/containers/hooks/useBackground"
 
 import { IPlaylist, ITrack } from "src/models";
 
-import { getPlaylistData, getPlaylistLoadingStatus } from "src/reducers/selectors";
+import { getPlaylistPageData, getPlaylistPageLoadingStatus } from "src/reducers/selectors";
 
 interface IRouteProps {
     id: string;
@@ -33,7 +33,13 @@ interface IPlaylistContainerProps extends RouteComponentProps<IRouteProps> {
 }
 
 
-const PlaylistPage: React.FC<IPlaylistContainerProps> = ({ playlist, onFetchPlaylistData, onPlayPage, isLoading, match }) => {
+const PlaylistPage: React.FC<IPlaylistContainerProps> = ({
+    playlist,
+    onFetchPlaylistData,
+    onPlayPage,
+    isLoading,
+    match,
+}) => {
     React.useEffect(() => {
         onFetchPlaylistData && onFetchPlaylistData(match.params.id)
     }, []);
@@ -56,8 +62,8 @@ const PlaylistPage: React.FC<IPlaylistContainerProps> = ({ playlist, onFetchPlay
 };
 
 const mapStateToProps = (state: IStore) => ({
-    playlist: getPlaylistData(state),
-    isLoading: getPlaylistLoadingStatus(state),
+    playlist: getPlaylistPageData(state),
+    isLoading: getPlaylistPageLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -66,4 +72,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 
-export default connect<{}, {}, IPlaylistContainerProps>(mapStateToProps, mapDispatchToProps)(PlaylistPage);
+export default connect<{}, {}, IPlaylistContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(PlaylistPage));

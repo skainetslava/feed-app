@@ -40,14 +40,14 @@ export const getAlbumData = createSelector(
 
 const PLAYLIST_DATA = (state: IStore) => state.playlist.data;
 
-export const getPlaylistData = createSelector(
+export const getPlaylistPageData = createSelector(
     [PLAYLIST_DATA],
     (playlist) => playlist,
 )
 
 const PLAYLIST_STATUS = (state: IStore) => state.playlist.isLoading;
 
-export const getPlaylistLoadingStatus = createSelector(
+export const getPlaylistPageLoadingStatus = createSelector(
     [PLAYLIST_STATUS],
     (isLoading) => isLoading,
 )

@@ -16,6 +16,7 @@ interface ITrackContainerProps {
     track?: ITrack,
     timing?: number,
     isPlaying?: boolean,
+    isPlaylist?: boolean,
     onPlayAudio?: (t: ITrack) => void,
     onContinueAudio?: () => void,
     onPauseAudio?: () => void,
@@ -28,6 +29,7 @@ const TrackContainer: React.FC<ITrackContainerProps> = React.memo(({
     track,
     timing,
     isPlaying,
+    isPlaylist,
     onPlayAudio,
     onContinueAudio,
     onPauseAudio,
@@ -35,7 +37,8 @@ const TrackContainer: React.FC<ITrackContainerProps> = React.memo(({
 }) => {
 
     const handlePlayAudio = (item: ITrack) => {
-        onUpdatePlaylist && onUpdatePlaylist(tracks);
+        const tracksForPlaylist = isPlaylist ? [] : tracks;
+        onUpdatePlaylist && onUpdatePlaylist(tracksForPlaylist);
         onPlayAudio && onPlayAudio(item);
     }
 

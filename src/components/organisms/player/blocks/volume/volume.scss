@@ -21,10 +21,27 @@ $activeBarColor: green;
   background: $backgroundColor;
   z-index: 2;
 
-  &_volume {
+  &_right-side {
     grid-area: vol;
-    display: flex;
     justify-self: end;
+    display: flex;
+    align-items: center;
+
+    &_playlist-logo {
+      position: relative;
+      top: 2px;
+      fill: #b3b3b3;
+      cursor: pointer;
+
+      &:hover {
+        fill: #fff;
+      }
+    }
+  }
+
+  &_volume {
+
+    display: flex;
     align-items: center;
     width: 40%;
     margin: 0 8px;
@@ -140,7 +157,7 @@ $activeBarColor: green;
 }
 
 @media only screen and (max-width: 768px) {
-  .player { 
+  .player {
     grid-template-columns: 0.5fr 1fr !important;
 
     &_info {

@@ -81,7 +81,7 @@ export function* watchControlPrevAudio() {
 export function* watchUpdatingPlaylist() {
     while (true) {
         const { payload } = yield take(constants.UPDATE_PLAYLIST);
-        setItemFromLocalStorage("playlist", payload);
+        payload.length && setItemFromLocalStorage("playlist", payload);
     }
 }
 

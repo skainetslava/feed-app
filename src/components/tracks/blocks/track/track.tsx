@@ -2,14 +2,15 @@ import cls from "classnames";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { IconPlay } from "src/components/icons/play"
 import { formateInMinutes } from "src/helpers/formateInMinutes";
 import { ITrack } from "src/models";
 
+import { IconPause } from "src/components/icons/pause";
+import { IconPlay } from "src/components/icons/play"
 import { IconVolume } from "src/components/icons/volume";
+
 import CurrentAudioContext from "src/context";
 import "./track.scss";
-import { IconPause } from 'src/components/icons/pause';
 
 interface ITrackComponentProps {
     track?: ITrack,

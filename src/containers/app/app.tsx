@@ -25,7 +25,7 @@ const AppContainer: React.FC<IAppContainerProps> = ({
         <CurrentAudioProvider value={currentAudio ? currentAudio.id : {}}>
             <Navbar />
 
-            <div className="app">
+            <div className="app" id="app">
                 {children}
             </div>
             <PlayerContainer />

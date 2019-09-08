@@ -33,7 +33,7 @@ interface IPlayerAction {
 export default function playerReducer(
     state: IPlayerStoreState = initialState, action: IPlayerAction): IPlayerStoreState {
     switch (action.type) {
-        case PLAY_PAGE:
+        case PLAY_PAGE: {
             const playlist = action.payload;
             return {
                 ...state,
@@ -43,12 +43,15 @@ export default function playerReducer(
                 source: playlist[0],
                 timing: 0,
             }
+        }
 
-        case constants.UPDATE_PLAYLIST:
+        case constants.UPDATE_PLAYLIST: {
+            const playlist = action.payload.length ? action.payload : state.playlist;
             return {
                 ...state,
-                playlist: action.payload,
+                playlist,
             }
+        }
 
         case constants.CONTINUE_AUDIO:
             return {

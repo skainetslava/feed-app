@@ -3,7 +3,15 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
+import {
+    CSSTransition,
+} from "react-transition-group";
+
+import { PlaylistModal } from "src/containers/playlistModal";
+
 import { Player } from "src/components/organisms/player";
+import { Modal } from "src/components/organisms/portalModal";
+
 import { ITrack } from "src/models";
 import { IStore } from "src/store";
 
@@ -56,7 +64,7 @@ const initialAudio: ITrack = {
     duration: 0,
 }
 
-const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
+const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     currentAudio = initialAudio,
     isPlaying = false,
     isPausing,
@@ -76,6 +84,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
     }
 
     const isInitMount = React.useRef(true);
+    const [isShowPlaylist, setShowPlaylist] = React.useState<boolean>(false);
 
     React.useEffect(() => {
         audio && onPausePlayer();
@@ -97,7 +106,6 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
             clearInterval(timer)
         });
     }, [currentAudio.preview])
-
 
     React.useEffect(() => {
         if (isInitMount.current) {
@@ -168,6 +176,10 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
         clearInterval(timer)
     }
 
+    const handleClickPlaylist = (): void => {
+        setShowPlaylist(!isShowPlaylist);
+    }
+
     const leftPosition: number = audio ? 100 / audio.duration() * timing : 100 / 31 * timing;
     const currentDuration: string = formateInMinutes(timing);
     const duration: string = audio
@@ -175,21 +187,38 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = React.memo(({
         : formateInMinutes(currentAudio.duration);
 
     return (
-        <Player
-            track={currentAudio}
-            isPlaying={isPlaying}
-            duration={duration}
-            currentDuration={currentDuration}
-            positionTrack={leftPosition}
-            pauseAudio={handlePause}
-            playAudio={handlePlay}
-            nextAudio={handleNext}
-            prevAudio={handlePrev}
-            volumeLevel={volume}
-            handleChangeVolume={handleChangeVolume}
-        />
+        <>
+            <Player
+                track={currentAudio}
+                isPlaying={isPlaying}
+                duration={duration}
+                currentDuration={currentDuration}
+                positionTrack={leftPosition}
+                pauseAudio={handlePause}
+                playAudio={handlePlay}
+                nextAudio={handleNext}
+                prevAudio={handlePrev}
+                volumeLevel={volume}
+                handleChangeVolume={handleChangeVolume}
+                handleClickPlaylist={handleClickPlaylist}
+            />
+
+            <CSSTransition
+                in={isShowPlaylist}
+                timeout={500}
+                classNames="playlist-transition"
+            >
+                <>
+                    {isShowPlaylist &&
+                        <Modal>
+                            <PlaylistModal handleClose={handleClickPlaylist} />
+                        </Modal>
+                    }
+                </>
+            </CSSTransition>
+        </>
     );
-});
+};
 
 const mapStateToProps = (state: IStore) => ({
     currentAudio: getCurrentAudio(state),
@@ -210,4 +239,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 
-export default connect<{}, {}, IPlayerContainerProps>(mapStateToProps, mapDispatchToProps)(PlayerContainer);
+export default connect<{}, {}, IPlayerContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(PlayerContainer));

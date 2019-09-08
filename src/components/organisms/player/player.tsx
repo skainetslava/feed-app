@@ -22,6 +22,7 @@ interface IPlayerProps {
     prevAudio: () => void;
     nextAudio: () => void;
     handleChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void
+    handleClickPlaylist: () => void
 }
 
 const Player: React.FC<IPlayerProps> = ({
@@ -30,6 +31,7 @@ const Player: React.FC<IPlayerProps> = ({
     positionTrack,
     currentDuration,
     handleChangeVolume,
+    handleClickPlaylist,
     volumeLevel,
     duration,
     track,
@@ -58,7 +60,11 @@ const Player: React.FC<IPlayerProps> = ({
                 currentDuration={currentDuration}
                 duration={duration}
             />
-            <Volume volumeLevel={volumeLevel} handleChangeVolume={handleChangeVolume} />
+            <Volume
+                volumeLevel={volumeLevel}
+                handleChangeVolume={handleChangeVolume}
+                handleClickPlaylist={handleClickPlaylist}
+            />
         </div>
     )
 };
