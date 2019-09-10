@@ -27,13 +27,13 @@ export function getSearchingTabs(value: string): object {
             title: "songs",
             link: `/search/songs/${value}`,
         },
-        albums: {
-            title: "albums",
-            link: `/search/albums/${value}`,
-        },
-        playlists: {
-            title: "playlists",
-            link: `/search/playlists/${value}`,
-        },
+        // albums: {
+        //     title: "albums",
+        //     link: `/search/albums/${value}`,
+        // },
+        // playlists: {
+        //     title: "playlists",
+        //     link: `/search/playlists/${value}`,
+        // },
     })
 };
