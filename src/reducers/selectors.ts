@@ -151,3 +151,10 @@ export const getDuration = createSelector(
     (timing) => timing,
 )
 
+const PLAYER_REPEAT = (state: IStore) => state.player.isRepeat;
+
+export const getRepeatStatus = createSelector(
+    [PLAYER_REPEAT],
+    (isRepeat) => isRepeat,
+)
+

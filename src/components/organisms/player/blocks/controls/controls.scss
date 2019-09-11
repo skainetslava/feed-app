@@ -7,6 +7,12 @@ $activeBarColor: green;
     align-items: center;
   }
 
+  &_repeat {
+    &--active {
+      fill: $activeBarColor;
+    }
+  }
+
   &_prev,
   &_next {
     cursor: pointer;
@@ -16,7 +22,9 @@ $activeBarColor: green;
   }
 
   &_play,
-  &_pause {
+  &_pause,
+  &_repeat,
+  &_shuffle {
     width: 40px;
     margin: 0 12px 0 11px;
     background: transparent;
@@ -30,3 +38,4 @@ $activeBarColor: green;
     }
   }
 }
+

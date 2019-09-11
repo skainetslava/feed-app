@@ -8,7 +8,7 @@ $minTabletScreen: 1128px;
   background: none;
   padding: 28px 64px;
 
-  @media only screen and (max-width: $minTabletScreen) {
+  @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     grid-template-rows: 0.4fr 1fr;
     padding: 16px;

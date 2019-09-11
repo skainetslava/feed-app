@@ -7,6 +7,10 @@
   background-image: linear-gradient(to right bottom, rgb(18, 18, 18), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
   z-index: 4;
 
+  @media only screen and (max-width: 768px) {
+    width: calc(100% - 62px);
+  }
+
   &_close {
     position: absolute;
     top: 24px;

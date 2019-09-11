@@ -11,6 +11,7 @@ export interface IPlayerStoreState {
     isLoading: boolean;
     isPlaying: boolean;
     isPausing: boolean;
+    isRepeat: boolean,
     volume: number;
 }
 
@@ -21,6 +22,7 @@ const initialState: IPlayerStoreState = {
     isLoading: false,
     isPlaying: false,
     isPausing: true,
+    isRepeat: false,
     volume: 100,
 };
 
@@ -42,6 +44,13 @@ export default function playerReducer(
                 playlist,
                 source: playlist[0],
                 timing: 0,
+            }
+        }
+
+        case constants.REPEAT_AUDIO: {
+            return {
+                ...state,
+                isRepeat: !state.isRepeat,
             }
         }
 

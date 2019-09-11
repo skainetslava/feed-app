@@ -22,6 +22,8 @@ import {
     pauseAudio,
     prepareNextAudio,
     preparePrevAudio,
+    repeatAudio,
+    shufflePlaylist,
     updateDuration,
 } from "src/actions/player";
 
@@ -33,6 +35,7 @@ import {
     getPausingAudioStatus,
     getPlayerAudioStatus,
     getPlaylist,
+    getRepeatStatus,
     getVolume,
 } from "src/reducers/selectors";
 
@@ -43,6 +46,7 @@ interface IPlayerContainerProps {
     volume?: number,
     isPlaying?: boolean,
     isPausing?: boolean,
+    isRepeat?: boolean,
     playlist?: ITrack[],
     onContinueAudio?: () => void,
     onPauseAudio?: () => void,
@@ -50,6 +54,8 @@ interface IPlayerContainerProps {
     onChangeVolumePlayer?: (v: number) => void,
     onGoToPrevAudio?: () => void,
     onGoToNextAudio?: () => void,
+    onShufflePlaylist?: () => void,
+    onRepeatAudio?: () => void,
 }
 
 let timer: any;
@@ -71,12 +77,15 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     timing = 0,
     playlist,
     volume = 100,
+    isRepeat,
     onContinueAudio,
     onPauseAudio,
     onUpdateDuration,
     onChangeVolumePlayer,
     onGoToPrevAudio,
     onGoToNextAudio,
+    onShufflePlaylist,
+    onRepeatAudio,
 }) => {
 
     if (!currentAudio) {
@@ -93,6 +102,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             src: [currentAudio.preview],
             onend: handleNext,
             volume: volume / 100,
+            loop: true,
         });
 
         if (isInitMount.current) {
@@ -161,7 +171,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     }
 
     const handleNext = (): void => {
-        if (!playlist || playlist.length === 0) {
+        if (!playlist || playlist.length === 0 || isRepeat) {
             return;
         }
         onGoToNextAudio && onGoToNextAudio();
@@ -173,6 +183,18 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             return;
         }
         onGoToPrevAudio && onGoToPrevAudio();
+        clearInterval(timer)
+    }
+
+    const handleRepeatAudio = (): void => {
+        onRepeatAudio && onRepeatAudio();
+    }
+
+    const handleShufflePlaylist = (): void => {
+        if (!playlist || playlist.length === 0) {
+            return;
+        }
+        onShufflePlaylist && onShufflePlaylist();
         clearInterval(timer)
     }
 
@@ -191,16 +213,19 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
             <Player
                 track={currentAudio}
                 isPlaying={isPlaying}
+                isRepeat={isRepeat || false}
                 duration={duration}
                 currentDuration={currentDuration}
                 positionTrack={leftPosition}
-                pauseAudio={handlePause}
-                playAudio={handlePlay}
-                nextAudio={handleNext}
-                prevAudio={handlePrev}
+                onPauseAudio={handlePause}
+                onPlayAudio={handlePlay}
+                onNextAudio={handleNext}
+                onPrevAudio={handlePrev}
+                onRepeatAudio={handleRepeatAudio}
+                onShufflePlaylist={handleShufflePlaylist}
                 volumeLevel={volume}
-                handleChangeVolume={handleChangeVolume}
-                handleClickPlaylist={handleClickPlaylist}
+                onChangeVolume={handleChangeVolume}
+                onClickPlaylist={handleClickPlaylist}
             />
 
             <CSSTransition
@@ -227,6 +252,7 @@ const mapStateToProps = (state: IStore) => ({
     timing: getDuration(state),
     isPausing: getPausingAudioStatus(state),
     volume: getVolume(state),
+    isRepeat: getRepeatStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -236,6 +262,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     onChangeVolumePlayer: (value: number) => dispatch(changeVolume(value)),
     onGoToPrevAudio: () => dispatch(preparePrevAudio()),
     onGoToNextAudio: () => dispatch(prepareNextAudio()),
+    onShufflePlaylist: () => dispatch(shufflePlaylist()),
+    onRepeatAudio: () => dispatch(repeatAudio()),
 });
 
 

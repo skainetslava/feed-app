@@ -11,34 +11,40 @@ import "./player.scss";
 
 interface IPlayerProps {
     isPlaying: boolean;
+    isRepeat: boolean;
     className?: string;
     positionTrack: number;
     currentDuration: string;
     duration: string;
     volumeLevel: number;
     track: ITrack;
-    pauseAudio: () => void;
-    playAudio: () => void;
-    prevAudio: () => void;
-    nextAudio: () => void;
-    handleChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void
-    handleClickPlaylist: () => void
+    onPauseAudio: () => void;
+    onPlayAudio: () => void;
+    onPrevAudio: () => void;
+    onNextAudio: () => void;
+    onRepeatAudio: () => void;
+    onShufflePlaylist: () => void;
+    onChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void
+    onClickPlaylist: () => void
 }
 
 const Player: React.FC<IPlayerProps> = ({
     className,
     isPlaying,
+    isRepeat,
     positionTrack,
     currentDuration,
-    handleChangeVolume,
-    handleClickPlaylist,
+    onChangeVolume,
+    onClickPlaylist,
     volumeLevel,
     duration,
     track,
-    pauseAudio,
-    playAudio,
-    nextAudio,
-    prevAudio,
+    onPlayAudio,
+    onPauseAudio,
+    onNextAudio,
+    onPrevAudio,
+    onRepeatAudio,
+    onShufflePlaylist,
 }) => {
     return (
         <div className={cls(className, "player")}>
@@ -50,10 +56,13 @@ const Player: React.FC<IPlayerProps> = ({
             />
             <Controls
                 isPlaying={isPlaying}
-                pauseAudio={pauseAudio}
-                playAudio={playAudio}
-                nextAudio={nextAudio}
-                prevAudio={prevAudio}
+                isRepeat={isRepeat}
+                onPauseAudio={onPauseAudio}
+                onPlayAudio={onPlayAudio}
+                onNextAudio={onNextAudio}
+                onPrevAudio={onPrevAudio}
+                onShufflePlaylist={onShufflePlaylist}
+                onRepeatAudio={onRepeatAudio}
             />
             <ProgressBar
                 leftPosition={positionTrack}
@@ -62,8 +71,8 @@ const Player: React.FC<IPlayerProps> = ({
             />
             <Volume
                 volumeLevel={volumeLevel}
-                handleChangeVolume={handleChangeVolume}
-                handleClickPlaylist={handleClickPlaylist}
+                handleChangeVolume={onChangeVolume}
+                handleClickPlaylist={onClickPlaylist}
             />
         </div>
     )

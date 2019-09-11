@@ -45,6 +45,15 @@ export interface IPreparePrevAudioAction {
     type: constants.PREV_AUDIO_REQUEST;
 }
 
+export interface IShufflePlaylist {
+    type: constants.SHUFFLE_PLAYLIST;
+}
+
+export interface IRepeatAudio {
+    type: constants.REPEAT_AUDIO;
+}
+
+
 export interface IUpdatePlaylistAction {
     type: constants.UPDATE_PLAYLIST;
     payload: ITrack[]
@@ -59,7 +68,21 @@ export type PlayerActionType =
     | constants.NEXT_AUDIO
     | constants.PREV_AUDIO
     | constants.CHANGE_VOLUME
-    | constants.UPDATE_PLAYLIST;
+    | constants.UPDATE_PLAYLIST
+    | constants.REPEAT_AUDIO
+    | constants.SHUFFLE_PLAYLIST;
+
+export function shufflePlaylist(): IShufflePlaylist {
+    return {
+        type: constants.SHUFFLE_PLAYLIST,
+    }
+}
+
+export function repeatAudio(): IRepeatAudio {
+    return {
+        type: constants.REPEAT_AUDIO,
+    }
+}
 
 export function updatePlaylist(payload: ITrack[]): IUpdatePlaylistAction {
     return {

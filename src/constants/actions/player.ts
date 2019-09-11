@@ -30,3 +30,9 @@ export type CHANGE_VOLUME = typeof CHANGE_VOLUME;
 
 export const UPDATE_PLAYLIST = "UPDATE_PLAYLIST";
 export type UPDATE_PLAYLIST = typeof UPDATE_PLAYLIST;
+
+export const SHUFFLE_PLAYLIST = "SHUFFLE_PLAYLIST";
+export type SHUFFLE_PLAYLIST = typeof SHUFFLE_PLAYLIST;
+
+export const REPEAT_AUDIO = "REPEAT_AUDIO";
+export type REPEAT_AUDIO = typeof REPEAT_AUDIO;

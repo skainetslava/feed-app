@@ -4,10 +4,12 @@
   grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
   grid-gap: 8px;
   position: relative;
-}
-
-.albums-chart {
   margin: 44px;
+
+  @media only screen and (min-width: 1900px) {
+    margin: 0 auto;
+    max-width: 1367px;
+  }
 }
 
 .item-enter {
