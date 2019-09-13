@@ -40,7 +40,7 @@ module.exports = merge(common, {
             comments: false
           }
         }
-      }),
+      })
     ],
     runtimeChunk: false,
     splitChunks: {
@@ -59,26 +59,26 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
           {
             loader: "css-loader",
             options: {
               minimize: true,
               sourceMap: true
             }
-          }
+          },
+          "sass-loader"
         ]
-      },
-
-      {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
 
   plugins: [
+    new CompressionPlugin(),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
