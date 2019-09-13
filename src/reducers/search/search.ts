@@ -1,6 +1,6 @@
 import { IArtist, ITrack } from "src/models";
-import { ISearchDataAction } from "../actions/search/tracks";
-import * as constants from "../constants/actions/search";
+import { ISearchDataAction } from "../../actions/search/tracks";
+import * as constants from "../../constants/actions/search";
 
 export interface ISearchStoreState {
     searchingValue: string,

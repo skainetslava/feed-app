@@ -24,7 +24,7 @@ interface ITrackContainerProps {
 }
 
 
-const TrackContainer: React.FC<ITrackContainerProps> = React.memo(({
+const TrackContainer: React.FC<ITrackContainerProps> = ({
     tracks,
     track,
     timing,
@@ -42,6 +42,7 @@ const TrackContainer: React.FC<ITrackContainerProps> = React.memo(({
         onPlayAudio && onPlayAudio(item);
     }
 
+
     return (
         <Track
             track={track}
@@ -52,7 +53,7 @@ const TrackContainer: React.FC<ITrackContainerProps> = React.memo(({
             onContinueAudio={onContinueAudio}
         />
     );
-});
+};
 
 const mapStateToProps = (state: IStore) => ({
     currentAudio: getCurrentAudio(state),
@@ -70,4 +71,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 
-export default connect<{}, {}, ITrackContainerProps>(mapStateToProps, mapDispatchToProps)(TrackContainer);
+export default connect<{}, {}, ITrackContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(TrackContainer));

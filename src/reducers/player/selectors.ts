@@ -1,35 +1,13 @@
-
 import { createSelector } from "reselect";
 
 import { IStore } from "src/store";
 
 
-const SEARCH_TRACKS = (state: IStore) => state.search.tracks;
-
-export const getSearchTracks = createSelector(
-    [SEARCH_TRACKS],
-    (tracks) => tracks,
-)
-
-const SEARCH_ARTISTS = (state: IStore) => state.search.artists;
-
-export const getSearchArtists = createSelector(
-    [SEARCH_ARTISTS],
-    (artists) => artists,
-)
-
-const SEARCHING_VALUE = (state: IStore) => state.search.searchingValue;
-
-export const getSearchingValue = createSelector(
-    [SEARCHING_VALUE],
-    (value) => value,
-)
-
 const PLAYER_SOURCE = (state: IStore) => state.player.source;
 
 export const getCurrentAudio = createSelector(
     [PLAYER_SOURCE],
-    (data) =>  data,
+    (data) => data,
 )
 
 const PLAYER_PLAYING = (state: IStore) => state.player.isPlaying;
@@ -73,4 +51,3 @@ export const getRepeatStatus = createSelector(
     [PLAYER_REPEAT],
     (isRepeat) => isRepeat,
 )
-

@@ -1,6 +1,6 @@
 import { IPlaylist } from "src/models";
-import { IPlaylistDataAction } from "../actions/playlist";
-import * as constants from "../constants/actions/playlist";
+import { IPlaylistDataAction } from "../../actions/playlist";
+import * as constants from "../../constants/actions/playlist";
 
 export interface IPlaylistStoreState {
   data: IPlaylist | null;

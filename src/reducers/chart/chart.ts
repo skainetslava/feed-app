@@ -1,6 +1,6 @@
 import { IAlbum, IPlaylist, ITrack } from "src/models";
-import { IChartAction } from "../actions/chart";
-import * as constants from "../constants/actions/chart";
+import { IChartAction } from "../../actions/chart";
+import * as constants from "../../constants/actions/chart";
 
 export interface IChartStoreState {
     tracks: ITrack[];

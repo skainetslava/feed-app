@@ -19,7 +19,7 @@ import { useBackground } from "src/containers/hooks/useBackground"
 
 import { IAlbum, ITrack } from "src/models";
 
-import { getAlbumData, getAlbumLoadingStatus } from "src/reducers/selectors";
+import { getAlbumData, getAlbumLoadingStatus } from "src/reducers/album/selectors";
 
 interface IRouteProps {
     id: string;
@@ -36,7 +36,7 @@ interface IAlbumContainerProps extends RouteComponentProps<IRouteProps> {
 const AlbumPage: React.FC<IAlbumContainerProps> = ({ album, onFetchAlbumData, onPlayPage, isLoading, match }) => {
     React.useEffect(() => {
         onFetchAlbumData && onFetchAlbumData(match.params.id)
-    }, []);
+    }, [match.params.id]);
 
     useBackground(match.params.id);
 

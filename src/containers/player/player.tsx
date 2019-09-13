@@ -37,7 +37,7 @@ import {
     getPlaylist,
     getRepeatStatus,
     getVolume,
-} from "src/reducers/selectors";
+} from "src/reducers/player/selectors";
 
 
 interface IPlayerContainerProps {

@@ -14,7 +14,7 @@ import { Cover } from "src/components/organisms/cover";
 
 import { IAlbum } from "src/models";
 
-import { getChartAlbums, getChartLoadingStatus } from "src/reducers/selectors";
+import { getChartAlbums, getChartLoadingStatus } from "src/reducers/chart/selectors";
 
 interface IAlbumsChartContainerProps {
     dispatch?: any;
@@ -31,9 +31,9 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({ albums, onFetch
     }, [albums]);
 
 
-    const renderLoading = (): JSX.Element => {
+    const renderLoading = React.useCallback(() => {
         return <div>Loading...</div>
-    }
+    }, []);
 
     return (
         <Cover
@@ -54,4 +54,5 @@ const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
 });
 
 
-export default connect<{}, {}, IAlbumsChartContainerProps>(mapStateToProps, mapDispatchToProps)(AlbumsChartPage);
+export default connect<{}, {}, IAlbumsChartContainerProps>(mapStateToProps, mapDispatchToProps)
+    (React.memo(AlbumsChartPage));

@@ -3,12 +3,12 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { createLogger } from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 
-import { IAlbumStoreState } from "src/reducers/album";
-import { IArtistStoreState } from "src/reducers/artist";
-import { IChartStoreState } from "src/reducers/chart"
-import { IPlayerStoreState } from "src/reducers/player";
-import { IPlaylistStoreState } from "src/reducers/playlist";
-import { ISearchStoreState } from "src/reducers/search";
+import { IAlbumStoreState } from "src/reducers/album/album";
+import { IArtistStoreState } from "src/reducers/artist/artist";
+import { IChartStoreState } from "src/reducers/chart/chart"
+import { IPlayerStoreState } from "src/reducers/player/player";
+import { IPlaylistStoreState } from "src/reducers/playlist/playlist";
+import { ISearchStoreState } from "src/reducers/search/search";
 
 
 import rootSaga from "src/sagas";

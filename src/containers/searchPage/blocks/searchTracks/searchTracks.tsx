@@ -9,7 +9,7 @@ import { Dispatch } from "redux";
 
 import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults";
-import { getSearchingValue, getSearchTracks } from "src/reducers/selectors";
+import { getSearchingValue, getSearchTracks } from "src/reducers/search/selectors";
 import { ISearchingRouteProps } from "../searchResults/searchResults";
 
 interface ISearchArtistsContainerProps extends RouteComponentProps<ISearchingRouteProps> {
@@ -21,7 +21,6 @@ interface ISearchArtistsContainerProps extends RouteComponentProps<ISearchingRou
 
 const SearchTracksContainer: React.FC<ISearchArtistsContainerProps> = ({
     tracks,
-    searchingValue,
     onRedirectSearchingValue,
     match,
 }) => {
@@ -46,4 +45,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 
 export default connect<{}, {}, ISearchArtistsContainerProps>
-    (mapStateToProps, mapDispatchToProps)(SearchTracksContainer);
+    (mapStateToProps, mapDispatchToProps)(React.memo(SearchTracksContainer));

@@ -1,6 +1,6 @@
 import { IAlbum, IArtist, ITrack } from "src/models";
-import { IArtistDataAction } from "../actions/artist";
-import * as constants from "../constants/actions/artist";
+import { IArtistDataAction } from "../../actions/artist";
+import * as constants from "../../constants/actions/artist";
 
 export interface IArtistStoreState {
   data: IArtist | null;

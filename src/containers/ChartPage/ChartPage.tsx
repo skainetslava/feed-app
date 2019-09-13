@@ -12,7 +12,7 @@ import {
 import { Cover } from "src/components/organisms/cover";
 import { Tracks } from "src/components/tracks";
 import { ITrack } from "src/models";
-import { getChartLoadingStatus, getChartTracks } from "src/reducers/selectors";
+import { getChartLoadingStatus, getChartTracks } from "src/reducers/chart/selectors";
 
 interface IChartContainerProps {
     dispatch?: any;
@@ -41,7 +41,7 @@ const ChartPage: React.FC<IChartContainerProps> = ({ tracks, onFetchChart, isLoa
         return undefined;
     }
 
-    const handlePlayArtist = () => {
+    const handlePlayArtist = (): void => {
         tracks && onPlayPage(tracks);
     }
 
@@ -70,4 +70,4 @@ const mapDispatchToProps = (dispatch: Dispatch<IChartAction | IPlayPage>) => ({
 });
 
 
-export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(ChartPage);
+export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(ChartPage));

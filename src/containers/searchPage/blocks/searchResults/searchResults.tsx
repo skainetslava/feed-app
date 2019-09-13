@@ -9,7 +9,7 @@ import { IStore } from "src/store";
 import { CSSTransition } from "react-transition-group";
 import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults"
-import { getSearchArtists, getSearchingValue, getSearchTracks } from "src/reducers/selectors";
+import { getSearchArtists, getSearchingValue, getSearchTracks } from "src/reducers/search/selectors";
 
 export interface ISearchingRouteProps {
     value: string;
@@ -59,4 +59,4 @@ const mapStateToProps = (state: IStore) => ({
 });
 
 export default connect<{}, {}, ISearchResultsContainerProps>
-    (mapStateToProps, mapDispatchToProps)(SearchResultsContainer);
+    (mapStateToProps, mapDispatchToProps)(React.memo(SearchResultsContainer));

@@ -16,14 +16,14 @@ interface IPlaylistContainerProps {
 const PlaylistModalContainer: React.FC<IPlaylistContainerProps> = ({ tracks, handleClose }) => {
     const ref = React.useRef<HTMLDivElement>(null);
 
-    const handle = (event: MouseEvent) => {
-        const exceptEl = document.querySelector(".navbar") as Node;
-        if (exceptEl.contains(event.target as Node)) {
-            handleClose();
-        }
-    }
-
     React.useEffect(() => {
+        function handle(event: MouseEvent) {
+            const exceptEl = document.querySelector(".navbar") as Node;
+            if (exceptEl.contains(event.target as Node)) {
+                handleClose();
+            }
+        }
+
         document.addEventListener("click", handle)
         return () => {
             document.removeEventListener("click", handle)

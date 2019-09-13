@@ -19,7 +19,7 @@ import { useBackground } from "src/containers/hooks/useBackground"
 
 import { IPlaylist, ITrack } from "src/models";
 
-import { getPlaylistPageData, getPlaylistPageLoadingStatus } from "src/reducers/selectors";
+import { getPlaylistPageData, getPlaylistPageLoadingStatus } from "src/reducers/playlist/selectors";
 
 interface IRouteProps {
     id: string;
@@ -48,7 +48,7 @@ const PlaylistPage: React.FC<IPlaylistContainerProps> = ({
 
     const handlePlayPage = () => {
         playlist && playlist.tracks && onPlayPage(playlist.tracks)
-    }
+    };
 
     return (
         <CSSTransition

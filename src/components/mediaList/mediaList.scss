@@ -5,11 +5,6 @@
   grid-gap: 8px;
   position: relative;
   margin: 44px;
-
-  @media only screen and (min-width: 1900px) {
-    margin: 0 auto;
-    max-width: 1367px;
-  }
 }
 
 .item-enter {

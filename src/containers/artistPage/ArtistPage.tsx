@@ -19,7 +19,7 @@ import {
     getArtistData,
     getArtistLoadingStatus,
     getArtistMostPopularTracks,
-} from "src/reducers/selectors";
+} from "src/reducers/artist/selectors";
 
 interface IRouteProps {
     id: string;
@@ -47,23 +47,14 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
     onPlayPage,
 }) => {
 
-    const isInitMount = React.useRef(true);
-
     React.useEffect(() => {
-        if (isInitMount.current) {
-            isInitMount.current = false;
-        } else {
-            onFetchArtistData && onFetchArtistData(match.params.id)
-        }
+        onFetchArtistData && onFetchArtistData(match.params.id)
     }, [match.params.id]);
 
-    React.useLayoutEffect(() => {
-        onFetchArtistData && onFetchArtistData(match.params.id)
-    }, []);
 
     const handlePlayArtist = () => {
         onPlayPage(tracks);
-    }
+    };
 
     return (
         <CSSTransition
@@ -95,4 +86,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 
-export default connect<{}, {}, IArtistContainerProps>(mapStateToProps, mapDispatchToProps)(ArtistPage);
+export default connect<{}, {}, IArtistContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(ArtistPage));

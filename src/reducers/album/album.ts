@@ -1,6 +1,6 @@
 import { IAlbum } from "src/models";
-import { IAlbumDataAction } from "../actions/album";
-import * as constants from "../constants/actions/album";
+import { IAlbumDataAction } from "../../actions/album";
+import * as constants from "../../constants/actions/album";
 
 export interface IAlbumStoreState {
   data: IAlbum | null;

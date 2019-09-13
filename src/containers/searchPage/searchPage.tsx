@@ -7,9 +7,9 @@ import { IStore } from "src/store";
 import {
     searchData,
 } from "src/actions/search/tracks";
-import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url"; 
+import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { Search } from "src/components/pages/search";
-import { getSearchingValue } from "src/reducers/selectors";
+import { getSearchingValue } from "src/reducers/search/selectors";
 
 
 interface IChartContainerProps {
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 
-export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default connect<{}, {}, IChartContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(SearchPage));

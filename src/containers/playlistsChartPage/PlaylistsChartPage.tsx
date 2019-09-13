@@ -12,7 +12,7 @@ import {
 import { MediaList } from "src/components/mediaList";
 import { Cover } from "src/components/organisms/cover";
 
-import { getChartLoadingStatus, getChartPlaylists } from "src/reducers/selectors";
+import { getChartLoadingStatus, getChartPlaylists } from "src/reducers/chart/selectors";
 
 interface IPlaylistsChartContainerProps {
     dispatch?: any;
@@ -52,4 +52,5 @@ const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
 });
 
 
-export default connect<{}, {}, IPlaylistsChartContainerProps>(mapStateToProps, mapDispatchToProps)(PlaylistsChartPage);
+export default connect<{}, {}, IPlaylistsChartContainerProps>(mapStateToProps, mapDispatchToProps)
+    (React.memo(PlaylistsChartPage));
