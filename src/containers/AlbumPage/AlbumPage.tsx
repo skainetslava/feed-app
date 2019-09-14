@@ -50,7 +50,7 @@ const AlbumPage: React.FC<IAlbumContainerProps> = ({ album, onFetchAlbumData, on
             timeout={500}
             classNames="album-transition"
         >
-            <Album album={album} playAlbum={handlePlayPage} />
+            <Album album={album} onPlayAlbum={handlePlayPage} />
         </CSSTransition>
     );
 };

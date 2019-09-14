@@ -1,6 +1,6 @@
 import * as React from "react";
+import { IIconProps } from "src/models";
 
-import { IIconProps } from "src/components/icons/play/iconPlay";
 
 const IconLogo: React.FC<IIconProps> = ({ w, h, className }) => {
   return (

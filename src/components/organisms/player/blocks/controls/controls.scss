@@ -7,7 +7,7 @@ $activeBarColor: green;
     align-items: center;
   }
 
-  &_repeat {
+  &_repeat, &_shuffle {
     &--active {
       fill: $activeBarColor;
     }

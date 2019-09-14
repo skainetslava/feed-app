@@ -51,3 +51,10 @@ export const getRepeatStatus = createSelector(
     [PLAYER_REPEAT],
     (isRepeat) => isRepeat,
 )
+
+const PLAYER_SHUFFLE = (state: IStore) => state.player.isShuffled;
+
+export const getShuffleStatus = createSelector(
+    [PLAYER_SHUFFLE],
+    (isShuffled) => isShuffled,
+)

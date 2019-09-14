@@ -37,6 +37,7 @@ import {
     getPlaylist,
     getRepeatStatus,
     getVolume,
+    getShuffleStatus,
 } from "src/reducers/player/selectors";
 
 
@@ -47,6 +48,7 @@ interface IPlayerContainerProps {
     isPlaying?: boolean,
     isPausing?: boolean,
     isRepeat?: boolean,
+    isShuffled?: boolean,
     playlist?: ITrack[],
     onContinueAudio?: () => void,
     onPauseAudio?: () => void,
@@ -77,6 +79,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     timing = 0,
     playlist,
     volume = 100,
+    isShuffled,
     isRepeat,
     onContinueAudio,
     onPauseAudio,
@@ -214,6 +217,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
                 track={currentAudio}
                 isPlaying={isPlaying}
                 isRepeat={isRepeat || false}
+                isShuffled={isShuffled || false}
                 duration={duration}
                 currentDuration={currentDuration}
                 positionTrack={leftPosition}
@@ -253,6 +257,7 @@ const mapStateToProps = (state: IStore) => ({
     isPausing: getPausingAudioStatus(state),
     volume: getVolume(state),
     isRepeat: getRepeatStatus(state),
+    isShuffled: getShuffleStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

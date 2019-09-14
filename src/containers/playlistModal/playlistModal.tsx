@@ -31,7 +31,7 @@ const PlaylistModalContainer: React.FC<IPlaylistContainerProps> = ({ tracks, han
     }, [ref]);
 
     return (
-        <PlaylistModal tracks={tracks} handleClose={handleClose} ref={ref} />
+        <PlaylistModal tracks={tracks} onClose={handleClose} ref={ref} />
     );
 };
 

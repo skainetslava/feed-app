@@ -8,10 +8,10 @@ import { PlaylistHeader } from "./blocks/playlistHeader";
 
 interface IPlaylistComponentProps {
     playlist?: IPlaylist,
-    playPlaylist: () => void
+    onPlayPlaylist: () => void
 }
 
-const Playlist: React.FC<IPlaylistComponentProps> = ({ playlist, playPlaylist }) => {
+const Playlist: React.FC<IPlaylistComponentProps> = ({ playlist, onPlayPlaylist }) => {
     if (!playlist) {
         return null;
     }
@@ -22,7 +22,7 @@ const Playlist: React.FC<IPlaylistComponentProps> = ({ playlist, playPlaylist })
                 title={playlist.title}
                 coverBigTrack={playlist.coverBigTrack}
                 count={playlist.tracks ? playlist.tracks.length : 0}
-                playPlaylist={playPlaylist}
+                playPlaylist={onPlayPlaylist}
             />
             <div className="playlist_tracks">
                 <Tracks tracks={playlist.tracks} />

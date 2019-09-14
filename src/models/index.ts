@@ -48,3 +48,11 @@ export interface ICurrentAudio {
     source: ITrack,
     timing: number
 }
+
+
+export interface IIconProps {
+    w?: number,
+    h?: number,
+    className?: string,
+    onClick?: () => void
+}

@@ -1,11 +1,5 @@
 import * as React from "react";
-
-export interface IIconProps {
-    w: number,
-    h: number,
-    className?: string,
-    onClick?: () => void
-}
+import { IIconProps } from "src/models";
 
 const IconControlPrev: React.FC<IIconProps> = ({ w, h, className, onClick }) => {
     return (

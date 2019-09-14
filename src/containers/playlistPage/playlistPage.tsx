@@ -56,7 +56,7 @@ const PlaylistPage: React.FC<IPlaylistContainerProps> = ({
             timeout={500}
             classNames="playlist-transition"
         >
-            <Playlist playlist={playlist} playPlaylist={handlePlayPage} />
+            <Playlist playlist={playlist} onPlayPlaylist={handlePlayPage} />
         </CSSTransition>
     );
 };

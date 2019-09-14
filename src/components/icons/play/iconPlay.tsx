@@ -1,11 +1,6 @@
 import * as React from "react";
+import { IIconProps } from "src/models";
 
-export interface IIconProps {
-    w?: number,
-    h?: number,
-    className?: string,
-    onClick?: () => void
-}
 
 const IconPlay: React.FC<IIconProps> = ({ w = 16, h = 16, className, onClick }) => {
     return (

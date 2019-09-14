@@ -14,6 +14,7 @@ import "./controls.scss";
 interface IControlsProps {
     isPlaying: boolean;
     isRepeat: boolean;
+    isShuffled: boolean;
     className?: string;
     onPlayAudio: () => void;
     onPauseAudio: () => void;
@@ -26,6 +27,7 @@ interface IControlsProps {
 const Controls: React.FC<IControlsProps> = ({
     className,
     isPlaying,
+    isShuffled,
     isRepeat,
     onPlayAudio,
     onPauseAudio,
@@ -36,7 +38,12 @@ const Controls: React.FC<IControlsProps> = ({
 }) => {
     return (
         <div className={cls(className, "player_controls")}>
-            <IconShuffle className="player_shuffle" w={14} h={14} onClick={onShufflePlaylist} />
+            <IconShuffle
+                className={cls("player_shuffle", { "player_shuffle--active": isShuffled })}
+                w={14}
+                h={14}
+                onClick={onShufflePlaylist}
+            />
             <IconControlPrev className="player_prev" w={13} h={12} onClick={onPrevAudio} />
             {
                 !isPlaying && <button className="player_play" onClick={onPlayAudio}>

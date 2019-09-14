@@ -6,9 +6,11 @@ import * as constants from "../../constants/actions/player";
 
 export interface IPlayerStoreState {
     playlist: ITrack[];
+    prevPlaylist: ITrack[],
     source: ITrack | null;
     timing: number;
     isLoading: boolean;
+    isShuffled: boolean;
     isPlaying: boolean;
     isPausing: boolean;
     isRepeat: boolean,
@@ -17,10 +19,12 @@ export interface IPlayerStoreState {
 
 const initialState: IPlayerStoreState = {
     playlist: getItemFromLocalStorage<ITrack[]>("playlist") || [],
+    prevPlaylist: [],
     source: getItemFromLocalStorage<ITrack>("audio"),
     timing: getItemFromLocalStorage<number>("timingAudio") || 0,
     isLoading: false,
     isPlaying: false,
+    isShuffled: false,
     isPausing: true,
     isRepeat: false,
     volume: 100,
@@ -44,6 +48,20 @@ export default function playerReducer(
                 playlist,
                 source: playlist[0],
                 timing: 0,
+            }
+        }
+
+        case constants.SHUFFLE_PLAYLIST: {
+            const tracks =  !state.isShuffled ? [...state.playlist] : [...state.prevPlaylist];
+            const prevPlaylist = !state.isShuffled ? [...state.playlist]  : [];
+
+            !state.isShuffled && tracks.sort(() => Math.random() - 0.5);
+
+            return {
+                ...state,
+                isShuffled: !state.isShuffled,
+                playlist: tracks,
+                prevPlaylist,
             }
         }
 

@@ -12,6 +12,7 @@ import "./player.scss";
 interface IPlayerProps {
     isPlaying: boolean;
     isRepeat: boolean;
+    isShuffled: boolean;
     className?: string;
     positionTrack: number;
     currentDuration: string;
@@ -32,6 +33,7 @@ const Player: React.FC<IPlayerProps> = ({
     className,
     isPlaying,
     isRepeat,
+    isShuffled,
     positionTrack,
     currentDuration,
     onChangeVolume,
@@ -57,6 +59,7 @@ const Player: React.FC<IPlayerProps> = ({
             <Controls
                 isPlaying={isPlaying}
                 isRepeat={isRepeat}
+                isShuffled={isShuffled}
                 onPauseAudio={onPauseAudio}
                 onPlayAudio={onPlayAudio}
                 onNextAudio={onNextAudio}
@@ -71,8 +74,8 @@ const Player: React.FC<IPlayerProps> = ({
             />
             <Volume
                 volumeLevel={volumeLevel}
-                handleChangeVolume={onChangeVolume}
-                handleClickPlaylist={onClickPlaylist}
+                onChangeVolume={onChangeVolume}
+                onClickPlaylist={onClickPlaylist}
             />
         </div>
     )
