@@ -7,6 +7,7 @@ const TerserJSPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CompressionPlugin = require('compression-webpack-plugin');
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
@@ -79,6 +80,9 @@ module.exports = merge(common, {
   },
 
   plugins: [
+    new CleanWebpackPlugin(['dist'], {
+      root: path.join(__dirname, '..')
+    }),
     new CompressionPlugin(),
     new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
@@ -89,6 +93,12 @@ module.exports = merge(common, {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
-    })
+    }),
+    new HtmlWebpackPlugin({
+      title: "Spootifly Web",
+      template: './public/index.html',
+      filename: 'index.html',
+      jsExtension: ".gz"
+  })
   ]
 });

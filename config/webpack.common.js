@@ -62,7 +62,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "Spootifly Web",
             template: './public/index.html',
-            filename: 'index.html'
+            filename: 'index.html',
+            jsExtension: ".gz"
         })
     ]
     
