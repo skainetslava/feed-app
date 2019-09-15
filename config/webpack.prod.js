@@ -98,8 +98,8 @@ module.exports = merge(common, {
     new HtmlWebpackPlugin({
       title: "Spootifly Web",
       template: "./public/index.html",
+      favicon: 'src/favicon.ico',
       filename: "index.html",
-      jsExtension: ".gz"
     })
   ]
 });
