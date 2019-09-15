@@ -1,6 +1,5 @@
 import * as React from "react";
 import { IconHome } from "src/components/icons/home";
-import { IconLibrary } from "src/components/icons/library";
 import { IconSearch } from "src/components/icons/search";
 import { MenuItem } from "./menuItem";
 
