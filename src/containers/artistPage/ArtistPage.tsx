@@ -7,83 +7,77 @@ import { IStore } from "src/store";
 
 import { RouteComponentProps } from "react-router-dom";
 
-import {
-    fetchArtistData, playPage,
-} from "src/actions/artist";
+import { fetchArtistData, playPage } from "src/actions/artist";
 
 import { Artist } from "src/components/pages/artist";
 import { IAlbum, IArtist, ITrack } from "src/models";
 
 import {
-    getArtistAlbums,
-    getArtistData,
-    getArtistLoadingStatus,
-    getArtistMostPopularTracks,
+  getArtistAlbums,
+  getArtistData,
+  getArtistLoadingStatus,
+  getArtistMostPopularTracks,
 } from "src/reducers/artist/selectors";
 
 interface IRouteProps {
-    id: string;
+  id: string;
 }
 
 interface IArtistContainerProps extends RouteComponentProps<IRouteProps> {
-    artist: IArtist,
-    tracks: ITrack[],
-    albums: {
-        albums: IAlbum[],
-        singles: IAlbum[],
-    },
-    isLoading?: boolean,
-    onFetchArtistData?: (id: string) => void;
-    onPlayPage: (t: ITrack[]) => void
+  artist: IArtist;
+  tracks: ITrack[];
+  albums: {
+    albums: IAlbum[];
+    singles: IAlbum[];
+  };
+  isLoading?: boolean;
+  onFetchArtistData?: (id: string) => void;
+  onPlayPage: (t: ITrack[]) => void;
 }
 
 const ArtistPage: React.FC<IArtistContainerProps> = ({
-    artist,
-    tracks,
-    albums: { albums, singles },
-    onFetchArtistData,
-    isLoading,
-    match,
-    onPlayPage,
+  artist,
+  tracks,
+  albums: { albums, singles },
+  onFetchArtistData,
+  isLoading,
+  match,
+  onPlayPage,
 }) => {
+  React.useEffect(() => {
+    onFetchArtistData && onFetchArtistData(match.params.id);
+  }, [match.params.id]);
 
-    React.useEffect(() => {
-        onFetchArtistData && onFetchArtistData(match.params.id)
-    }, [match.params.id]);
+  const handlePlayArtist = () => {
+    onPlayPage(tracks);
+  };
 
-
-    const handlePlayArtist = () => {
-        onPlayPage(tracks);
-    };
-
-    return (
-        <CSSTransition
-            in={!isLoading}
-            timeout={500}
-            classNames="transition"
-        >
-            <Artist
-                artist={artist}
-                tracks={tracks}
-                albums={albums}
-                singles={singles}
-                onPlayPage={handlePlayArtist}
-            />
-        </CSSTransition>
-    );
+  return (
+    <CSSTransition in={!isLoading} timeout={500} classNames="transition">
+      <Artist
+        artist={artist}
+        tracks={tracks}
+        albums={albums}
+        singles={singles}
+        onPlayPage={handlePlayArtist}
+      />
+    </CSSTransition>
+  );
 };
 
 const mapStateToProps = (state: IStore) => ({
-    artist: getArtistData(state),
-    tracks: getArtistMostPopularTracks(state),
-    albums: getArtistAlbums(state),
-    isLoading: getArtistLoadingStatus(state),
+  artist: getArtistData(state),
+  tracks: getArtistMostPopularTracks(state),
+  albums: getArtistAlbums(state),
+  isLoading: getArtistLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    onFetchArtistData: (id: string) => dispatch(fetchArtistData(id)),
-    onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
+  onFetchArtistData: (id: string) => dispatch(fetchArtistData(id)),
+  onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
 });
 
-
-export default connect<{}, {}, IArtistContainerProps>(mapStateToProps, mapDispatchToProps)(React.memo(ArtistPage));
+export default connect<{}, {}, IArtistContainerProps>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(React.memo(ArtistPage));

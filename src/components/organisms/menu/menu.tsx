@@ -17,11 +17,6 @@ const MENU_TITLES = {
     link: "/search/results",
     icon: <IconSearch w={24} h={24} />,
   },
-  library: {
-    title: "Your Library",
-    link: "/",
-    icon: <IconLibrary w={24} h={24} />,
-  },
 };
 
 const Menu: React.FC = React.memo(() => {
@@ -29,14 +24,7 @@ const Menu: React.FC = React.memo(() => {
   return (
     <ul className="menu">
       {menuKeys.map((item, index) => {
-        return (
-          <MenuItem
-            key={index}
-            title={item.title}
-            link={item.link}
-            icon={item.icon}
-          />
-        );
+        return <MenuItem key={index} title={item.title} link={item.link} icon={item.icon} />;
       })}
     </ul>
   );

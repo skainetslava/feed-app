@@ -5,7 +5,7 @@ import { TabItem } from "./tabItem";
 import "./tabs.scss";
 
 interface ITabsProps {
-  tabs: object
+  tabs: object;
   className?: string;
 }
 
@@ -14,13 +14,7 @@ const Tabs: React.FC<ITabsProps> = ({ tabs, className }) => {
   return (
     <ul className={cls(className, "tabs")}>
       {tabsKeys.map((item, index) => {
-        return (
-          <TabItem
-            key={index}
-            title={item.title}
-            link={item.link}
-          />
-        );
+        return <TabItem key={index} title={item.title} link={item.link} />;
       })}
     </ul>
   );

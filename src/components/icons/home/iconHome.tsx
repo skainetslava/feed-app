@@ -1,7 +1,6 @@
 import * as React from "react";
 import { IIconProps } from "src/models";
 
-
 const IconHome: React.FC<IIconProps> = ({ w, h, className }) => {
   return (
     <svg

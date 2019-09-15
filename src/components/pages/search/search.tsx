@@ -8,18 +8,17 @@ import { getSearchingTabs } from "src/constants/tabs";
 import "./search.scss";
 
 interface ISearchComponentProps {
-    valueUrl: string,
-    onChangeInput: (v: string) => void
+  valueUrl: string;
+  onChangeInput: (v: string) => void;
 }
 
 const Search: React.FC<ISearchComponentProps> = ({ valueUrl, onChangeInput }) => {
-
-    return (
-        <>
-            <Input placeholder="Start typing..." value={valueUrl} onChange={onChangeInput} />
-            <Tabs className="search_tracks_tabs" tabs={getSearchingTabs(valueUrl)} />
-        </>
-    )
+  return (
+    <>
+      <Input placeholder="Start typing..." value={valueUrl} onChange={onChangeInput} />
+      <Tabs className="search_tracks_tabs" tabs={getSearchingTabs(valueUrl)} />
+    </>
+  );
 };
 
 export default Search;

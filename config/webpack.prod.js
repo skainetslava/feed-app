@@ -6,7 +6,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CompressionPlugin = require('compression-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const common = require("./webpack.common.js");
 
@@ -42,7 +42,7 @@ module.exports = merge(common, {
             comments: false
           }
         }
-      })
+      }),
     ],
     runtimeChunk: false,
     splitChunks: {
@@ -70,7 +70,9 @@ module.exports = merge(common, {
             loader: "css-loader",
             options: {
               minimize: true,
-              sourceMap: true
+              sourceMap: true,
+              //modules: true,
+             localIdentName: "[path][name]__[local]--[hash:base64:5]"
             }
           },
           "sass-loader"
@@ -80,11 +82,10 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: path.join(__dirname, '..')
+    new CleanWebpackPlugin(["dist"], {
+      root: path.join(__dirname, "..")
     }),
     new CompressionPlugin(),
-    new OptimizeCssAssetsPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
@@ -96,9 +97,9 @@ module.exports = merge(common, {
     }),
     new HtmlWebpackPlugin({
       title: "Spootifly Web",
-      template: './public/index.html',
-      filename: 'index.html',
+      template: "./public/index.html",
+      filename: "index.html",
       jsExtension: ".gz"
-  })
+    })
   ]
 });

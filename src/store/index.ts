@@ -28,11 +28,15 @@ const configureStore = (initialState?: IStore) => {
     const sagaMiddleware = createSagaMiddleware();
 
     const middlewares = [
-        logger,
         sagaMiddleware,
-
     ];
-    const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+    let composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+
+    if (process.env.NODE_ENV !== "production") {
+        composeEnhancers = compose;
+        middlewares.push(logger as any);
+    }
 
     const store = createStore(
         rootReducer,
@@ -42,7 +46,6 @@ const configureStore = (initialState?: IStore) => {
         ),
     );
 
-    // store.runSaga = sagaMiddleware.run;
     sagaMiddleware.run(rootSaga);
     return store;
 };
