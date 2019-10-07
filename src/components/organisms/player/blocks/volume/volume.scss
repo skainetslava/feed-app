@@ -40,7 +40,6 @@ $activeBarColor: green;
   }
 
   &_volume {
-
     display: flex;
     align-items: center;
     width: 40%;
@@ -118,6 +117,12 @@ $activeBarColor: green;
       fill: #fff;
     }
   }
+}
+
+.progress-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 6px;
 }
 
 .progress {

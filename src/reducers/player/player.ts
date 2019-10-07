@@ -54,7 +54,6 @@ export default function playerReducer(
         case constants.SHUFFLE_PLAYLIST: {
             const tracks =  !state.isShuffled ? [...state.playlist] : [...state.prevPlaylist];
             const prevPlaylist = !state.isShuffled ? [...state.playlist]  : [];
-
             !state.isShuffled && tracks.sort(() => Math.random() - 0.5);
 
             return {
@@ -76,6 +75,7 @@ export default function playerReducer(
             const playlist = action.payload.length ? action.payload : state.playlist;
             return {
                 ...state,
+                isShuffled: false,
                 playlist,
             }
         }

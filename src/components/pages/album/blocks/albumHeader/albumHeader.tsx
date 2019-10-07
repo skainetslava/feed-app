@@ -26,7 +26,7 @@ const AlbumHeader: React.FC<IAlbumHeaderProps> = ({
     <div className="album-header">
       <div className="album-header_cover">
         <img className="album-header_img" src={coverBigTrack} alt={title} />
-        <IconPlay className="album-header_cover_play" w={36} h={36} />
+        <IconPlay className="album-header_cover_play" w={36} h={36} onClick={playAlbum}/>
       </div>
 
       <section className="album-header_text">

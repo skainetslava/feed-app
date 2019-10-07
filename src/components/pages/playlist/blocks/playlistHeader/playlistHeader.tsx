@@ -22,7 +22,7 @@ const PlaylistHeader: React.FC<IPlaylistHeaderProps> = ({
     <div className="playlist-header">
       <div className="playlist-header_cover">
         <img className="playlist-header_img" src={coverBigTrack} alt={title} />
-        <IconPlay className="playlist-header_cover_play" w={36} h={36} />
+        <IconPlay className="playlist-header_cover_play" w={36} h={36} onClick={playPlaylist}/>
       </div>
       <section className="playlist-header_text">
         <div className="playlist-header_title">{title}</div>

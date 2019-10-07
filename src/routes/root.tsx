@@ -10,7 +10,7 @@ import { PlaylistPage } from "src/containers/playlistPage";
 import { PlaylistsChartPage } from "src/containers/playlistsChartPage";
 
 // tslint:disable-next-line:no-var-requires
-const { AnimatedSwitch } = require("react-router-transition");
+import { AnimatedSwitch } from "react-router-transition";
 
 import history from "src/history";
 

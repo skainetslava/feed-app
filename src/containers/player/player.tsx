@@ -98,7 +98,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
     audio = new Howl({
       src: [currentAudio.preview],
-      onend: handleNext,
+      onend: handleAutoNext,
       volume: volume / 100,
       loop: true,
     });
@@ -168,8 +168,16 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     clearInterval(timer);
   };
 
-  const handleNext = (): void => {
+  const handleAutoNext = (): void => {
     if (!playlist || playlist.length === 0 || isRepeat) {
+      return;
+    }
+    onGoToNextAudio && onGoToNextAudio();
+    clearInterval(timer);
+  };
+
+  const handleControlNext = (): void => {
+    if (!playlist || playlist.length === 0) {
       return;
     }
     onGoToNextAudio && onGoToNextAudio();
@@ -197,6 +205,9 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
   };
 
   const handleClickPlaylist = (): void => {
+    if (!playlist || playlist.length === 0) {
+      return;
+    }
     setShowPlaylist(!isShowPlaylist);
   };
 
@@ -218,7 +229,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
         positionTrack={leftPosition}
         onPauseAudio={handlePause}
         onPlayAudio={handlePlay}
-        onNextAudio={handleNext}
+        onNextAudio={handleControlNext}
         onPrevAudio={handlePrev}
         onRepeatAudio={handleRepeatAudio}
         onShufflePlaylist={handleShufflePlaylist}

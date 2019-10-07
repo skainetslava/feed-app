@@ -32,8 +32,7 @@ const configureStore = (initialState?: IStore) => {
     ];
 
     let composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV === "production") {
         composeEnhancers = compose;
         middlewares.push(logger as any);
     }
