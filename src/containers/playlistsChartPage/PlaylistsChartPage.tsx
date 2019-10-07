@@ -7,6 +7,7 @@ import { IStore } from "src/store";
 import { fetchChartRequest, IChartAction } from "src/actions/chart";
 
 import { MediaList } from "src/components/mediaList";
+import { MockMediaList } from "src/components/mock/media";
 import { Cover } from "src/components/organisms/cover";
 
 import { getChartLoadingStatus, getChartPlaylists } from "src/reducers/chart/selectors";
@@ -29,16 +30,12 @@ const PlaylistsChartPage: React.FC<IPlaylistsChartContainerProps> = ({
     }
   }, [playlists]);
 
-  const renderLoading = (): JSX.Element => {
-    return <div>Loading...</div>;
-  };
-
   return (
     <Cover withActions={null} hasTabs={true}>
       {!isLoading ? (
         <MediaList type="playlist" className="playlists-chart" list={playlists} />
       ) : (
-        renderLoading()
+        <MockMediaList />
       )}
     </Cover>
   );
@@ -55,5 +52,5 @@ const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
 
 export default connect<{}, {}, IPlaylistsChartContainerProps>(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(React.memo(PlaylistsChartPage));

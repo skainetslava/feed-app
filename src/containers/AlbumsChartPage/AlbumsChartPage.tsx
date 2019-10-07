@@ -5,8 +5,8 @@ import { Dispatch } from "redux";
 import { IStore } from "src/store";
 
 import { fetchChartRequest, IChartAction } from "src/actions/chart";
-
 import { MediaList } from "src/components/mediaList";
+import { MockMediaList } from "src/components/mock/media";
 import { Cover } from "src/components/organisms/cover";
 
 import { IAlbum } from "src/models";
@@ -31,16 +31,12 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({
     }
   }, [albums]);
 
-  const renderLoading = React.useCallback(() => {
-    return <div>Loading...</div>;
-  }, []);
-
   return (
     <Cover withActions={null} hasTabs={true}>
       {!isLoading ? (
         <MediaList className="albums-chart" type="album" list={albums} />
       ) : (
-        renderLoading()
+        <MockMediaList />
       )}
     </Cover>
   );

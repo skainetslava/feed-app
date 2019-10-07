@@ -28,11 +28,11 @@ const Cover: React.FC<ICoverProps> = ({
 }) => {
   const style = image ? { backgroundImage: `url(${image})` } : undefined;
   return (
-    <div className={cls("cover", { "cover--black ": image })}>
+    <div className={cls("cover", {"cover--black ": withActions})}>
       {hasTabs && <Tabs tabs={TABS_TITLES} className="cover_tabs" />}
       <div
         className={cls("cover_header", {
-          "cover_header_color-wrapper cover_header--height": withActions && image,
+          "cover_header_color-wrapper cover_header--height": withActions,
         })}
         style={style}
       >

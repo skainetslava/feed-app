@@ -1,0 +1,54 @@
+.mock-media-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 8px;
+  transition: 0.2s;
+  overflow: hidden;
+  font-size: 0.8rem;
+
+  &:after {
+    animation: sheen 3s forwards infinite;
+    content: '';
+    position: absolute;
+    height: 60%;
+    right: -50%;
+    left: -100%;
+    background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255, 255, 255, 0.5) 50%, rgba(229, 172, 142, 0));
+    transform: rotateZ(40deg) translate(-5em, 7.5em);
+  }
+
+  &_cover {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #494949;
+    width: 207px;
+    height: 207px;
+  }
+
+  &_play {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  &_title {
+    margin: 12px 0 4px;
+    font-weight: bold;
+    height: 1rem;
+    width: 70px;
+    background: #494949;
+  }
+
+  &_artist {
+    height: 1rem;
+    width: 40px;
+    background: #494949;
+  }
+}

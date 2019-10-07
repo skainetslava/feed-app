@@ -41,13 +41,13 @@ const Artist: React.FC<IArtistComponentProps> = ({
       </div>
       {tracks.length > 0 && (
         <>
-          {albums && albums.length && (
+          {albums && albums.length > 0 && (
             <div className="artist_albums">
               <p className="artist_albums_title">Albums</p>
               <MediaList className="artist_albums_wrapper" type="album" list={albums} />
             </div>
           )}
-          {singles && singles.length && (
+          {singles && singles.length > 0 && (
             <div className="artist_albums">
               <p className="artist_albums_title">Singles and EP's</p>
               <MediaList className="artist_albums_wrapper" type="album" list={singles} />

@@ -1,0 +1,46 @@
+.mock-album-header {
+  &_img {
+    position: relative;
+    width: 271px;
+    height: 271px;
+    background: #201f1f;
+    max-width: 320px;
+    overflow: hidden;
+
+    &:after {
+      animation: sheen 3s forwards infinite;
+      content: '';
+      position: absolute;
+      height: 60%;
+      right: -50%;
+      left: -100%;
+      background: linear-gradient(to bottom, rgba(229, 172, 142, 0), rgba(255, 255, 255, 0.5) 50%, rgba(229, 172, 142, 0));
+      transform: rotateZ(40deg) translate(-5em, 7.5em);
+    }
+  }
+
+  &_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 16px 0;
+  }
+
+  &_title {
+    height: 2rem;
+    width: 125px;
+    background: #201f1f;
+  }
+
+  &_btn {
+    margin: 16px;
+  }
+
+  &_artist {
+    height: 1rem;
+    width: 125px;
+    background: #201f1f;
+  }
+
+}

@@ -3,6 +3,7 @@ import { IAlbum } from "src/models";
 
 import "./album.scss";
 
+import { MockAlbumHeader } from "src/components/mock/albumHeader";
 import { Tracks } from "../../tracks";
 import { AlbumHeader } from "./blocks/albumHeader";
 
@@ -12,22 +13,22 @@ interface IAlbumComponentProps {
 }
 
 const Album: React.FC<IAlbumComponentProps> = ({ album, onPlayAlbum }) => {
-  if (!album) {
-    return null;
-  }
-
   return (
     <div className="album">
-      <AlbumHeader
-        title={album.title}
-        artist={album.artist}
-        releaseDate={album.releaseDate || 2019}
-        coverBigTrack={album.coverBigTrack}
-        count={album.tracks ? album.tracks.length : 0}
-        playAlbum={onPlayAlbum}
-      />
+      {album ? (
+        <AlbumHeader
+          title={album.title}
+          artist={album.artist}
+          releaseDate={album.releaseDate || 2019}
+          coverBigTrack={album.coverBigTrack}
+          count={album.tracks ? album.tracks.length : 0}
+          playAlbum={onPlayAlbum}
+        />
+      ) : (
+        <MockAlbumHeader />
+      )}
       <div className="album_tracks">
-        <Tracks tracks={album.tracks} />
+        <Tracks tracks={album ? album.tracks : []} />
       </div>
     </div>
   );

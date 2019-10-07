@@ -31,10 +31,6 @@ const ChartPage: React.FC<IChartContainerProps> = ({
     }
   }, [tracks]);
 
-  const renderLoading = (): JSX.Element => {
-    return <div>Loading...</div>;
-  };
-
   const getTitleImage = (): string | undefined => {
     if (tracks && tracks.length > 0) {
       return tracks[0].coverBigTrack;
@@ -56,7 +52,7 @@ const ChartPage: React.FC<IChartContainerProps> = ({
       title="Most popular songs"
       hasTabs={true}
     >
-      {!isLoading ? <Tracks className="chart-tracks" tracks={tracks} /> : renderLoading()}
+      <Tracks className="chart-tracks" tracks={tracks} />
     </Cover>
   );
 };

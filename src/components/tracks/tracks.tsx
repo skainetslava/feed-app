@@ -6,6 +6,7 @@ import "./tracks.scss";
 
 import { TrackContainer } from "src/containers/track";
 import { ITrack } from "src/models";
+import MockTracks from "../mock/tracks/tracks";
 
 interface ITracksProps {
   limit?: number;
@@ -17,7 +18,7 @@ interface ITracksProps {
 const Tracks: React.FC<ITracksProps> = React.memo(({ tracks, limit, className, isPlaylist }) => {
   const renderTracks = () => {
     if (!tracks || tracks.length === 0) {
-      return null;
+      return <MockTracks className={cls("tracks")}/>;
     }
     return (
       <TransitionGroup className={cls("tracks")}>
