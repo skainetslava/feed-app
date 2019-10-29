@@ -2,9 +2,9 @@ import * as React from "react";
 import { Redirect, Route, RouteProps, Router } from "react-router-dom";
 import { AppContainer } from "src/containers/app";
 
-const ChartPage = React.lazy(() => import("../containers/chartPage/ChartPage"));
-const AlbumPage = React.lazy(() => import("../containers/albumPage/AlbumPage"));
-const AlbumsChartPage = React.lazy(() => import("../containers/albumsChartPage/AlbumsChartPage"));
+const ChartPage = React.lazy(() => import("../containers/ChartPage/ChartPage"));
+const AlbumPage = React.lazy(() => import("../containers/AlbumPage/AlbumPage"));
+const AlbumsChartPage = React.lazy(() => import("../containers/AlbumsChartPage/AlbumsChartPage"));
 const ArtistPage = React.lazy(() => import("../containers/artistPage/ArtistPage"));
 const PlaylistPage = React.lazy(() => import("../containers/playlistPage/playlistPage"));
 const PlaylistsChartPage = React.lazy(() =>
