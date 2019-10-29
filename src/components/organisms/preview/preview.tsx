@@ -20,14 +20,14 @@ const Preview: React.FC<IPreviewProps> = React.memo(
     const shapeClass = type === "album" ? "preview_square" : "preview_circle";
     return (
       <div className={cls(className, "preview")}>
-        <Link to={`/${type}/${id}`}>
+        <Link to={`/${type}/${id}`} aria-label="Go to artist">
           <div className={cls(shapeClass, "preview_cover")}>
             <IconPlay className="preview_play" w={36} h={36} />
             <img className={cls(shapeClass, "preview_img")} src={cover} alt={title} />
           </div>
           {title && <p className="preview_title">{title}</p>}
         </Link>
-        <Link to={`/artist/${artistId}`} className="preview_artist">
+        <Link to={`/artist/${artistId}`} aria-label="Go to artist" className="preview_artist">
           {artist}
         </Link>
       </div>

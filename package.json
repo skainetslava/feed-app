@@ -22,6 +22,7 @@
     "path": "^0.12.7",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-loadable": "^5.5.0",
     "react-motion": "^0.5.2",
     "react-redux": "^6.0.0",
     "react-router-dom": "5.0.1",
@@ -45,6 +46,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --color --hot --config config/webpack.dev.js",
     "build": "webpack -p  --inline --progress --color --hot --config config/webpack.prod.js",
+    "buildServer": "npm run build npm start",
     "start": "node server.js"
   },
   "devDependencies": {

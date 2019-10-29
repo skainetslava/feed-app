@@ -12,7 +12,7 @@ interface IMenuItemProps {
 const MenuItem: React.FC<IMenuItemProps> = ({ link, icon, title }) => {
   return (
     <li>
-      <Link className="menu-item" to={link}>
+      <Link className="menu-item" to={link} aria-label="Go to page">
         <div className="menu-item_icon">{icon}</div>
         <span className="menu-item_title">{title}</span>
       </Link >

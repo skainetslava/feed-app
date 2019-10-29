@@ -10,7 +10,11 @@ interface ITabItemProps {
 
 const TabItem: React.FC<ITabItemProps> = ({ link, title }) => {
   return (
-    <Link to={link} className="tab-item_link"><li className="tab-item">{title}</li></Link>
+    <li className="tab-item">
+      <Link to={link} aria-label="Go to another section" className="tab-item_link">
+        {title}
+      </Link>
+    </li>
   );
 };
 

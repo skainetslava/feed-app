@@ -33,7 +33,7 @@ const Controls: React.FC<IControlsProps> = ({
   onNextAudio,
   onPrevAudio,
   onRepeatAudio,
-  onShufflePlaylist
+  onShufflePlaylist,
 }) => {
   return (
     <div className={cls(className, "player_controls")}>
@@ -45,12 +45,12 @@ const Controls: React.FC<IControlsProps> = ({
       />
       <IconControlPrev className="player_prev" w={13} h={12} onClick={onPrevAudio} />
       {!isPlaying && (
-        <button className="player_play" onClick={onPlayAudio}>
+        <button className="player_play" onClick={onPlayAudio} aria-label="play">
           <IconPlay w={18} h={18} />
         </button>
       )}
       {isPlaying && (
-        <button className="player_pause" onClick={onPauseAudio}>
+        <button className="player_pause" onClick={onPauseAudio} aria-label="pause">
           <IconPause w={18} h={18} />
         </button>
       )}

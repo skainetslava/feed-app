@@ -31,9 +31,10 @@ const configureStore = (initialState?: IStore) => {
         sagaMiddleware,
     ];
 
-    let composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-    if (process.env.NODE_ENV === "production") {
-        composeEnhancers = compose;
+    let composeEnhancers = compose;
+
+    if (process.env.NODE_ENV !== "production") {
+        composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
         middlewares.push(logger as any);
     }
 

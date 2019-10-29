@@ -12,11 +12,13 @@ interface ITabsProps {
 const Tabs: React.FC<ITabsProps> = ({ tabs, className }) => {
   const tabsKeys = Object.values(tabs);
   return (
-    <ul className={cls(className, "tabs")}>
-      {tabsKeys.map((item, index) => {
-        return <TabItem key={index} title={item.title} link={item.link} />;
-      })}
-    </ul>
+    <nav>
+      <ul className={cls(className, "tabs")}>
+        {tabsKeys.map((item, index) => {
+          return <TabItem key={index} title={item.title} link={item.link} />;
+        })}
+      </ul>
+    </nav>
   );
 };
 

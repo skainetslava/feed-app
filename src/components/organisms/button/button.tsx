@@ -12,7 +12,7 @@ interface IButton {
 
 const Button: React.FC<IButton> = React.memo(({ title, className, color, onClick }) => {
   return (
-    <button className={cls(className, "btn", `btn--${color}`)} onClick={onClick}>
+    <button className={cls(className, "btn", `btn--${color}`)} onClick={onClick} aria-label={title}>
       {title}
     </button>
   );

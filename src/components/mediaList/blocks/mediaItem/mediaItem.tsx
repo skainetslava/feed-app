@@ -13,7 +13,7 @@ interface IMediaItemComponentProps {
 const MediaItem: React.FC<IMediaItemComponentProps> = ({ type, mediaItem }) => {
     return (
         <div >
-            <Link to={`/${type}/${mediaItem.id}`} className="media-item">
+            <Link to={`/${type}/${mediaItem.id}`} className="media-item" aria-label="Go to listen">
                 <div className="media-item_cover">
                     <IconPlay className="media-item_play" w={36} h={36} />
                     <img className="media-item_cover" src={mediaItem.coverBigTrack} alt={mediaItem.title} />

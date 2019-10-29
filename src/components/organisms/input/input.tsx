@@ -39,6 +39,7 @@ const Input: React.SFC<IInputProps> = ({ value, placeholder, disabled, onChange,
   return (
     <input
       type="text"
+      name="text"
       className={cls("input")}
       value={localValue}
       placeholder={placeholder}
