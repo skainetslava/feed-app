@@ -12,6 +12,11 @@ $minTabletScreen: 768px;
   &_wrapper {
     position: fixed;
   }
+
+  &_link {
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media only screen and (max-width: $minTabletScreen) {
