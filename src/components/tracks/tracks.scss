@@ -1,7 +1,10 @@
 .chart-tracks {
-    margin: 32px;
+    margin: 0 32px;
 }
 
+.tracks {
+    padding: 1rem 0;
+}
 
 @media only screen and (max-width: 768px) {
     .chart-tracks {
