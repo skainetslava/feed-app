@@ -3,21 +3,17 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { Dispatch } from "redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { RouteComponentProps } from "react-router-dom";
-
-import { fetchArtistData, playPage } from "src/actions/artist";
 
 import { Artist } from "src/components/pages/artist";
 import { IAlbum, IArtist, ITrack } from "src/models";
 
 import {
-  getArtistAlbums,
-  getArtistData,
-  getArtistLoadingStatus,
-  getArtistMostPopularTracks,
-} from "src/reducers/artist/selectors";
+  artistActions,
+  artistSelectors,
+} from "src/redux/artist";
 
 interface IRouteProps {
   id: string;
@@ -66,15 +62,15 @@ const ArtistPage: React.FC<IArtistContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  artist: getArtistData(state),
-  tracks: getArtistMostPopularTracks(state),
-  albums: getArtistAlbums(state),
-  isLoading: getArtistLoadingStatus(state),
+  artist: artistSelectors.getArtistData(state),
+  tracks: artistSelectors.getArtistMostPopularTracks(state),
+  albums: artistSelectors.getArtistAlbums(state),
+  isLoading: artistSelectors.getArtistLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onFetchArtistData: (id: string) => dispatch(fetchArtistData(id)),
-  onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
+  onFetchArtistData: (id: string) => dispatch(artistActions.fetchArtistData(id)),
+  onPlayPage: (tracks: ITrack[]) => dispatch(artistActions.playPage(tracks)),
 });
 
 export default connect<{}, {}, IArtistContainerProps>(

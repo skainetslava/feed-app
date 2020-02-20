@@ -2,15 +2,14 @@ import * as React from "react";
 
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
-import { fetchChartRequest, IChartAction } from "src/actions/chart";
+import { chartActions, chartSelectors} from "src/redux/chart";
 
 import { MediaList } from "src/components/mediaList";
 import { MockMediaList } from "src/components/mock/media";
 import { Cover } from "src/components/organisms/cover";
 
-import { getChartLoadingStatus, getChartPlaylists } from "src/reducers/chart/selectors";
 
 interface IPlaylistsChartContainerProps {
   dispatch?: any;
@@ -42,15 +41,15 @@ const PlaylistsChartPage: React.FC<IPlaylistsChartContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  playlists: getChartPlaylists(state),
-  isLoading: getChartLoadingStatus(state),
+  playlists: chartSelectors.getChartPlaylists(state),
+  isLoading: chartSelectors.getChartLoadingStatus(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
-  onFetchChart: () => dispatch(fetchChartRequest()),
+const mapDispatchToProps = (dispatch: Dispatch<chartActions.IChartAction>) => ({
+  onFetchChart: () => dispatch(chartActions.fetchChartRequest()),
 });
 
 export default connect<{}, {}, IPlaylistsChartContainerProps>(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(React.memo(PlaylistsChartPage));

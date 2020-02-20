@@ -4,16 +4,14 @@ import { RouteComponentProps } from "react-router-dom";
 import { Dispatch } from "redux";
 
 import { IArtist, ITrack } from "src/models";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { CSSTransition } from "react-transition-group";
-import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { SearchResults } from "src/components/pages/search/blocks/searchResults";
 import {
-  getSearchArtists,
-  getSearchingValue,
-  getSearchTracks,
-} from "src/reducers/search/selectors";
+  searchActions,
+  searchSelectors,
+} from "src/redux/search";
 
 export interface ISearchingRouteProps {
   value: string;
@@ -24,7 +22,7 @@ interface ISearchResultsContainerProps extends RouteComponentProps<ISearchingRou
   tracks?: ITrack[];
   artists?: IArtist[];
   isLoading?: boolean;
-  onRedirectSearchingValue?: (redirectData: IRedirectProps) => void;
+  onRedirectSearchingValue?: (redirectData: searchActions.IRedirectProps) => void;
 }
 
 const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
@@ -49,13 +47,14 @@ const SearchResultsContainer: React.FC<ISearchResultsContainerProps> = ({
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onRedirectSearchingValue: (data: IRedirectProps) => dispatch(redirectBySearchingValue(data)),
+  onRedirectSearchingValue:
+    (data: searchActions.IRedirectProps) => dispatch(searchActions.redirectBySearchingValue(data)),
 });
 
 const mapStateToProps = (state: IStore) => ({
-  searchingValue: getSearchingValue(state),
-  tracks: getSearchTracks(state),
-  artists: getSearchArtists(state),
+  searchingValue: searchSelectors.getSearchingValue(state),
+  tracks: searchSelectors.getSearchTracks(state),
+  artists: searchSelectors.getSearchArtists(state),
 });
 
 export default connect<{}, {}, ISearchResultsContainerProps>(

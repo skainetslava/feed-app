@@ -1,11 +1,11 @@
 import * as React from "react";
 
 import { connect } from "react-redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { PlaylistModal } from "src/components/organisms/playlistModal";
 import { ITrack } from "src/models";
-import { getPlaylist } from "src/reducers/selectors";
+import { playerSelectors } from "src/redux/player";
 
 interface IPlaylistContainerProps {
   tracks?: ITrack[];
@@ -33,7 +33,7 @@ const PlaylistModalContainer: React.FC<IPlaylistContainerProps> = ({ tracks, han
 };
 
 const mapStateToProps = (state: IStore) => ({
-  tracks: getPlaylist(state),
+  tracks: playerSelectors.getPlaylist(state),
 });
 
 export default connect<{}, {}, IPlaylistContainerProps>(

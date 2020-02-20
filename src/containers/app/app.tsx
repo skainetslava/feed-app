@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { RouteComponentProps, withRouter } from "react-router";
 
@@ -9,7 +9,7 @@ import { PlayerContainer } from "src/containers/player";
 
 import { CurrentAudioProvider } from "src/context"
 import { ITrack } from "src/models";
-import { getCurrentAudio } from "src/reducers/selectors";
+import { playerSelectors } from "src/redux/player";
 
 import "./app.scss";
 
@@ -36,7 +36,7 @@ const AppContainer: React.FC<IAppContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-    currentAudio: getCurrentAudio(state),
+    currentAudio: playerSelectors.getCurrentAudio(state),
 });
 
 export default withRouter(connect<{}, {}, IAppContainerProps>(mapStateToProps, {})(AppContainer));

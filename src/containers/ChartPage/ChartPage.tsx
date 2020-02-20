@@ -2,19 +2,17 @@ import * as React from "react";
 
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
-import { IPlayPage, playPage } from "src/actions/artist";
-import { fetchChartRequest, IChartAction } from "src/actions/chart";
 import { Cover } from "src/components/organisms/cover";
 import { Tracks } from "src/components/tracks";
 import { ITrack } from "src/models";
-import { getChartLoadingStatus, getChartTracks } from "src/reducers/chart/selectors";
+import { artistActions } from "src/redux/artist";
+import { chartActions, chartSelectors} from "src/redux/chart";
 
 interface IChartContainerProps {
   dispatch?: any;
   tracks?: ITrack[];
-  isLoading?: boolean;
   onFetchChart?: () => void;
   onPlayPage: (t: ITrack[]) => void;
 }
@@ -22,7 +20,6 @@ interface IChartContainerProps {
 const ChartPage: React.FC<IChartContainerProps> = ({
   tracks,
   onFetchChart,
-  isLoading,
   onPlayPage,
 }) => {
   React.useEffect(() => {
@@ -58,13 +55,13 @@ const ChartPage: React.FC<IChartContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  tracks: getChartTracks(state),
-  isLoading: getChartLoadingStatus(state),
+  tracks: chartSelectors.getChartTracks(state),
+  isLoading: chartSelectors.getChartLoadingStatus(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IChartAction | IPlayPage>) => ({
-  onFetchChart: () => dispatch(fetchChartRequest()),
-  onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
+const mapDispatchToProps = (dispatch: Dispatch<chartActions.IChartAction | artistActions.IPlayPage>) => ({
+  onFetchChart: () => dispatch(chartActions.fetchChartRequest()),
+  onPlayPage: (tracks: ITrack[]) => dispatch(artistActions.playPage(tracks)),
 });
 
 export default connect<{}, {}, IChartContainerProps>(

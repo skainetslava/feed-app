@@ -3,23 +3,14 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
 import { ITrack } from "src/models";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { Track } from "src/components/tracks/blocks/track";
 
 import {
-  continueAudio,
-  pauseAudio,
-  playAudio,
-  updateDuration,
-  updatePlaylist,
-} from "src/actions/player";
-import {
-  getCurrentAudio,
-  getDuration,
-  getPlayerAudioStatus,
-  getPlaylist,
-} from "src/reducers/selectors";
+  playerActions,
+  playerSelectors,
+} from "src/redux/player";
 
 interface ITrackContainerProps {
   tracks: ITrack[];
@@ -63,18 +54,18 @@ const TrackContainer: React.FC<ITrackContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  currentAudio: getCurrentAudio(state),
-  isPlaying: getPlayerAudioStatus(state),
-  playlist: getPlaylist(state),
-  timing: getDuration(state),
+  currentAudio: playerSelectors.getCurrentAudio(state),
+  isPlaying: playerSelectors.getPlayerAudioStatus(state),
+  playlist: playerSelectors.getPlaylist(state),
+  timing: playerSelectors.getDuration(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onContinueAudio: () => dispatch(continueAudio()),
-  onPauseAudio: () => dispatch(pauseAudio()),
-  onUpdateDuration: (time: number) => dispatch(updateDuration(time)),
-  onPlayAudio: (track: ITrack) => dispatch(playAudio(track)),
-  onUpdatePlaylist: (tracks: ITrack[]) => dispatch(updatePlaylist(tracks)),
+  onContinueAudio: () => dispatch(playerActions.continueAudio()),
+  onPauseAudio: () => dispatch(playerActions.pauseAudio()),
+  onUpdateDuration: (time: number) => dispatch(playerActions.updateDuration(time)),
+  onPlayAudio: (track: ITrack) => dispatch(playerActions.playAudio(track)),
+  onUpdatePlaylist: (tracks: ITrack[]) => dispatch(playerActions.updatePlaylist(tracks)),
 });
 
 export default connect<{}, {}, ITrackContainerProps>(

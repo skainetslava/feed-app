@@ -2,16 +2,16 @@ import * as React from "react";
 
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
-import { fetchChartRequest, IChartAction } from "src/actions/chart";
 import { MediaList } from "src/components/mediaList";
 import { MockMediaList } from "src/components/mock/media";
 import { Cover } from "src/components/organisms/cover";
+import { chartActions, chartSelectors } from "src/redux/chart";
+
 
 import { IAlbum } from "src/models";
 
-import { getChartAlbums, getChartLoadingStatus } from "src/reducers/chart/selectors";
 
 interface IAlbumsChartContainerProps {
   dispatch?: any;
@@ -43,12 +43,12 @@ const AlbumsChartPage: React.FC<IAlbumsChartContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  albums: getChartAlbums(state),
-  isLoading: getChartLoadingStatus(state),
+  albums: chartSelectors.getChartAlbums(state),
+  isLoading: chartSelectors.getChartLoadingStatus(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<IChartAction>) => ({
-  onFetchChart: () => dispatch(fetchChartRequest()),
+const mapDispatchToProps = (dispatch: Dispatch<chartActions.IChartAction>) => ({
+  onFetchChart: () => dispatch(chartActions.fetchChartRequest()),
 });
 
 export default connect<{}, {}, IAlbumsChartContainerProps>(

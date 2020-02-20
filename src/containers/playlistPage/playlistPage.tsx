@@ -2,20 +2,19 @@ import * as React from "react";
 
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import { RouteComponentProps } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { playPage } from "src/actions/artist";
-import { fetchPlaylistData } from "src/actions/playlist";
+import { artistActions } from "src/redux/artist";
+import { playlistActions, playlistSelectors  } from "src/redux/playlist";
 
 import { Playlist } from "src/components/pages/playlist";
 import { useBackground } from "src/containers/hooks/useBackground";
 
 import { IPlaylist, ITrack } from "src/models";
 
-import { getPlaylistPageData, getPlaylistPageLoadingStatus } from "src/reducers/playlist/selectors";
 
 interface IRouteProps {
   id: string;
@@ -53,13 +52,13 @@ const PlaylistPage: React.FC<IPlaylistContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  playlist: getPlaylistPageData(state),
-  isLoading: getPlaylistPageLoadingStatus(state),
+  playlist: playlistSelectors.getPlaylistPageData(state),
+  isLoading: playlistSelectors.getPlaylistPageLoadingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onFetchPlaylistData: (id: string) => dispatch(fetchPlaylistData(id)),
-  onPlayPage: (tracks: ITrack[]) => dispatch(playPage(tracks)),
+  onFetchPlaylistData: (id: string) => dispatch(playlistActions.fetchPlaylistData(id)),
+  onPlayPage: (tracks: ITrack[]) => dispatch(artistActions.playPage(tracks)),
 });
 
 export default connect<{}, {}, IPlaylistContainerProps>(

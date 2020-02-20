@@ -11,31 +11,14 @@ import { Player } from "src/components/organisms/player";
 import { Modal } from "src/components/organisms/portalModal";
 
 import { ITrack } from "src/models";
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
 import {
-  changeVolume,
-  continueAudio,
-  pauseAudio,
-  prepareNextAudio,
-  preparePrevAudio,
-  repeatAudio,
-  shufflePlaylist,
-  updateDuration,
-} from "src/actions/player";
+  playerActions,
+  playerSelectors,
+} from "src/redux/player";
 
 import { formateInMinutes } from "src/helpers/formateInMinutes";
-
-import {
-  getCurrentAudio,
-  getDuration,
-  getPausingAudioStatus,
-  getPlayerAudioStatus,
-  getPlaylist,
-  getRepeatStatus,
-  getShuffleStatus,
-  getVolume,
-} from "src/reducers/player/selectors";
 
 interface IPlayerContainerProps {
   currentAudio?: ITrack;
@@ -252,25 +235,25 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  currentAudio: getCurrentAudio(state),
-  isPlaying: getPlayerAudioStatus(state),
-  playlist: getPlaylist(state),
-  timing: getDuration(state),
-  isPausing: getPausingAudioStatus(state),
-  volume: getVolume(state),
-  isRepeat: getRepeatStatus(state),
-  isShuffled: getShuffleStatus(state),
+  currentAudio: playerSelectors.getCurrentAudio(state),
+  isPlaying: playerSelectors.getPlayerAudioStatus(state),
+  playlist: playerSelectors.getPlaylist(state),
+  timing: playerSelectors.getDuration(state),
+  isPausing: playerSelectors.getPausingAudioStatus(state),
+  volume: playerSelectors.getVolume(state),
+  isRepeat: playerSelectors.getRepeatStatus(state),
+  isShuffled: playerSelectors.getShuffleStatus(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onContinueAudio: () => dispatch(continueAudio()),
-  onPauseAudio: () => dispatch(pauseAudio()),
-  onUpdateDuration: (time: number) => dispatch(updateDuration(time)),
-  onChangeVolumePlayer: (value: number) => dispatch(changeVolume(value)),
-  onGoToPrevAudio: () => dispatch(preparePrevAudio()),
-  onGoToNextAudio: () => dispatch(prepareNextAudio()),
-  onShufflePlaylist: () => dispatch(shufflePlaylist()),
-  onRepeatAudio: () => dispatch(repeatAudio()),
+  onContinueAudio: () => dispatch(playerActions.continueAudio()),
+  onPauseAudio: () => dispatch(playerActions.pauseAudio()),
+  onUpdateDuration: (time: number) => dispatch(playerActions.updateDuration(time)),
+  onChangeVolumePlayer: (value: number) => dispatch(playerActions.changeVolume(value)),
+  onGoToPrevAudio: () => dispatch(playerActions.preparePrevAudio()),
+  onGoToNextAudio: () => dispatch(playerActions.prepareNextAudio()),
+  onShufflePlaylist: () => dispatch(playerActions.shufflePlaylist()),
+  onRepeatAudio: () => dispatch(playerActions.repeatAudio()),
 });
 
 export default connect<{}, {}, IPlayerContainerProps>(

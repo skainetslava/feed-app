@@ -2,18 +2,16 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 
-import { IStore } from "src/store";
+import { IStore } from "src/redux/store";
 
-import { searchData } from "src/actions/search/tracks";
-import { IRedirectProps, redirectBySearchingValue } from "src/actions/search/url";
 import { Search } from "src/components/pages/search";
-import { getSearchingValue } from "src/reducers/search/selectors";
+import { searchActions, searchSelectors } from "src/redux/search";
 
 interface IChartContainerProps {
   searchingValue?: string;
   isLoading?: boolean;
   onSearchData?: (v: string) => void;
-  onRedirectSearchingValue?: (v: IRedirectProps) => void;
+  onRedirectSearchingValue?: (v: searchActions.IRedirectProps) => void;
 }
 
 const SearchPage: React.FC<IChartContainerProps> = ({
@@ -39,12 +37,13 @@ const SearchPage: React.FC<IChartContainerProps> = ({
 };
 
 const mapStateToProps = (state: IStore) => ({
-  searchingValue: getSearchingValue(state),
+  searchingValue: searchSelectors.getSearchingValue(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onSearchData: (value: string) => dispatch(searchData(value)),
-  onRedirectSearchingValue: (data: IRedirectProps) => dispatch(redirectBySearchingValue(data)),
+  onSearchData: (value: string) => dispatch(searchActions.searchData(value)),
+  onRedirectSearchingValue:
+    (data: searchActions.IRedirectProps) => dispatch(searchActions.redirectBySearchingValue(data)),
 });
 
 export default connect<{}, {}, IChartContainerProps>(
