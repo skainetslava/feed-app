@@ -1,35 +1,38 @@
 html,
 body {
-    min-width: 100%;
-    min-height: 100vh;
-    margin: 0px;
-    padding: 0px;
-    background: #181818;
-    color: white;
+  min-width: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  background: #181818;
+  color: white;
 }
 
 html {
-    font-size: 16px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-size: 16px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+    sans-serif;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 body {
-    background-image: linear-gradient(to right bottom, #89102a, black), linear-gradient(transparent, black 70%);
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-image: linear-gradient(to right bottom, #89102a, black),
+    linear-gradient(transparent, black 70%);
+  text-align: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+    sans-serif;
 }
 
 @media only screen and (max-width: 768px) {
-    html {
-        font-size: 12px;
-    }
+  html {
+    font-size: 14px;
+  }
 }

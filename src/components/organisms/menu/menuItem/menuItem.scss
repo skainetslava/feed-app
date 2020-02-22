@@ -4,7 +4,7 @@
   padding: 6px 0;
   letter-spacing: 1px;
   border-left: 4px solid transparent;
-  transition: .3s;
+  transition: 0.3s;
 
   &:hover {
     border-left: 4px solid #1db954;
@@ -29,8 +29,11 @@
 
 @media only screen and (max-width: 768px) {
   .menu-item {
+    border: none;
+
     &_icon {
-      padding-left: 12px;
+      padding: 0;
+      margin: 0 auto;
     }
     &_title {
       display: none;

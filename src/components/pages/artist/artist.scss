@@ -25,3 +25,11 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .artist {
+    &_albums {
+      margin: 0 24px;
+    }
+  }
+}

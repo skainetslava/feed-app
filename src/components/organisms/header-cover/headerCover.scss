@@ -19,8 +19,9 @@
 
     &_listeners {
       grid-area: fans;
+      align-self: flex-end;
       font-size: 0.7rem;
-      letter-spacing: .16em;
+      letter-spacing: 0.16em;
       opacity: 0.6;
       z-index: 2;
     }
