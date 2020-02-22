@@ -14,7 +14,7 @@ $baseBarColor: #404040;
   //position: fixed;
   height: 91px;
   width: 100%;
-  
+
   bottom: 0;
   padding: 12px;
   box-sizing: border-box;
@@ -39,7 +39,6 @@ $baseBarColor: #404040;
     bottom: 0;
     border-radius: 2px;
     background: #b3b3b3;
-    transition: 0.2s;
   }
 
   &_slider {
@@ -50,9 +49,8 @@ $baseBarColor: #404040;
     left: 0%;
     bottom: -4px;
     background: #fff;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     opacity: 0;
-    transition: 0.2s;
     cursor: pointer;
   }
 }

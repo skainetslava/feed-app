@@ -19,6 +19,7 @@ export const fetchPlaylistDataApi = (id: number): Promise<IPlaylistData | void> 
           artistId: item.artist.id,
           duration: item.duration,
           preview: item.preview,
+          coverBigTrack: data.picture_big,
         }),
       );
 

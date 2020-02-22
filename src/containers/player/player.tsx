@@ -19,6 +19,7 @@ import {
 } from "src/redux/player";
 
 import { formateInMinutes } from "src/helpers/formateInMinutes";
+import { useAnimationFrame } from "./hooks";
 
 interface IPlayerContainerProps {
   currentAudio?: ITrack;
@@ -75,6 +76,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
   const isInitMount = React.useRef(true);
   const [isShowPlaylist, setShowPlaylist] = React.useState<boolean>(false);
+  const [leftPosition, setLeftPosition] = React.useState<number>(0)
 
   React.useEffect(() => {
     audio && onPausePlayer();
@@ -112,6 +114,11 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
   React.useEffect(() => {
     audio.volume(volume / 100);
   }, [volume]);
+
+  useAnimationFrame(() => {
+    const newleftPosition = audio ? ( audio.seek() / audio.duration()) * 100 : (100 / 31) * audio.duration();
+    setLeftPosition(newleftPosition);
+  });
 
   const syncCurrentTime = (): void => {
     timer = setInterval(() => {
@@ -194,7 +201,6 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     setShowPlaylist(!isShowPlaylist);
   };
 
-  const leftPosition: number = audio ? (100 / audio.duration()) * timing : (100 / 31) * timing;
   const currentDuration: string = formateInMinutes(timing);
   const duration: string = audio
     ? formateInMinutes(audio.duration().toFixed())
