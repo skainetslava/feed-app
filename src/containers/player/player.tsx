@@ -73,10 +73,10 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
   if (!currentAudio) {
     currentAudio = initialAudio;
   }
-
+  const initDuration = timing / 31 * 100;
   const isInitMount = React.useRef(true);
   const [isShowPlaylist, setShowPlaylist] = React.useState<boolean>(false);
-  const [leftPosition, setLeftPosition] = React.useState<number>(0)
+  const [leftPosition, setLeftPosition] = React.useState<number>(initDuration)
 
   React.useEffect(() => {
     audio && onPausePlayer();
@@ -116,13 +116,15 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
   }, [volume]);
 
   useAnimationFrame(() => {
-    const newleftPosition = audio ? ( audio.seek() / audio.duration()) * 100 : (100 / 31) * audio.duration();
-    setLeftPosition(newleftPosition);
+    if (isPlaying) {
+      const newleftPosition = audio ? (audio.seek() / audio.duration()) * 100 : (timing / 31) * 100;
+      setLeftPosition(newleftPosition);
+    }
   });
 
   const syncCurrentTime = (): void => {
     timer = setInterval(() => {
-      onUpdateDuration && onUpdateDuration(Math.round(audio.seek()));
+      onUpdateDuration && onUpdateDuration(audio.seek());
     }, 1000);
   };
 
@@ -155,6 +157,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
   const handlePause = (): void => {
     onPauseAudio && onPauseAudio();
+    onUpdateDuration!(audio.seek())
     clearInterval(timer);
   };
 
