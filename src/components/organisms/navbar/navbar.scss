@@ -5,7 +5,7 @@ $minTabletScreen: 768px;
   width: 230px;
   padding-top: 24px;
   overflow: hidden;
-  
+
   background-color: rgba(0, 0, 0, 0.8);
   transition: 0.3s;
 
@@ -45,7 +45,7 @@ $minTabletScreen: 768px;
   padding-left: 24px;
 
   &_title {
-    margin-left: 4px;
+    margin-left: 12px;
     font-size: 1.5rem;
     font-weight: 700;
   }

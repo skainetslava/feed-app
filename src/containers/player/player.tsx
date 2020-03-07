@@ -13,10 +13,7 @@ import { Modal } from "src/components/organisms/portalModal";
 import { ITrack } from "src/models";
 import { IStore } from "src/redux/store";
 
-import {
-  playerActions,
-  playerSelectors,
-} from "src/redux/player";
+import { playerActions, playerSelectors } from "src/redux/player";
 
 import { formateInMinutes } from "src/helpers/formateInMinutes";
 import { useAnimationFrame } from "./hooks";
@@ -73,10 +70,10 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
   if (!currentAudio) {
     currentAudio = initialAudio;
   }
-  const initDuration = timing / 31 * 100;
+  const initDuration = (timing / 31) * 100;
   const isInitMount = React.useRef(true);
   const [isShowPlaylist, setShowPlaylist] = React.useState<boolean>(false);
-  const [leftPosition, setLeftPosition] = React.useState<number>(initDuration)
+  const [leftPosition, setLeftPosition] = React.useState<number>(initDuration);
 
   React.useEffect(() => {
     audio && onPausePlayer();
@@ -157,7 +154,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
 
   const handlePause = (): void => {
     onPauseAudio && onPauseAudio();
-    onUpdateDuration!(audio.seek())
+    onUpdateDuration!(audio.seek());
     clearInterval(timer);
   };
 
@@ -204,6 +201,12 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     setShowPlaylist(!isShowPlaylist);
   };
 
+  const handleChangeSeek = (position: number): void => {
+    const seek = audio ? (position / 100) * audio.duration() : (position * 31) / timing / 100;
+    audio.seek(seek);
+    onUpdateDuration!(audio.seek());
+  };
+
   const currentDuration: string = formateInMinutes(timing);
   const duration: string = audio
     ? formateInMinutes(audio.duration().toFixed())
@@ -228,6 +231,7 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
         volumeLevel={volume}
         onChangeVolume={handleChangeVolume}
         onClickPlaylist={handleClickPlaylist}
+        onChangeSeek={handleChangeSeek}
       />
 
       <CSSTransition in={isShowPlaylist} timeout={500} classNames="playlist-transition">
@@ -267,5 +271,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 export default connect<{}, {}, IPlayerContainerProps>(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(React.memo(PlayerContainer));

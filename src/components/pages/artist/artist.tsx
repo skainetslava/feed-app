@@ -36,20 +36,20 @@ const Artist: React.FC<IArtistComponentProps> = ({
       listeners={artist.fans}
     >
       <div className="artist_tracks">
-        <p className="artist_tracks_title">Popular</p>
+        <div className="artist_tracks_title">Popular</div>
         <Tracks className="artist_tracks_wrapper" tracks={tracks} />
       </div>
       {tracks.length > 0 && (
         <>
           {albums && albums.length > 0 && (
             <div className="artist_albums">
-              <p className="artist_albums_title">Albums</p>
+              <div className="artist_albums_title">Albums</div>
               <MediaList className="artist_albums_wrapper" type="album" list={albums} />
             </div>
           )}
           {singles && singles.length > 0 && (
             <div className="artist_albums">
-              <p className="artist_albums_title">Singles and EP's</p>
+              <div className="artist_albums_title">Singles and EP's</div>
               <MediaList className="artist_albums_wrapper" type="album" list={singles} />
             </div>
           )}

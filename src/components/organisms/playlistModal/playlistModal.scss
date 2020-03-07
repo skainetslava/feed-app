@@ -1,10 +1,11 @@
 .playlist-modal {
   position: absolute;
   top: 0;
-  height: calc(100% - 90px);
+  height: calc(100% - 77px);
   width: calc(100% - 230px);
   overflow-y: scroll;
-  background-image: linear-gradient(to right bottom, rgb(18, 18, 18), rgb(0, 0, 0)), linear-gradient(transparent, rgb(0, 0, 0) 70%);
+  background-image: linear-gradient(to right bottom, rgb(18, 18, 18), rgb(0, 0, 0)),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
   z-index: 4;
 
   @media only screen and (max-width: 768px) {

@@ -27,6 +27,7 @@ interface IPlayerProps {
   onShufflePlaylist: () => void;
   onChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void;
   onClickPlaylist: () => void;
+  onChangeSeek: (v: number) => void;
 }
 
 const Player: React.FC<IPlayerProps> = ({
@@ -47,6 +48,7 @@ const Player: React.FC<IPlayerProps> = ({
   onPrevAudio,
   onRepeatAudio,
   onShufflePlaylist,
+  onChangeSeek,
 }) => {
   return (
     <div className={cls(className, "player")}>
@@ -71,6 +73,7 @@ const Player: React.FC<IPlayerProps> = ({
         leftPosition={positionTrack}
         currentDuration={currentDuration}
         duration={duration}
+        onChangeSeek={onChangeSeek}
       />
       <Volume
         volumeLevel={volumeLevel}

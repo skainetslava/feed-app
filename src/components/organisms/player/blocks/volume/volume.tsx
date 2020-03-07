@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { IconPlaylist } from "src/components/icons/playlist";
 import { IconVolume } from "src/components/icons/volume";
+import { useMoving } from "../useMoving";
 
 import "./volume.scss";
 
@@ -15,6 +16,13 @@ interface IVolumeProps {
 
 const Volume: React.FC<IVolumeProps> = React.memo(
   ({ className, volumeLevel, onChangeVolume, onClickPlaylist }) => {
+    const progressRef = React.useRef<HTMLDivElement>(null);
+
+    const { handleMouseUp, handleMouseDown, handleMouseMove, positionX } = useMoving({
+      position: volumeLevel,
+      ref: progressRef,
+    });
+
     return (
       <div className={cls(className, "player_right-side")}>
         <IconPlaylist
@@ -25,11 +33,15 @@ const Volume: React.FC<IVolumeProps> = React.memo(
         />
         <div className={cls(className, "player_volume")}>
           <IconVolume className="player_volume_logo" w={20} h={20} />
-          <div className="progress-wrapper" onClick={onChangeVolume}>
-            <div className="progress">
-              <div className="progress_base" style={{ width: `${volumeLevel}%` }}></div>
-              <div className="progress_slider" style={{ left: `${volumeLevel - 1}%` }}></div>
-            </div>
+          <div
+            ref={progressRef}
+            className="progress"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+          >
+            <div className="progress_base" style={{ width: `${positionX}%` }}></div>
+            <div className="progress_slider" style={{ left: `${positionX - 10}%` }}></div>
           </div>
         </div>
       </div>
