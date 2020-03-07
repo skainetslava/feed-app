@@ -31,7 +31,7 @@ export function useMoving<T extends HTMLElement>({ position, ref, onChange }: IP
     }
 
     const x = e.touches ? e.touches[0].pageX : e.pageX;
-    const rect = ref.current.getBoundingClientRect();
+    const rect = ref.current.getBoundingClientRect() as DOMRect;
     const percentage = ((x - rect.x) / ref.current.offsetWidth) * 100;
 
     let computed = percentage > 100 ? 100 : percentage;
