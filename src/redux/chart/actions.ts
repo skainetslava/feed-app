@@ -3,41 +3,40 @@ import { FETCH_CHART_FAILURE, FETCH_CHART_REQUEST, FETCH_CHART_SUCCESS } from ".
 import { IChartData } from "src/services/chart/chartAPI";
 
 export interface IFetchChartRequest {
-    type: FETCH_CHART_REQUEST;
+  type: FETCH_CHART_REQUEST;
 }
 
 export interface IFetchChartSuccess {
-    type: FETCH_CHART_SUCCESS;
+  type: FETCH_CHART_SUCCESS;
 }
 
 export interface IFetchChartFailure {
-    type: FETCH_CHART_FAILURE;
+  type: FETCH_CHART_FAILURE;
 }
 
-export type ChartActionType = FETCH_CHART_FAILURE |
-    FETCH_CHART_REQUEST | FETCH_CHART_SUCCESS;
+export type ChartActionType = FETCH_CHART_FAILURE | FETCH_CHART_REQUEST | FETCH_CHART_SUCCESS;
 
 export interface IChartAction {
-    type: ChartActionType;
-    payload?: any;
+  type: ChartActionType;
+  payload?: any;
 }
 
 export function fetchChartRequest(): IChartAction {
-    return {
-        type: FETCH_CHART_REQUEST,
-    };
+  return {
+    type: FETCH_CHART_REQUEST,
+  };
 }
 
 export function fetchChartSuccess(value: IChartData): IChartAction {
-    return {
-        type: FETCH_CHART_SUCCESS,
-        payload: value,
-    };
+  return {
+    type: FETCH_CHART_SUCCESS,
+    payload: value,
+  };
 }
 
 export function fetchChartFailure(value: string): IChartAction {
-    return {
-        type: FETCH_CHART_FAILURE,
-        payload: { value },
-    };
+  return {
+    type: FETCH_CHART_FAILURE,
+    payload: { value },
+  };
 }
