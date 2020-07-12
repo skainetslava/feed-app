@@ -10,7 +10,7 @@ import "./volume.scss";
 interface IVolumeProps {
   className?: string;
   volumeLevel: number;
-  onChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onChangeVolume: (position: number) => void;
   onClickPlaylist: () => void;
 }
 
@@ -22,6 +22,10 @@ const Volume: React.FC<IVolumeProps> = React.memo(
       position: volumeLevel,
       ref: progressRef,
     });
+
+    React.useEffect(() => {
+      onChangeVolume(positionX);
+    }, [positionX]);
 
     return (
       <div className={cls(className, "player_right-side")}>

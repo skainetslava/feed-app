@@ -25,7 +25,7 @@ interface IPlayerProps {
   onNextAudio: () => void;
   onRepeatAudio: () => void;
   onShufflePlaylist: () => void;
-  onChangeVolume: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onChangeVolume: (position: number) => void;
   onClickPlaylist: () => void;
   onChangeSeek: (v: number) => void;
 }

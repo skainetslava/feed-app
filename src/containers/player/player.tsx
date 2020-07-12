@@ -137,11 +137,8 @@ const PlayerContainer: React.FC<IPlayerContainerProps> = ({
     clearInterval(timer);
   };
 
-  const handleChangeVolume = (event: React.MouseEvent<HTMLDivElement>) => {
-    const currentTargetRect = event.currentTarget.getBoundingClientRect();
-    const offsetX: number = event.pageX - currentTargetRect.left;
-
-    onChangeVolumePlayer && onChangeVolumePlayer(offsetX);
+  const handleChangeVolume = (position: number) => {
+    onChangeVolumePlayer && onChangeVolumePlayer(position);
   };
 
   const handlePlay = (): void => {
