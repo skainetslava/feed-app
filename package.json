@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "howler": "^2.1.2",
-    "node-sass": "^4.10.0",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
